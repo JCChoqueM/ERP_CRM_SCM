@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo CRM · ERP · SCM — Zapatos Sol</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    />
+    <style>
+      :root {
+        --bg: #f4f5fa;
+        --cd: #fff;
+        --tx: #1b1e2b;
+        --mu: #5b6075;
+        --bd: #e0e3ee;
+        --crm: #2563eb;
+        --scm: #c2410c;
+        --erp: #0f766e;
+        --ok: #15803d;
+        --wr: #b45309;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0e1120;
+          --cd: #181c2f;
+          --tx: #eef0f8;
+          --mu: #a3a9c4;
+          --bd: #2a3050;
+          --crm: #60a5fa;
+          --scm: #fb923c;
+          --erp: #2dd4bf;
+          --ok: #4ade80;
+          --wr: #fbbf24;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--tx);
+        font:
+          15px/1.45 system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+      }
+      .w {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px;
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      h1 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .mu,
+      small {
+        color: var(--mu);
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      nav {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin: 0 0 8px;
+      }
+      nav button {
+        border: 1px solid var(--bd);
+        background: var(--cd);
+        color: var(--tx);
+        border-radius: 99px;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      nav button.on {
+        background: var(--tx);
+        color: var(--bg);
+        font-weight: 700;
+      }
+      .c {
+        background: var(--cd);
+        border: 1px solid var(--bd);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      .c h2 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+      .c h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .c p {
+        margin: 4px 0;
+      }
+      .c.crm {
+        border-top: 5px solid var(--crm);
+      }
+      .c.erp {
+        border-top: 5px solid var(--erp);
+      }
+      .c.scm {
+        border-top: 5px solid var(--scm);
+      }
+      .hd {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+      .hd h3 {
+        margin: 0;
+      }
+      .stk {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: var(--bg);
+        margin: 0 -14px 12px;
+        padding: 8px 14px;
+        border-bottom: 1px solid var(--bd);
+      }
+      .kp {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+      .k {
+        background: var(--cd);
+        border: 1px solid var(--bd);
+        border-left: 5px solid var(--c);
+        border-radius: 12px;
+        padding: 6px 10px;
+        flex: 0 0 auto;
+        min-width: 125px;
+      }
+      .k small {
+        display: block;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .k b {
+        display: block;
+        font-size: 17px;
+        white-space: nowrap;
+      }
+      .k.crm {
+        --c: var(--crm);
+      }
+      .k.erp {
+        --c: var(--erp);
+      }
+      .k.scm {
+        --c: var(--scm);
+      }
+      .kb {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+        gap: 10px;
+      }
+      .col {
+        background: var(--cd);
+        border: 1px solid var(--bd);
+        border-radius: 12px;
+        padding: 10px;
+      }
+      .col h3 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: var(--crm);
+      }
+      .cd {
+        border: 1px solid var(--bd);
+        border-radius: 10px;
+        padding: 8px;
+        margin-bottom: 8px;
+        font-size: 13px;
+      }
+      .cd b {
+        font-size: 14px;
+      }
+      .cd > button {
+        margin-top: 6px;
+        width: 100%;
+      }
+      .ic {
+        display: flex;
+        gap: 4px;
+        margin-top: 6px;
+      }
+      .ic button {
+        flex: 1;
+      }
+      .tw {
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 13px;
+      }
+      th,
+      td {
+        border-bottom: 1px solid var(--bd);
+        padding: 7px 8px;
+        text-align: left;
+        white-space: nowrap;
+      }
+      th {
+        color: var(--mu);
+      }
+      .b {
+        border-radius: 99px;
+        padding: 2px 10px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .b.w {
+        background: #f59e0b33;
+        color: var(--wr);
+      }
+      .b.o {
+        background: #22c55e33;
+        color: var(--ok);
+      }
+      button:not(nav button) {
+        background: var(--tx);
+        color: var(--bg);
+        border: 0;
+        border-radius: 8px;
+        padding: 7px 12px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      button.gh {
+        background: transparent;
+        color: var(--tx);
+        border: 1px solid var(--bd);
+      }
+      button.sm {
+        padding: 3px 8px;
+        font-size: 12px;
+        margin-right: 4px;
+      }
+      .fm {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .al {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        border: 1px solid var(--wr);
+        border-radius: 10px;
+        padding: 8px 10px;
+        margin-bottom: 8px;
+      }
+      .lg {
+        display: flex;
+        gap: 8px;
+        padding: 6px 0 6px 8px;
+        border-bottom: 1px solid var(--bd);
+        border-left: 4px solid var(--c);
+        font-size: 13px;
+      }
+      .lg i {
+        font-style: normal;
+        color: var(--mu);
+        flex: none;
+      }
+      .lg.crm {
+        --c: var(--crm);
+      }
+      .lg.erp {
+        --c: var(--erp);
+      }
+      .lg.scm {
+        --c: var(--scm);
+      }
+      ol {
+        margin: 6px 0;
+        padding-left: 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
+      dialog {
+        border: 1px solid var(--bd);
+        border-radius: 14px;
+        background: var(--cd);
+        color: var(--tx);
+        padding: 16px;
+        width: min(420px, 92vw);
+      }
+      dialog::backdrop {
+        background: #0008;
+      }
+      dialog h3 {
+        margin: 0 0 6px;
+      }
+      label {
+        display: block;
+        margin: 8px 0;
+        font-size: 13px;
+        color: var(--mu);
+      }
+      input,
+      select {
+        font: inherit;
+        display: block;
+        width: 100%;
+        margin-top: 3px;
+        padding: 8px;
+        border: 1px solid var(--bd);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--tx);
+      }
+      .ac {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        margin-top: 12px;
+      }
+      #t {
+        position: fixed;
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+        background: var(--tx);
+        color: var(--bg);
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+        display: none;
+        max-width: 90%;
+        z-index: 99;
+      }
+      #tp {
+        position: fixed;
+        z-index: 50;
+        display: none;
+        max-width: min(320px, 92vw);
+        background: var(--cd);
+        color: var(--tx);
+        border: 1px solid var(--bd);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        line-height: 1.45;
+        box-shadow: 0 8px 24px #0006;
+        pointer-events: none;
+      }
+      #tp h4 {
+        margin: 0 0 6px;
+        font-size: 14px;
+      }
+      .k {
+        cursor: help;
+      }
+      .k:focus {
+        outline: 2px solid var(--c);
+      }
+      footer {
+        text-align: center;
+        color: var(--mu);
+        font-size: 12px;
+        margin: 16px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="w">
+      <div class="top">
+        <div>
+          <h1>🛍️ Zapatos Sol — Demo CRM · ERP · SCM</h1>
+          <small>Tienda ficticia de calzado en Bolivia. Funciona en tu navegador, sin base de datos.</small>
+        </div>
+        <button onclick="rst()">↺ Reiniciar demo</button>
+      </div>
+      <div class="stk">
+        <nav>
+          <button
+            data-t="home"
+            onclick="go('home')"
+          >
+            📋 Bitácora</button
+          ><button
+            data-t="crm"
+            onclick="go('crm')"
+          >
+            👥 CRM (clientes)</button
+          ><button
+            data-t="erp"
+            onclick="go('erp')"
+          >
+            🏢 ERP (empresa)</button
+          ><button
+            data-t="scm"
+            onclick="go('scm')"
+          >
+            🚚 SCM (proveedores)
+          </button>
+        </nav>
+        <div
+          class="kp"
+          id="kp"
+        ></div>
+      </div>
+      <main id="v"></main>
+      <footer id="ft"></footer>
+    </div>
+    <input
+      id="imp"
+      type="file"
+      accept=".json,application/json"
+      hidden
+      onchange="im(this)"
+    />
+    <div id="t"></div>
+    <div id="tp"></div>
+    <script>
+      const KEY = 'zapatos_sol_demo_v1',
+        ST = ['Nuevo', 'Contactado', 'Precio enviado', 'Vendido'],
+        CITIES = ['La Paz', 'El Alto', 'Cochabamba', 'Santa Cruz', 'Sucre', 'Tarija', 'Potosí', 'Oruro', 'Trinidad', 'Cobija'],
+        OS = ['Pedido hecho', 'En camino', 'Recibido'];
+      const seed = () => ({
+        n: 100,
+        seq: 0,
+        sales: [],
+        orders: [],
+        log: [],
+        sups: [
+          { id: 1, n: 'Curtiembre Andina', c: 'La Paz' },
+          { id: 2, n: 'Calzados Illimani', c: 'El Alto' },
+          { id: 3, n: 'Suelas del Oriente', c: 'Santa Cruz' },
+        ],
+        prods: [
+          { id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 2 },
+          { id: 2, n: 'Zapatilla deportiva', pr: 350, st: 20, min: 10, sup: 2 },
+          { id: 3, n: 'Botín de cuero', pr: 420, st: 12, min: 10, sup: 1 },
+          { id: 4, n: 'Sandalia', pr: 150, st: 40, min: 15, sup: 3 },
+        ],
+        leads: [
+          { id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 3, q: 3, s: 2 },
+          { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 1, q: 2, s: 1 },
+          { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 2, q: 1, s: 0 },
+          { id: 4, n: 'Fernando Vargas', t: '72345678', c: 'Sucre', p: 4, q: 4, s: 0 },
+          { id: 5, n: 'Lourdes Condori', t: '70123456', c: 'Tarija', p: 3, q: 15, s: 2 },
+        ],
+      });
+      const blank = () => ({ n: 100, seq: 0, sales: [], orders: [], log: [], sups: [], prods: [], leads: [] });
+      let D = null,
+        OK = true,
+        T = 'home';
+      try {
+        localStorage.setItem('_t', '1');
+        localStorage.removeItem('_t');
+        D = JSON.parse(localStorage.getItem(KEY));
+      } catch (e) {
+        OK = false;
+      }
+      if (!D || !Array.isArray(D.prods)) D = seed();
+      fix();
+      const save = () => {
+        try {
+          localStorage.setItem(KEY, JSON.stringify(D));
+        } catch (e) {}
+      };
+      const $ = (s) => document.querySelector(s),
+        P = (id) => D.prods.find((p) => p.id == id),
+        S = (id) => D.sups.find((s) => s.id == id);
+      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+      const fmt = (n) => 'Bs ' + n.toLocaleString('es-BO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const today = () => new Date().toLocaleDateString('es-BO'),
+        int = (v) => v !== '' && Number.isInteger(+v);
+      function log(m, tag) {
+        D.log.unshift({ t: new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }), m, tag });
+        D.log = D.log.slice(0, 50);
+      }
+      function toast(m) {
+        const e = $('#t');
+        e.textContent = m;
+        e.style.display = 'block';
+        clearTimeout(toast.h);
+        toast.h = setTimeout(() => (e.style.display = 'none'), 4000);
+      }
+      const done = () => {
+        save();
+        render();
+      };
+      const tb = (h, r) =>
+        '<div class="tw"><table><tr>' +
+        h.map((x) => '<th>' + x + '</th>').join('') +
+        '</tr>' +
+        r.map((x) => '<tr>' + x.map((y) => '<td>' + y + '</td>').join('') + '</tr>').join('') +
+        '</table></div>';
+      const k = (l, v, c) => `<div class="k ${c}"><small>${l}</small><b>${v}</b></div>`;
+      const ab = (t, f) => `<button class="gh sm" onclick="${f}">${t}</button>`;
+      function go(t) {
+        T = t;
+        render();
+        scrollTo(0, 0);
+      }
+      function render() {
+        document.querySelectorAll('nav button').forEach((b) => b.classList.toggle('on', b.dataset.t == T));
+        $('#kp').innerHTML = kpis();
+        htip();
+        $('#v').innerHTML = { home: vHome, crm: vCrm, erp: vErp, scm: vScm }[T]();
+        $('#ft').textContent = OK
+          ? 'Datos de ejemplo (ficticios) en bolivianos (Bs) con IVA 13%. Tus cambios se guardan solos en este navegador.'
+          : '⚠️ Este navegador no permite guardar: los cambios se perderán al cerrar. Usa «Exportar copia» para respaldarlos.';
+      }
+      function fm(title, fields, cb, ok) {
+        const d = document.createElement('dialog'),
+          f = document.createElement('form');
+        f.innerHTML = `<h3>${title}</h3>${fields.map((f) => `<label>${f.l}${f.o ? `<select name="${f.k}">${f.o.map((o) => `<option value="${esc(o[0])}"${o[0] == f.v ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select>` : `<input name="${f.k}" type="${f.t || 'text'}" value="${esc(f.v ?? '')}"${f.t == 'number' ? ' min="0" step="any"' : ''}>`}</label>`).join('')}<div class="ac"><button type="button" class="gh" id="fx">Cancelar</button><button type="submit">${ok || 'Guardar'}</button></div>`;
+        d.appendChild(f);
+        document.body.appendChild(d);
+        const end = () => {
+          try {
+            d.close();
+          } catch (e) {}
+          d.remove();
+        };
+        f.querySelector('#fx').onclick = end;
+        d.addEventListener('cancel', () => setTimeout(end));
+        f.onsubmit = (e) => {
+          e.preventDefault();
+          const o = {};
+          fields.forEach((x) => (o[x.k] = f.querySelector('[name=' + x.k + ']').value.trim()));
+          end();
+          try {
+            cb(o);
+          } catch (err) {
+            console.error(err);
+            toast('Error: ' + err.message);
+          }
+        };
+        try {
+          d.showModal();
+        } catch (e) {
+          d.setAttribute('open', '');
+        }
+      }
+      const cf = (m, cb) => fm(m, [], cb, 'Aceptar');
+      function fix() {
+        D.n = Math.max(D.n || 1, 100, ...[...D.leads, ...D.prods, ...D.sups, ...D.orders].map((x) => x.id + 1));
+        ['leads', 'prods', 'sups', 'orders'].forEach((a) => {
+          const seen = new Set();
+          D[a].forEach((x) => {
+            if (seen.has(x.id)) x.id = D.n++;
+            seen.add(x.id);
+          });
+        });
+      }
+      function rst(b) {
+        cf(b ? '¿Borrar todo y empezar en blanco?' : '¿Reiniciar con los datos de ejemplo originales? Se perderán los cambios.', () => {
+          try {
+            localStorage.removeItem(KEY);
+          } catch (e) {}
+          D = b ? blank() : seed();
+          done();
+          go('home');
+          toast(b ? 'Demo en blanco: agrega proveedores y productos para empezar' : 'Demo reiniciada: todo volvió al inicio');
+        });
+      }
+      function ex() {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }));
+        a.download = 'zapatos-sol-copia.json';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }
+      function im(i) {
+        const f = i.files[0];
+        if (!f) return;
+        const r = new FileReader();
+        r.onload = () => {
+          try {
+            const x = JSON.parse(r.result);
+            if (!x || !Array.isArray(x.prods) || !Array.isArray(x.leads) || !Array.isArray(x.sups)) throw 0;
+            x.orders = x.orders || [];
+            x.sales = x.sales || [];
+            x.log = x.log || [];
+            D = x;
+            fix();
+            done();
+            toast('✅ Copia importada');
+          } catch (e) {
+            toast('El archivo no es una copia válida de esta demo');
+          }
+          i.value = '';
+        };
+        r.readAsText(f);
+      }
+
+      let KD = [];
+      function kpis() {
+        const ok = D.sales.filter((s) => !s.v),
+          vt = ok.reduce((a, s) => a + s.tot, 0),
+          iva = ok.reduce((a, s) => a + s.iva, 0),
+          lowL = D.prods.filter((p) => p.st <= p.min),
+          openL = D.leads.filter((l) => l.s < 3),
+          pendL = D.orders.filter((o) => o.s < 2),
+          debL = D.orders.filter((o) => o.s == 2 && !o.paid),
+          paid = D.orders.filter((o) => o.paid).reduce((a, o) => a + o.cost, 0),
+          deb = debL.reduce((a, o) => a + o.cost, 0),
+          pot = openL.reduce((a, l) => a + P(l.p).pr * l.q, 0);
+        const li = (a) => (a.length ? a.map((x) => '• ' + x).join('<br>') : '<span class="mu">Nada por ahora</span>');
+        const it = [
+          [
+            '💰 Ventas',
+            fmt(vt),
+            'erp',
+            'Suma de las facturas vigentes (sin las anuladas).<br>IVA 13% incluido: <b>' +
+              fmt(iva) +
+              '</b>' +
+              (ok.length
+                ? '<br><br>Últimas ventas:<br>' +
+                  li(
+                    ok
+                      .slice(-3)
+                      .reverse()
+                      .map((s) => s.num + ' · ' + esc(s.c) + ' · ' + fmt(s.tot)),
+                  )
+                : ''),
+          ],
+          [
+            '🧾 Facturas emitidas',
+            ok.length,
+            'erp',
+            'Vigentes: <b>' +
+              ok.length +
+              '</b> · Anuladas: <b>' +
+              (D.sales.length - ok.length) +
+              '</b>' +
+              (ok.length
+                ? '<br><br>Última: ' +
+                  ok[ok.length - 1].num +
+                  ' · ' +
+                  esc(ok[ok.length - 1].c) +
+                  '<br>' +
+                  ok[ok.length - 1].q +
+                  ' × ' +
+                  esc(ok[ok.length - 1].pn)
+                : '<br><br>Aún no vendiste nada.'),
+          ],
+          [
+            '👥 Clientes por cerrar',
+            openL.length,
+            'crm',
+            'Interesados que todavía no compran:<br>' +
+              ST.slice(0, 3)
+                .map((n, i) => '• ' + n + ': <b>' + D.leads.filter((l) => l.s == i).length + '</b>')
+                .join('<br>') +
+              '<br><br>Valor posible de venta: <b>' +
+              fmt(pot) +
+              '</b>',
+          ],
+          [
+            '⚠️ Con «Queda poco»',
+            lowL.length,
+            'scm',
+            'Productos con stock igual o menor al mínimo:<br>' +
+              li(lowL.map((p) => esc(p.n) + ': ' + p.st + ' pares (mínimo ' + p.min + ')')) +
+              (lowL.length ? '<br><br>Ve a SCM para hacer el pedido.' : ''),
+          ],
+          [
+            '🚚 Pedidos por llegar',
+            pendL.length,
+            'scm',
+            'Pedidos a proveedores que aún no llegan:<br>' +
+              li(
+                pendL.map((o) => {
+                  const p = P(o.p);
+                  return '#' + o.id + ' · ' + o.q + ' × ' + esc(p.n) + ' · ' + OS[o.s];
+                }),
+              ),
+          ],
+          [
+            '💵 Por pagar a proveedores',
+            fmt(deb),
+            'erp',
+            'Pedidos recibidos y sin pagar:<br>' +
+              li(debL.map((o) => '#' + o.id + ' · ' + esc(S(P(o.p).sup).n) + ' · ' + fmt(o.cost))) +
+              '<br><br>Ya pagado: <b>' +
+              fmt(paid) +
+              '</b>',
+          ],
+        ];
+        KD = it.map((x) => x[3]);
+        return it.map((x, i) => `<div class="k ${x[2]}" tabindex="0" data-i="${i}"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('');
+      }
+      const tp = $('#tp'),
+        HV = window.matchMedia ? matchMedia('(hover:hover)') : { matches: true };
+      function stip(el) {
+        tp.innerHTML = '<h4>' + el.querySelector('small').textContent + '</h4>' + KD[el.dataset.i];
+        tp.style.display = 'block';
+        const r = el.getBoundingClientRect(),
+          w = tp.offsetWidth;
+        tp.style.top = r.bottom + 8 + 'px';
+        tp.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px';
+        tp.dataset.i = el.dataset.i;
+      }
+      const htip = () => {
+          tp.style.display = 'none';
+          tp.dataset.i = '';
+        },
+        kc = (e) => e.target.closest && e.target.closest('#kp .k');
+      document.addEventListener('mouseover', (e) => {
+        if (!HV.matches) return;
+        const el = kc(e);
+        el ? stip(el) : htip();
+      });
+      document.addEventListener('focusin', (e) => {
+        const el = kc(e);
+        el ? stip(el) : htip();
+      });
+      document.addEventListener('click', (e) => {
+        if (HV.matches) return;
+        const el = kc(e);
+        if (el && tp.dataset.i != el.dataset.i) stip(el);
+        else htip();
+      });
+      addEventListener('scroll', htip, true);
+      function vHome() {
+        return `<div class="c"><h2>📋 Bitácora: qué pasó entre los sistemas</h2>${D.log.length ? D.log.map((l) => `<div class="lg ${l.tag}"><i>${l.t}</i><span>${esc(l.m)}</span></div>`).join('') : '<p class="mu">Todavía no pasó nada. Empieza por el paso 1.</p>'}</div>
+<div class="c"><h2>🧭 Cómo hacer la demo</h2><ol>
+<li>En <b>CRM</b>, Mariela Choque (La Paz) está en «Precio enviado». Pulsa «Marcar como Vendido».</li>
+<li>En <b>ERP</b> verás la factura nueva y que el stock de Botín de cuero bajó.</li>
+<li>En <b>SCM</b> aparece la alerta «Queda poco». Pulsa «Hacer pedido».</li>
+<li>Avanza el pedido: «Marcar en camino» y luego «Marcar recibido».</li>
+<li>Vuelve a <b>ERP</b>: el stock subió y hay una cuenta por pagar al proveedor.</li>
+<li><i>Extra:</i> intenta vender 15 botines a Lourdes Condori (Tarija): no alcanza el stock hasta que llegue el pedido.</li>
+<li>Todo es editable: agrega, edita o elimina interesados, productos, proveedores y pedidos.</li></ol></div>
+<div class="c"><h2>💾 Datos y copia de seguridad</h2><p class="mu">Todo se guarda solo en este navegador. Puedes respaldar, restaurar o empezar de cero.</p><div class="fm"><button onclick="ex()">⬇️ Exportar copia</button><button onclick="$('#imp').click()">⬆️ Importar copia</button><button class="gh" onclick="rst()">↺ Reiniciar con datos de ejemplo</button><button class="gh" onclick="rst(1)">🗑️ Empezar en blanco</button></div></div>`;
+      }
+
+      function card(l) {
+        const p = P(l.p);
+        return `<div class="cd"><b>${esc(l.n)}</b><br>📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${esc(p.n)} = <b>${fmt(p.pr * l.q)}</b>${l.s < 3 ? `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>` : ''}<div class="ic">${l.s > 0 && l.s < 3 ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${l.s < 3 ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
+      }
+      function vCrm() {
+        return `<div class="c crm"><div class="hd"><h2>👥 CRM — Gestión de la Relación con el Cliente</h2><button onclick="lf()">+ Nuevo interesado</button></div><p>Aquí ves a las personas interesadas y en qué etapa de la compra están. Al marcar «Vendido», el ERP registra la venta automáticamente.</p></div>
+<div class="kb">${ST.map((s, i) => {
+          const L = D.leads.filter((l) => l.s == i);
+          return `<div class="col"><h3>${s} (${L.length})</h3>${L.map(card).join('') || '<p class="mu">—</p>'}</div>`;
+        }).join('')}</div>`;
+      }
+      function lf(id) {
+        const l = id ? D.leads.find((x) => x.id == id) : {};
+        if (!D.prods.length) {
+          toast('Primero agrega un producto en ERP');
+          return;
+        }
+        fm(
+          id ? 'Editar interesado' : 'Nuevo interesado',
+          [
+            { k: 'n', l: 'Nombre', v: l.n },
+            { k: 't', l: 'Teléfono celular (8 dígitos, opcional)', t: 'tel', v: l.t },
+            { k: 'c', l: 'Ciudad', o: CITIES.map((c) => [c, c]), v: l.c },
+            { k: 'p', l: 'Producto de interés', o: D.prods.map((p) => [p.id, p.n]), v: l.p },
+            { k: 'q', l: 'Cantidad', t: 'number', v: l.q || 1 },
+          ],
+          (o) => {
+            if (!o.n) {
+              toast('Escribe el nombre');
+              return;
+            }
+            if (o.t && !/^[67]\d{7}$/.test(o.t)) {
+              toast('El celular boliviano tiene 8 dígitos y empieza con 6 o 7');
+              return;
+            }
+            if (!int(o.q) || +o.q < 1) {
+              toast('La cantidad debe ser un número entero mayor a 0');
+              return;
+            }
+            if (id) {
+              Object.assign(l, { n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q });
+              log('CRM: se editó a ' + o.n, 'crm');
+            } else {
+              D.leads.push({ id: D.n++, n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, s: 0 });
+              log('CRM: nuevo interesado ' + o.n + ' (' + o.c + ')', 'crm');
+            }
+            done();
+          },
+        );
+      }
+      function dl(id) {
+        const l = D.leads.find((x) => x.id == id);
+        cf('¿Eliminar a ' + l.n + '?', () => {
+          D.leads = D.leads.filter((x) => x.id != id);
+          log('CRM: se eliminó a ' + l.n, 'crm');
+          done();
+        });
+      }
+      function bk(id) {
+        const l = D.leads.find((x) => x.id == id);
+        l.s--;
+        log('CRM: ' + l.n + ' volvió a «' + ST[l.s] + '»', 'crm');
+        done();
+      }
+      function adv(id) {
+        const l = D.leads.find((x) => x.id == id);
+        if (l.s == 2) {
+          if (!sell(l.n, l.p, l.q, 'CRM → ERP')) return;
+        } else log('CRM: ' + l.n + ' pasó a «' + ST[l.s + 1] + '»', 'crm');
+        l.s++;
+        done();
+      }
+      function sell(cl, pid, q, from) {
+        const p = P(pid);
+        if (p.st < q) {
+          toast('⚠️ No hay stock suficiente de ' + p.n + ' (hay ' + p.st + '). Ve a SCM y haz un pedido al proveedor.');
+          log('ERP: no se pudo vender ' + q + ' × ' + p.n + ' a ' + cl + ' (en bodega: ' + p.st + ')', 'erp');
+          done();
+          return false;
+        }
+        p.st -= q;
+        const tot = p.pr * q,
+          num = 'F-' + String((D.seq = (D.seq || D.sales.length) + 1)).padStart(4, '0');
+        D.sales.push({ num, f: today(), c: cl, pid, pn: p.n, q, tot, iva: (tot * 13) / 113 });
+        log(from + ': ' + cl + ' compró ' + q + ' × ' + p.n + '. Se descontó del inventario y se emitió la factura ' + num, 'erp');
+        if (p.st <= p.min) log('ERP → SCM: «Queda poco» de ' + p.n + ' (' + p.st + ' pares). Conviene pedir más al proveedor', 'scm');
+        return true;
+      }
+
+      function vErp() {
+        const rec = D.orders.filter((o) => o.s == 2);
+        return `<div class="c erp"><h2>🏢 ERP — Planificación de Recursos Empresariales</h2><p>Es el centro de la empresa: inventario, facturas y cuentas, todo con los mismos datos.</p></div>
+<div class="c"><div class="hd"><h3>📦 Inventario</h3><button onclick="pf()">+ Nuevo producto</button></div>${
+          D.prods.length
+            ? tb(
+                ['Producto', 'Precio', 'En bodega', 'Mínimo', 'Proveedor', 'Estado', ''],
+                D.prods.map((p) => [
+                  esc(p.n),
+                  fmt(p.pr),
+                  p.st + ' pares',
+                  p.min,
+                  esc(S(p.sup).n),
+                  p.st <= p.min ? '<span class="b w">Queda poco</span>' : '<span class="b o">Bien</span>',
+                  ab('✏️ Editar', 'pf(' + p.id + ')') + ab('🗑️', 'dp(' + p.id + ')'),
+                ]),
+              )
+            : '<p class="mu">No hay productos. Agrega el primero (necesitas un proveedor en SCM).</p>'
+        }</div>
+<div class="c"><div class="hd"><h3>🧾 Facturas emitidas</h3><button onclick="vf()">+ Venta directa</button></div>${
+          D.sales.length
+            ? tb(
+                ['Factura', 'Fecha', 'Cliente', 'Detalle', 'Total', 'IVA 13% incluido', ''],
+                D.sales.map((s) => [
+                  s.num,
+                  s.f,
+                  esc(s.c),
+                  s.q + ' × ' + esc(s.pn),
+                  fmt(s.tot),
+                  fmt(s.iva),
+                  s.v ? '<span class="b w">Anulada</span>' : ab('Anular', "anu('" + s.num + "')"),
+                ]),
+              )
+            : '<p class="mu">Aún no hay facturas. Vende algo desde el CRM o con «Venta directa».</p>'
+        }</div>
+<div class="c"><h3>💵 Cuentas por pagar a proveedores</h3>${
+          rec.length
+            ? tb(
+                ['Pedido', 'Proveedor', 'Detalle', 'Monto', 'Estado'],
+                rec.map((o) => {
+                  const p = P(o.p);
+                  return [
+                    '#' + o.id,
+                    esc(S(p.sup).n),
+                    o.q + ' × ' + esc(p.n),
+                    fmt(o.cost),
+                    o.paid ? '<span class="b o">Pagado</span>' : `<button class="sm" onclick="pay(${o.id})">Marcar pagado</button>`,
+                  ];
+                }),
+              )
+            : '<p class="mu">Se generan cuando llega un pedido desde SCM.</p>'
+        }</div>`;
+      }
+      function pf(id) {
+        const p = id ? P(id) : {};
+        if (!D.sups.length) {
+          toast('Primero agrega un proveedor en SCM');
+          return;
+        }
+        fm(
+          id ? 'Editar producto' : 'Nuevo producto',
+          [
+            { k: 'n', l: 'Nombre', v: p.n },
+            { k: 'pr', l: 'Precio de venta (Bs)', t: 'number', v: p.pr },
+            { k: 'st', l: 'En bodega (pares)', t: 'number', v: p.st },
+            { k: 'min', l: 'Mínimo para avisar «Queda poco»', t: 'number', v: p.min },
+            { k: 'sup', l: 'Proveedor', o: D.sups.map((s) => [s.id, s.n + ' (' + s.c + ')']), v: p.sup },
+          ],
+          (o) => {
+            if (!o.n || !(+o.pr > 0) || !int(o.st) || !int(o.min) || +o.st < 0 || +o.min < 0) {
+              toast('Revisa: nombre, precio mayor a 0 y cantidades enteras');
+              return;
+            }
+            const v = { n: o.n, pr: +o.pr, st: +o.st, min: +o.min, sup: +o.sup };
+            if (id) {
+              if (v.st != p.st) log('ERP: se ajustó el stock de ' + v.n + ' de ' + p.st + ' a ' + v.st, 'erp');
+              else log('ERP: se editó el producto ' + v.n, 'erp');
+              Object.assign(p, v);
+            } else {
+              D.prods.push({ id: D.n++, ...v });
+              log('ERP: nuevo producto ' + v.n, 'erp');
+            }
+            done();
+          },
+        );
+      }
+      function dp(id) {
+        const p = P(id);
+        if (D.leads.some((l) => l.p == id) || D.orders.some((o) => o.p == id) || D.sales.some((s) => s.pid == id)) {
+          toast('No se puede eliminar: tiene interesados, pedidos o facturas asociados');
+          return;
+        }
+        cf('¿Eliminar ' + p.n + '?', () => {
+          D.prods = D.prods.filter((x) => x.id != id);
+          log('ERP: se eliminó el producto ' + p.n, 'erp');
+          done();
+        });
+      }
+      function vf() {
+        if (!D.prods.length) {
+          toast('Primero agrega un producto');
+          return;
+        }
+        fm(
+          'Venta directa (sin pasar por el CRM)',
+          [
+            { k: 'c', l: 'Cliente', v: '' },
+            { k: 'p', l: 'Producto', o: D.prods.map((p) => [p.id, p.n + ' — ' + fmt(p.pr)]) },
+            { k: 'q', l: 'Cantidad', t: 'number', v: 1 },
+          ],
+          (o) => {
+            if (!o.c || !int(o.q) || +o.q < 1) {
+              toast('Escribe el cliente y una cantidad entera mayor a 0');
+              return;
+            }
+            if (sell(o.c, +o.p, +o.q, 'ERP (venta directa)')) done();
+          },
+        );
+      }
+      function anu(num) {
+        const s = D.sales.find((x) => x.num == num);
+        cf('¿Anular la factura ' + num + '? El producto vuelve a la bodega.', () => {
+          s.v = 1;
+          const p = P(s.pid);
+          if (p) p.st += s.q;
+          log('ERP: se anuló la factura ' + num + ' y volvieron ' + s.q + ' × ' + s.pn + ' a la bodega', 'erp');
+          done();
+        });
+      }
+      function pay(id) {
+        const o = D.orders.find((x) => x.id == id);
+        o.paid = true;
+        log('ERP: se pagó el pedido #' + id + ' a ' + S(P(o.p).sup).n + ' (' + fmt(o.cost) + ')', 'erp');
+        done();
+      }
+
+      function vScm() {
+        const low = D.prods.filter((p) => p.st <= p.min);
+        return `<div class="c scm"><h2>🚚 SCM — Gestión de la Cadena de Suministro</h2><p>Cuida que el producto llegue a tiempo: avisa cuándo falta algo y sigue los pedidos a los proveedores.</p></div>
+<div class="c"><h3>🔔 Alertas</h3>${low.length ? low.map((p) => `<div class="al"><span><b>${esc(p.n)}</b>: quedan ${p.st} pares (mínimo ${p.min}). Proveedor: ${esc(S(p.sup).n)}, ${esc(S(p.sup).c)}.</span><button onclick="of(${p.id})">Hacer pedido</button></div>`).join('') : '<p class="mu">✅ Todo el inventario está bien.</p>'}</div>
+<div class="c"><div class="hd"><h3>📋 Pedidos a proveedores</h3><button onclick="of()">+ Nuevo pedido</button></div>${
+          D.orders.length
+            ? tb(
+                ['Pedido', 'Producto', 'Proveedor', 'Costo', 'Estado', ''],
+                D.orders.map((o) => {
+                  const p = P(o.p);
+                  return [
+                    '#' + o.id,
+                    o.q + ' × ' + esc(p.n),
+                    esc(S(p.sup).n),
+                    fmt(o.cost),
+                    '<span class="b ' + (o.s == 2 ? 'o' : 'w') + '">' + OS[o.s] + '</span>',
+                    o.s < 2
+                      ? `<button class="sm" onclick="ad(${o.id})">${o.s == 0 ? 'Marcar en camino' : 'Marcar recibido'}</button>` +
+                        ab('Cancelar', 'cx(' + o.id + ')')
+                      : '',
+                  ];
+                }),
+              )
+            : '<p class="mu">Aún no hay pedidos.</p>'
+        }</div>
+<div class="c"><div class="hd"><h3>🏭 Proveedores</h3><button onclick="sf()">+ Nuevo proveedor</button></div>${
+          D.sups.length
+            ? tb(
+                ['Nombre', 'Ciudad', 'Nos vende', ''],
+                D.sups.map((s) => [
+                  esc(s.n),
+                  esc(s.c),
+                  D.prods
+                    .filter((p) => p.sup == s.id)
+                    .map((p) => esc(p.n))
+                    .join(', ') || '—',
+                  ab('✏️ Editar', 'sf(' + s.id + ')') + ab('🗑️', 'ds(' + s.id + ')'),
+                ]),
+              )
+            : '<p class="mu">No hay proveedores. Agrega el primero.</p>'
+        }</div>`;
+      }
+      function of(pid) {
+        if (!D.prods.length) {
+          toast('Primero agrega un producto en ERP');
+          return;
+        }
+        const p = pid ? P(pid) : D.prods[0];
+        fm(
+          'Nuevo pedido a proveedor',
+          [
+            { k: 'p', l: 'Producto', o: D.prods.map((x) => [x.id, x.n]), v: p.id },
+            { k: 'q', l: 'Cantidad (pares)', t: 'number', v: p.min * 2 || 10 },
+            { k: 'u', l: 'Costo por par (Bs)', t: 'number', v: Math.round(p.pr * 0.55) },
+          ],
+          (o) => {
+            if (!int(o.q) || +o.q < 1 || !(+o.u > 0)) {
+              toast('Cantidad entera mayor a 0 y costo mayor a 0');
+              return;
+            }
+            const q = +o.q,
+              pr = P(o.p);
+            D.orders.push({ id: D.n++, p: pr.id, q, s: 0, cost: q * +o.u, f: today() });
+            log('SCM: pedido de ' + q + ' × ' + pr.n + ' a ' + S(pr.sup).n + ' (' + S(pr.sup).c + ')', 'scm');
+            done();
+          },
+        );
+      }
+      function ad(id) {
+        const o = D.orders.find((x) => x.id == id),
+          p = P(o.p);
+        if (o.s == 0) {
+          o.s = 1;
+          log('SCM: el pedido #' + id + ' salió de ' + S(p.sup).n + ' hacia la tienda', 'scm');
+        } else {
+          o.s = 2;
+          p.st += o.q;
+          log(
+            'SCM → ERP: llegó el pedido #' +
+              id +
+              '. El inventario de ' +
+              p.n +
+              ' sube a ' +
+              p.st +
+              ' y se registra una cuenta por pagar de ' +
+              fmt(o.cost),
+            'erp',
+          );
+        }
+        done();
+      }
+      function cx(id) {
+        cf('¿Cancelar el pedido #' + id + '?', () => {
+          D.orders = D.orders.filter((o) => o.id != id);
+          log('SCM: se canceló el pedido #' + id, 'scm');
+          done();
+        });
+      }
+      function sf(id) {
+        const s = id ? S(id) : {};
+        fm(
+          id ? 'Editar proveedor' : 'Nuevo proveedor',
+          [
+            { k: 'n', l: 'Nombre', v: s.n },
+            { k: 'c', l: 'Ciudad', v: s.c },
+          ],
+          (o) => {
+            if (!o.n || !o.c) {
+              toast('Escribe el nombre y la ciudad');
+              return;
+            }
+            if (id) {
+              Object.assign(s, o);
+              log('SCM: se editó el proveedor ' + o.n, 'scm');
+            } else {
+              D.sups.push({ id: D.n++, n: o.n, c: o.c });
+              log('SCM: nuevo proveedor ' + o.n, 'scm');
+            }
+            done();
+          },
+        );
+      }
+      function ds(id) {
+        const s = S(id);
+        if (D.prods.some((p) => p.sup == id)) {
+          toast('No se puede eliminar: hay productos que dependen de este proveedor');
+          return;
+        }
+        cf('¿Eliminar a ' + s.n + '?', () => {
+          D.sups = D.sups.filter((x) => x.id != id);
+          log('SCM: se eliminó al proveedor ' + s.n, 'scm');
+          done();
+        });
+      }
+      render();
+    </script>
+  </body>
+</html>
