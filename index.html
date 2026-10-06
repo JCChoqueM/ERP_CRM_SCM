@@ -5,7 +5,7 @@
     <title>Demo CRM · ERP · SCM — Zapatos Sol</title>
     <meta
       name="viewport"
-      content="width=device-width,initial-scale=1"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
     />
     <style>
       :root {
@@ -19,6 +19,7 @@
         --erp: #0f766e;
         --ok: #15803d;
         --wr: #b45309;
+        --rd: #b91c1c;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -32,6 +33,7 @@
           --erp: #2dd4bf;
           --ok: #4ade80;
           --wr: #fbbf24;
+          --rd: #f87171;
         }
       }
       * {
@@ -278,6 +280,235 @@
         padding: 8px 10px;
         margin-bottom: 8px;
       }
+      .pt {
+        display: inline-block;
+        border-left: 4px solid var(--pc);
+        background: color-mix(in srgb, var(--pc) 18%, transparent);
+        padding: 0 7px;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+      .b.r {
+        background: #ef444433;
+        color: var(--rd);
+      }
+      .al.r {
+        border-color: var(--rd);
+      }
+      .al small {
+        display: block;
+      }
+      .al .bt {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      [id^='s-'],
+      [id^='l-'],
+      [id^='r-'] {
+        scroll-margin-top: 150px;
+      }
+      .fl {
+        animation: fl 1.8s;
+      }
+      tr.fl-r td {
+        animation: flr 3.6s;
+      }
+      @keyframes flr {
+        0%,
+        75% {
+          background: color-mix(in srgb, var(--wr) 45%, transparent);
+        }
+        100% {
+          background: transparent;
+        }
+      }
+      @keyframes fl {
+        0%,
+        65% {
+          box-shadow: 0 0 0 3px var(--wr);
+        }
+        100% {
+          box-shadow: 0 0 0 0 transparent;
+        }
+      }
+      .wn {
+        border: 1px solid var(--wr);
+        background: #f59e0b1f;
+        border-radius: 8px;
+        padding: 6px 8px;
+        margin-top: 6px;
+        font-size: 12px;
+      }
+      .wn.ok,
+      .al.ok {
+        border-color: var(--ok);
+        background: #22c55e1f;
+      }
+      .nvb {
+        display: inline-block;
+        background: var(--ok);
+        color: var(--bg);
+        border-radius: 6px;
+        padding: 0 5px;
+        font-size: 11px;
+        font-weight: 800;
+        margin-right: 4px;
+      }
+      tr.nv td {
+        background: color-mix(in srgb, var(--ok) 13%, transparent);
+      }
+      tr.nv td:first-child {
+        box-shadow: inset 4px 0 0 var(--ok);
+      }
+      .cd.nv,
+      .al.nv {
+        box-shadow: 0 0 0 2px var(--ok);
+      }
+      .flash:not(tr) {
+        animation: fl 1.8s;
+      }
+      tr.flash td {
+        animation: flr 3.6s;
+      }
+      .al.nvh {
+        position: fixed;
+        top: var(--nvtop, 120px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1072px, calc(100vw - 20px));
+        z-index: 6;
+        margin: 0;
+        padding: 7px 10px;
+        border-color: var(--ok);
+        background: color-mix(in srgb, var(--ok) 18%, var(--bg));
+        box-shadow: 0 4px 16px #0008, 0 0 0 1px var(--ok);
+        cursor: pointer;
+        flex-wrap: nowrap;
+      }
+      .nvsp {
+        height: var(--nvh, 52px);
+      }
+      .al.nvh:hover {
+        background: color-mix(in srgb, var(--ok) 26%, var(--bg));
+      }
+      .al.nvh > span {
+        min-width: 0;
+      }
+      .al.nvh small {
+        display: inline;
+        margin-left: 6px;
+        opacity: 0.8;
+      }
+      .al.nvh .bt {
+        flex-wrap: nowrap;
+        flex: none;
+      }
+      .nvh .nvc {
+        font-weight: 800;
+        color: var(--ok);
+        margin-left: 4px;
+      }
+      .nv.nvcur {
+        outline: 3px solid var(--ok);
+        outline-offset: 2px;
+        border-radius: 8px;
+      }
+      tr.nv.nvcur td {
+        background: color-mix(in srgb, var(--ok) 30%, transparent);
+      }
+      @media (max-width: 640px) {
+        .al.nvh {
+          flex-wrap: wrap;
+        }
+        .al.nvh small {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      .tl {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 0 10px;
+      }
+      .tl input,
+      .tl select {
+        width: auto;
+        margin: 0;
+        padding: 6px 10px;
+        font-size: 13px;
+        flex: 0 1 auto;
+      }
+      .tl input {
+        min-width: 190px;
+        flex: 1 1 190px;
+      }
+      .c.tlc {
+        padding: 10px 14px 0;
+        margin-bottom: 10px;
+      }
+      button.ch {
+        background: transparent;
+        color: var(--tx);
+        border: 1px solid var(--bd);
+        border-radius: 99px;
+        padding: 4px 11px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      button.ch b {
+        opacity: 0.7;
+        margin-left: 2px;
+      }
+      button.ch.on {
+        background: var(--tx);
+        color: var(--bg);
+      }
+      .al[onclick] {
+        cursor: pointer;
+      }
+      .nb {
+        background: var(--ok);
+        color: var(--bg);
+        border-radius: 99px;
+        padding: 0 7px;
+        font-size: 12px;
+        font-weight: 800;
+        margin-left: 4px;
+      }
+      .wn button {
+        margin-top: 6px;
+        width: 100%;
+      }
+      button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .b.i {
+        background: #3b82f633;
+        color: var(--crm);
+      }
+      .ks {
+        display: block;
+        font-size: 11px;
+        color: var(--mu);
+        white-space: nowrap;
+        max-width: 240px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .nw {
+        display: none;
+        border-left: 3px solid var(--erp);
+        padding-left: 8px;
+        margin-top: 4px;
+      }
       .lg {
         display: flex;
         gap: 8px;
@@ -379,7 +610,7 @@
         font-size: 14px;
       }
       .k {
-        cursor: help;
+        cursor: pointer;
       }
       .k:focus {
         outline: 2px solid var(--c);
@@ -390,6 +621,75 @@
         font-size: 12px;
         margin: 16px 0;
       }
+
+      /* ===== Mejoras UI/UX ===== */
+      html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+      ::selection { background: color-mix(in srgb, var(--ok) 35%, transparent); }
+      button, .cd, .k, nav button { transition: background .15s, border-color .15s, box-shadow .15s, transform .1s, opacity .15s; }
+      button:not(:disabled):hover { opacity: .88; }
+      button:not(:disabled):active { transform: scale(.96); }
+      button:focus-visible, input:focus-visible, select:focus-visible, .k:focus-visible, .al[onclick]:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--crm) 75%, white); outline-offset: 2px; }
+      input:focus, select:focus { border-color: var(--crm); box-shadow: 0 0 0 3px color-mix(in srgb, var(--crm) 25%, transparent); outline: none; }
+      nav button:not(.on):hover { border-color: var(--tx); }
+      .stk { transition: box-shadow .2s; }
+      .stk.sc { box-shadow: 0 6px 18px #0006; }
+      .cd:hover { border-color: color-mix(in srgb, var(--tx) 35%, var(--bd)); box-shadow: 0 3px 10px #0004; }
+      .k:hover { transform: translateY(-2px); box-shadow: 0 4px 12px #0004; }
+      tr:not(:first-child):hover td { background: color-mix(in srgb, var(--tx) 6%, transparent); }
+      tr.nv:hover td { background: color-mix(in srgb, var(--ok) 20%, transparent); }
+      th { position: sticky; top: 0; background: var(--cd); }
+      button:disabled { cursor: not-allowed; }
+      #t { cursor: pointer; box-shadow: 0 8px 24px #0007; animation: tin .25s; }
+      @keyframes tin { from { opacity: 0; translate: 0 12px; } }
+      dialog { border-radius: 14px; animation: tin .2s; }
+      dialog::backdrop { background: #0009; backdrop-filter: blur(3px); }
+      #up { position: fixed; right: 14px; bottom: 14px; width: 42px; height: 42px; border-radius: 50% !important; padding: 0 !important;
+        font-size: 18px !important; box-shadow: 0 4px 14px #0007; z-index: 30; opacity: 0; pointer-events: none; }
+      #up.on { opacity: .92; pointer-events: auto; }
+      @media (max-width: 640px) {
+        nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+        nav button { flex: none; white-space: nowrap; }
+        h1 { font-size: 19px; }
+      }
+      @media (pointer: coarse) { button:not(.sm) { min-height: 40px; } button.sm { min-height: 34px; } }
+
+      /* ===== Responsive ===== */
+      .tw { background: linear-gradient(to right, var(--cd) 30%, transparent) left, linear-gradient(to left, var(--cd) 30%, transparent) right,
+        radial-gradient(farthest-side at 0 50%, #0006, transparent) left, radial-gradient(farthest-side at 100% 50%, #0006, transparent) right;
+        background-repeat: no-repeat; background-size: 28px 100%, 28px 100%, 10px 100%, 10px 100%; background-attachment: local, local, scroll, scroll; }
+      dialog { max-height: 92vh; overflow-y: auto; }
+      @media (max-width: 900px) {
+        .kb { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        .w { padding: 10px; }
+        .top > button { width: 100%; }
+        .top small { display: block; font-size: 12px; }
+        .stk { margin: 0 -10px 10px; padding: 6px 10px; }
+        .kp { scroll-snap-type: x proximity; margin: 0 -10px; padding: 0 10px 4px; }
+        .k { scroll-snap-align: start; min-width: 108px; padding: 5px 8px; }
+        .k b { font-size: 15px; }
+        .c { padding: 12px; border-radius: 12px; }
+        .c h2 { font-size: 16px; }
+        .kb { grid-template-columns: 1fr; }
+        .hd > button, .fm > button { flex: 1 1 100%; }
+        .ic button { min-height: 38px; }
+        th, td { padding: 6px; font-size: 12px; }
+        .tl input, .tl select { flex: 1 1 100%; min-width: 0; }
+        input, select { font-size: 16px; }
+        dialog { width: 96vw; padding: 14px; }
+        .ac { flex-direction: column-reverse; }
+        .ac button { width: 100%; }
+        #t { width: 92vw; max-width: 92vw; text-align: center; bottom: 70px; }
+        #up { bottom: 14px; right: 10px; }
+        .al.nvh { padding: 6px 8px; font-size: 13px; }
+        .al.nvh .bt { width: 100%; }
+        .al.nvh .bt button { flex: 1; }
+      }
+      @media (max-width: 380px) { h1 { font-size: 17px; } nav button { padding: 7px 12px; font-size: 13px; } }
+      .al.ok[onclick]:hover { background: color-mix(in srgb, var(--ok) 20%, var(--bg)); }
+      tr.fl-r td { background: color-mix(in srgb, var(--wr) 38%, transparent) !important; box-shadow: inset 0 2px 0 var(--wr), inset 0 -2px 0 var(--wr); }
     </style>
   </head>
   <body>
@@ -399,7 +699,7 @@
           <h1>🛍️ Zapatos Sol — Demo CRM · ERP · SCM</h1>
           <small>Tienda ficticia de calzado en Bolivia. Funciona en tu navegador, sin base de datos.</small>
         </div>
-        <button onclick="rst()">↺ Reiniciar demo</button>
+        <button onclick="rst()" title="Restaura los datos de demostración originales">↺ Reiniciar demo</button>
       </div>
       <div class="stk">
         <nav>
@@ -446,36 +746,93 @@
       const KEY = 'zapatos_sol_demo_v1',
         ST = ['Nuevo', 'Contactado', 'Precio enviado', 'Vendido'],
         CITIES = ['La Paz', 'El Alto', 'Cochabamba', 'Santa Cruz', 'Sucre', 'Tarija', 'Potosí', 'Oruro', 'Trinidad', 'Cobija'],
-        OS = ['Pedido hecho', 'En camino', 'Recibido'];
-      const seed = () => ({
-        n: 100,
-        seq: 0,
-        sales: [],
-        orders: [],
-        log: [],
-        sups: [
-          { id: 1, n: 'Curtiembre Andina', c: 'La Paz' },
-          { id: 2, n: 'Calzados Illimani', c: 'El Alto' },
-          { id: 3, n: 'Suelas del Oriente', c: 'Santa Cruz' },
-        ],
-        prods: [
-          { id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 2 },
-          { id: 2, n: 'Zapatilla deportiva', pr: 350, st: 20, min: 10, sup: 2 },
-          { id: 3, n: 'Botín de cuero', pr: 420, st: 12, min: 10, sup: 1 },
-          { id: 4, n: 'Sandalia', pr: 150, st: 40, min: 15, sup: 3 },
-        ],
-        leads: [
-          { id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 3, q: 3, s: 2 },
-          { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 1, q: 2, s: 1 },
-          { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 2, q: 1, s: 0 },
-          { id: 4, n: 'Fernando Vargas', t: '72345678', c: 'Sucre', p: 4, q: 4, s: 0 },
-          { id: 5, n: 'Lourdes Condori', t: '70123456', c: 'Tarija', p: 3, q: 15, s: 2 },
-        ],
-      });
+        OS = ['Esperando envío', 'En camino', 'Recibido'],
+        OI = ['⏳', '🚚', '✅'];
+      const seed = () => {
+        const dd = (n) => new Date(Date.now() - n * 864e5).toLocaleDateString('es-BO'),
+          hh = (h, m) => String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0'),
+          iva = (t) => (t * 13) / 113;
+        return {
+          n: 120,
+          seq: 4,
+          sups: [
+            { id: 1, n: 'Curtiembre Andina', c: 'La Paz' },
+            { id: 2, n: 'Calzados Illimani', c: 'El Alto' },
+            { id: 3, n: 'Suelas del Oriente', c: 'Santa Cruz' },
+            { id: 4, n: 'Cueros del Valle', c: 'Cochabamba' },
+          ],
+          prods: [
+            { id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 2 }, // stock sano
+            { id: 2, n: 'Zapatilla deportiva', pr: 350, st: 6, min: 10, sup: 2 }, // queda poco + pedido esperando envío
+            { id: 3, n: 'Botín de cuero', pr: 420, st: 0, min: 10, sup: 1 }, // sin stock + pedido en camino cubre todo
+            { id: 4, n: 'Sandalia', pr: 150, st: 1, min: 15, sup: 3 }, // queda poco + pedido en camino
+            { id: 5, n: 'Zapato escolar', pr: 220, st: 0, min: 12, sup: 1 }, // sin stock, 2 clientes, sin pedido
+            { id: 6, n: 'Bota de lluvia', pr: 180, st: 3, min: 8, sup: 3 }, // reposición ya solicitada por CRM
+            { id: 7, n: 'Zapato de vestir', pr: 390, st: 5, min: 6, sup: 4 }, // queda poco; 2 clientes comparten el stock
+            { id: 8, n: 'Pantufla de lana', pr: 95, st: 28, min: 10, sup: 4 }, // stock sano
+          ],
+          leads: [
+            { id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 3, q: 3, s: 2 },
+            { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 1, q: 2, s: 1 },
+            { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 5, q: 6, s: 1 },
+            { id: 4, n: 'Fernando Vargas', t: '72345678', c: 'Sucre', p: 4, q: 4, s: 0 },
+            { id: 5, n: 'Lourdes Condori', t: '70123456', c: 'Tarija', p: 3, q: 15, s: 2 },
+            { id: 6, n: 'Carla Mendoza', t: '77889900', c: 'Oruro', p: 6, q: 5, s: 1 },
+            { id: 7, n: 'Tomás Villca', t: '71122334', c: 'Potosí', p: 5, q: 4, s: 0 },
+            { id: 8, n: 'Daniela Rojas', t: '73344556', c: 'La Paz', p: 1, q: 2, s: 3, fac: 'F-0001' },
+            { id: 9, n: 'Pedro Alanoca', t: '65432198', c: 'El Alto', p: 7, q: 1, s: 3, fac: 'F-0002' },
+            { id: 10, n: 'Silvia Torrez', t: '', c: 'Cochabamba', p: 8, q: 3, s: 3, fac: 'F-0003' },
+            { id: 11, n: 'Hugo Medina', t: '69988776', c: 'Trinidad', p: 2, q: 1, s: 3, fac: 'F-0004' },
+            { id: 12, n: 'Ximena Flores', t: '', c: 'Santa Cruz', p: 2, q: 4, s: 2, wt: true, seen: false },
+            { id: 14, n: 'Marcos Aliaga', t: '70011223', c: 'Cobija', p: 7, q: 3, s: 1 },
+            { id: 15, n: 'Elena Gutiérrez', t: '73322110', c: 'Trinidad', p: 7, q: 3, s: 0 },
+            { id: 13, n: 'Eduardo Paz', t: '74455667', c: 'Sucre', p: 1, q: 1, s: 1, wt: true, seen: true },
+          ],
+          sales: [
+            { num: 'F-0001', f: dd(6), c: 'Daniela Rojas', pid: 1, pn: 'Zapatilla urbana', q: 2, tot: 560, iva: iva(560) },
+            { num: 'F-0002', f: dd(4), c: 'Pedro Alanoca', pid: 7, pn: 'Zapato de vestir', q: 1, tot: 390, iva: iva(390) },
+            { num: 'F-0003', f: dd(2), c: 'Silvia Torrez', pid: 8, pn: 'Pantufla de lana', q: 3, tot: 285, iva: iva(285) },
+            { num: 'F-0004', f: dd(1), c: 'Hugo Medina', pid: 2, pn: 'Zapatilla deportiva', q: 1, tot: 350, iva: iva(350), v: 1 },
+          ],
+          orders: [
+            { id: 101, p: 2, q: 24, s: 0, cost: 4560, f: dd(0) }, // esperando envío
+            { id: 102, p: 1, q: 30, s: 2, cost: 4650, f: dd(9), paid: true }, // recibido y pagado
+            { id: 103, p: 3, q: 20, s: 1, cost: 4600, f: dd(2) }, // en camino
+            { id: 104, p: 4, q: 16, s: 1, cost: 1280, f: dd(1) }, // en camino
+            { id: 105, p: 8, q: 20, s: 2, cost: 1200, f: dd(5) }, // recibido, por pagar
+            { id: 106, p: 7, q: 12, s: 2, cost: 2580, f: dd(7) }, // recibido, por pagar
+          ],
+          reqs: [{ p: 6, q: 2, who: 'Carla Mendoza', f: dd(0) }],
+          notes: [
+            { id: 90, to: 'scm', fr: 'crm', m: 'CRM solicita reponer 2 × Bota de lluvia (Carla Mendoza). Haz el pedido al proveedor.', tg: ['scm', 's-alert', 'r-a-6'], key: 'rq:6', t: hh(9, 40) },
+            { id: 91, to: 'crm', fr: 'scm', m: 'El pedido #103 de Botín de cuero (20 pares) ya va en camino. Cuando llegue podrás vender a: Mariela Choque (3), Lourdes Condori (15).', tg: ['crm', 'l-5', ''], key: 'way:103', t: hh(9, 10) },
+            { id: 92, to: 'erp', fr: 'scm', m: 'El pedido #104 (16 × Sandalia) de Suelas del Oriente ya va en camino. Al recibirlo subirá el inventario y se generará una cuenta por pagar de Bs 1.280,00.', tg: ['erp', 's-pagar', '.g-pay'], key: 'wayerp:104', t: hh(8, 55) },
+            { id: 93, to: 'scm', fr: 'crm', m: 'No se pudo vender 6 × Zapato escolar a Rosario Quispe: hay 0 en bodega. Hay que pedir al proveedor.', tg: ['scm', 's-alert', 'r-a-5'], key: 'fail:Rosario Quispe5', t: hh(8, 30) },
+          ],
+          fresh: [
+            { k: 'r-a-6', to: 'scm' },
+            { k: 'r-a-5', to: 'scm' },
+            { k: 'l-1', to: 'crm' },
+            { k: 'l-5', to: 'crm' },
+            { k: 'r-o-105', to: 'erp' },
+          ],
+          log: [
+            { t: hh(9, 40), m: 'CRM → SCM: solicitud de reposición de 2 × Bota de lluvia para Carla Mendoza', tag: 'crm' },
+            { t: hh(9, 10), m: '🚚 SCM: el pedido #103 salió de Curtiembre Andina hacia la tienda', tag: 'scm' },
+            { t: hh(8, 55), m: '🚚 SCM: el pedido #104 salió de Suelas del Oriente hacia la tienda', tag: 'scm' },
+            { t: hh(8, 30), m: 'ERP: no se pudo vender 6 × Zapato escolar a Rosario Quispe (en bodega: 0)', tag: 'erp' },
+            { t: hh(8, 20), m: 'SCM: pedido #101 de 24 × Zapatilla deportiva a Calzados Illimani (El Alto)', tag: 'scm' },
+            { t: hh(8, 5), m: 'ERP: se anuló la factura F-0004 y volvió 1 × Zapatilla deportiva a la bodega', tag: 'erp' },
+            { t: hh(7, 50), m: 'ERP → SCM: «Queda poco» de Zapato de vestir (5 pares). Conviene pedir más al proveedor', tag: 'scm' },
+            { t: hh(7, 30), m: 'CRM: Silvia Torrez compró 3 × Pantufla de lana. Se descontó del inventario y se emitió la factura F-0003', tag: 'erp' },
+          ],
+        };
+      };
       const blank = () => ({ n: 100, seq: 0, sales: [], orders: [], log: [], sups: [], prods: [], leads: [] });
       let D = null,
         OK = true,
-        T = 'home';
+        T = 'crm',
+        LT = 'crm';
       try {
         localStorage.setItem('_t', '1');
         localStorage.removeItem('_t');
@@ -501,6 +858,40 @@
         D.log.unshift({ t: new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }), m, tag });
         D.log = D.log.slice(0, 50);
       }
+      const SN = { crm: 'CRM', erp: 'ERP', scm: 'SCM' },
+        nts = (tab) => (D.notes || []).filter((n) => n.to == tab);
+      function note(to, m, fr, tg, key) {
+        if (to === T) return;
+        D.notes = (D.notes || []).filter((n) => !(key && n.key == key));
+        D.notes.unshift({ id: D.n++, to, fr, m, tg, key, t: new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }) });
+        D.notes = D.notes.slice(0, 30);
+      }
+      const unnote = (key) => (D.notes = (D.notes || []).filter((n) => n.key != key));
+      function ack(id) {
+        D.notes = (D.notes || []).filter((n) => n.id != id);
+        done();
+      }
+      function ackAll(tab) {
+        D.notes = (D.notes || []).filter((n) => n.to != tab);
+        done();
+      }
+      function nbn(tab) {
+        const a = nts(tab),
+          fz = (D.fresh || []).filter((f) => f.to == tab),
+          hd = fz.length
+            ? `<div class="nvsp"></div><div class="al nvh" onclick="nvGo(1)" title="Clic: siguiente zona verde"><span>🆕 <b>${fz.length} novedad${fz.length > 1 ? 'es' : ''}</b> en este sector<span class="nvc" id="nvc"></span><small>Toca aquí para ir a cada zona verde. Siguen hasta que las quites.</small></span><div class="bt"><button class="gh sm" onclick="event.stopPropagation();nvGo(-1)" title="Anterior">◀</button><button class="gh sm" onclick="event.stopPropagation();nvGo(1)" title="Siguiente">▶</button><button class="gh sm" onclick="event.stopPropagation();clr('${tab}')">Quitar resaltados</button></div></div>`
+            : '';
+        if (!a.length) return hd;
+        return (
+          hd +
+          a
+            .map(
+              (n) =>
+                `<div class="al nt" style="border-left:5px solid var(--${n.fr})"${n.tg ? ` onclick="ack(${n.id});goto('${n.tg[0]}','${n.tg[1]}','${n.tg[2] || ''}')"` : ''}><span>🔔 <b>${SN[n.fr]} → ${SN[n.to]}</b>: ${esc(n.m)}<small>${n.t}</small></span><div class="bt">${n.tg ? `<button onclick="event.stopPropagation();ack(${n.id});goto('${n.tg[0]}','${n.tg[1]}','${n.tg[2] || ''}')">Ver</button>` : ''}<button class="gh" onclick="event.stopPropagation();ack(${n.id})">Entendido</button></div></div>`,
+            )
+            .join('') + (a.length > 1 ? `<div class="fm" style="margin:-2px 0 8px"><button class="gh sm" onclick="ackAll('${tab}')">Marcar todas como vistas</button></div>` : '')
+        );
+      }
       function toast(m) {
         const e = $('#t');
         e.textContent = m;
@@ -508,16 +899,95 @@
         clearTimeout(toast.h);
         toast.h = setTimeout(() => (e.style.display = 'none'), 4000);
       }
+      function sync() {
+        D.leads.forEach((l) => {
+          if (l.s < 3 && gap(l)) {
+            l.wt = true;
+            l.seen = false;
+          }
+          if (l.s >= 3) l.wt = false;
+        });
+      }
+      const rdy = () => D.leads.filter((l) => l.wt && !l.seen && l.s < 3 && !gap(l));
       const done = () => {
+        sync();
         save();
         render();
+      };
+      const FLASH = new Set();
+      const fresh = (k) => (D.fresh || []).some((f) => f.k == k && f.to == T),
+        nvc = (k) => (fresh(k) ? ' nv' : '') + (FLASH.has(k) ? ' flash' : '');
+      function mark(k, tabs) {
+        D.fresh = D.fresh || [];
+        tabs.forEach((x) => {
+          if (x === T) FLASH.add(k);
+          else {
+            D.fresh = D.fresh.filter((f) => !(f.k == k && f.to == x));
+            D.fresh.push({ k, to: x });
+          }
+        });
+      }
+let NVI = -1;
+      const nvEls = () => [...document.querySelectorAll('#v .nv')].filter((e) => !e.classList.contains('nvh'));
+      function nvGo(d) {
+        const els = nvEls();
+        if (!els.length) return toast('No hay zonas verdes visibles en esta pestaña.');
+        NVI = (NVI + (d || 1) + els.length) % els.length;
+        els[NVI].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        nvUp();
+      }
+      function nvUp() {
+        const els = nvEls();
+        if (NVI >= els.length) NVI = els.length - 1;
+        els.forEach((e, i) => e.classList.toggle('nvcur', i == NVI));
+        const c = $('#nvc');
+        if (c) c.textContent = els.length ? ' (' + (NVI >= 0 ? NVI + 1 : '–') + '/' + els.length + ')' : '';
+        const st = $('.stk');
+        if (st) document.documentElement.style.setProperty('--nvtop', Math.max(0, st.getBoundingClientRect().bottom) + 8 + 'px');
+        const bar = $('.al.nvh');
+        if (bar) document.documentElement.style.setProperty('--nvh', bar.offsetHeight + 12 + 'px');
+      }
+      addEventListener('resize', nvUp);
+      addEventListener('scroll', () => { const st = $('.stk'); if (st) document.documentElement.style.setProperty('--nvtop', Math.max(0, st.getBoundingClientRect().bottom) + 8 + 'px'); }, { passive: true });
+            function clr(tab) {
+        D.fresh = (D.fresh || []).filter((f) => f.to != tab);
+        NVI = -1;
+        done();
+        toast('Resaltados quitados');
+      }
+      const ra = (arr, a) => {
+        const m = /id="([^"]+)"/.exec(a || ''),
+          k = m && m[1],
+          nv = k && fresh(k),
+          ex = ((nv ? 'nv ' : '') + (k && FLASH.has(k) ? 'flash' : '')).trim();
+        if (ex) a = a.includes('class="') ? a.replace('class="', 'class="' + ex + ' ') : a + ' class="' + ex + '"';
+        if (nv) arr[0] = '<span class="nvb">🆕</span>' + arr[0];
+        arr.a = a;
+        return arr;
       };
       const tb = (h, r) =>
         '<div class="tw"><table><tr>' +
         h.map((x) => '<th>' + x + '</th>').join('') +
         '</tr>' +
-        r.map((x) => '<tr>' + x.map((y) => '<td>' + y + '</td>').join('') + '</tr>').join('') +
+        r.map((x) => '<tr' + (x.a ? ' ' + x.a : '') + '>' + x.map((y) => '<td>' + y + '</td>').join('') + '</tr>').join('') +
         '</table></div>';
+      const PAL = ['#3b82f6', '#f472b6', '#a3e635', '#f59e0b', '#a78bfa', '#22d3ee', '#fb7185', '#34d399'],
+        pc = (p) => {
+          if (!p.col) {
+            const u = D.prods.map((x) => x.col);
+            p.col = PAL.find((c) => !u.includes(c)) || PAL[D.prods.indexOf(p) % PAL.length];
+          }
+          return p.col;
+        },
+        pt = (p) => `<span class="pt" style="--pc:${pc(p)}">${esc(p.n)}</span>`,
+        TG = [
+          ['erp', 's-fact', 'ver las facturas (ERP)', '.g-sale'],
+          ['erp', 's-fact', 'ver las facturas (ERP)', '.g-sale'],
+          ['crm', 's-crm', 'ir al tablero de clientes (CRM)', ''],
+          ['scm', 's-alert', 'ver las alertas de stock y pedir (SCM)', '.g-act'],
+          ['scm', 's-ped', 'ver los pedidos a proveedores (SCM)', '.g-pend'],
+          ['erp', 's-pagar', 'ver cuentas por pagar (ERP)', '.g-pay'],
+        ];
       const k = (l, v, c) => `<div class="k ${c}"><small>${l}</small><b>${v}</b></div>`;
       const ab = (t, f) => `<button class="gh sm" onclick="${f}">${t}</button>`;
       function go(t) {
@@ -525,7 +995,33 @@
         render();
         scrollTo(0, 0);
       }
+      function goto(t, id, row) {
+        T = t;
+        render();
+        const sec = document.getElementById(id),
+          rows = row ? (row[0] == '.' ? [...document.querySelectorAll(row)] : [document.getElementById(row)].filter(Boolean)) : [];
+        const first = rows[0] || sec;
+        if (!first) return scrollTo(0, 0);
+        first.scrollIntoView({ behavior: 'smooth', block: rows.length ? 'center' : 'start' });
+        const hl = rows.length ? rows : [sec];
+        hl.forEach((el) => el.classList.add(el.tagName == 'TR' ? 'fl-r' : 'fl'));
+        setTimeout(() => hl.forEach((el) => el.classList.remove('fl', 'fl-r')), 3700);
+      }
       function render() {
+        sync();
+        if (LT !== T) {
+          LT = T;
+          NVI = -1;
+        }
+        const cnt = {
+            crm: rdy().length + nts('crm').length,
+            erp: nts('erp').length,
+            scm: D.prods.filter((p) => (p.st <= p.min || dem(p.id).short) && !cov(p)).length + nts('scm').length,
+          },
+          lb = { crm: '👥 CRM (clientes)', erp: '🏢 ERP (empresa)', scm: '🚚 SCM (proveedores)' };
+        Object.keys(lb).forEach((k) => {
+          $('nav [data-t=' + k + ']').innerHTML = lb[k] + (cnt[k] ? '<span class="nb" title="Avisos pendientes en este sector">🔔 ' + cnt[k] + '</span>' : '');
+        });
         document.querySelectorAll('nav button').forEach((b) => b.classList.toggle('on', b.dataset.t == T));
         $('#kp').innerHTML = kpis();
         htip();
@@ -533,13 +1029,22 @@
         $('#ft').textContent = OK
           ? 'Datos de ejemplo (ficticios) en bolivianos (Bs) con IVA 13%. Tus cambios se guardan solos en este navegador.'
           : '⚠️ Este navegador no permite guardar: los cambios se perderán al cerrar. Usa «Exportar copia» para respaldarlos.';
+        FLASH.clear();
+        nvUp();
       }
       function fm(title, fields, cb, ok) {
         const d = document.createElement('dialog'),
           f = document.createElement('form');
-        f.innerHTML = `<h3>${title}</h3>${fields.map((f) => `<label>${f.l}${f.o ? `<select name="${f.k}">${f.o.map((o) => `<option value="${esc(o[0])}"${o[0] == f.v ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select>` : `<input name="${f.k}" type="${f.t || 'text'}" value="${esc(f.v ?? '')}"${f.t == 'number' ? ' min="0" step="any"' : ''}>`}</label>`).join('')}<div class="ac"><button type="button" class="gh" id="fx">Cancelar</button><button type="submit">${ok || 'Guardar'}</button></div>`;
+        f.innerHTML = `<h3>${title}</h3>${fields.map((f) => `<label${f.w ? ' data-w="' + f.w + '"' : ''}>${f.l}${f.o ? `<select name="${f.k}">${f.o.map((o) => `<option value="${esc(o[0])}"${o[0] == f.v ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select>` : `<input name="${f.k}" type="${f.t || 'text'}" value="${esc(f.v ?? '')}"${f.t == 'number' ? ' min="0" step="any"' : ''}>`}</label>`).join('')}<div class="ac"><button type="button" class="gh" id="fx">Cancelar</button><button type="submit">${ok || 'Guardar'}</button></div>`;
         d.appendChild(f);
         document.body.appendChild(d);
+        const upd = () =>
+          f.querySelectorAll('label[data-w]').forEach((l) => {
+            const [k, v] = l.dataset.w.split('=');
+            l.style.display = f.querySelector('[name=' + k + ']').value == v ? '' : 'none';
+          });
+        f.addEventListener('change', upd);
+        upd();
         const end = () => {
           try {
             d.close();
@@ -583,8 +1088,10 @@
             localStorage.removeItem(KEY);
           } catch (e) {}
           D = b ? blank() : seed();
+          Object.keys(F).forEach((k) => delete F[k]);
+          FLASH.clear();
           done();
-          go('home');
+          go(b ? 'home' : 'crm');
           toast(b ? 'Demo en blanco: agrega proveedores y productos para empezar' : 'Demo reiniciada: todo volvió al inicio');
         });
       }
@@ -606,6 +1113,8 @@
             x.orders = x.orders || [];
             x.sales = x.sales || [];
             x.log = x.log || [];
+            x.notes = x.notes || [];
+            x.fresh = [];
             D = x;
             fix();
             done();
@@ -631,6 +1140,19 @@
           deb = debL.reduce((a, o) => a + o.cost, 0),
           pot = openL.reduce((a, l) => a + P(l.p).pr * l.q, 0);
         const li = (a) => (a.length ? a.map((x) => '• ' + x).join('<br>') : '<span class="mu">Nada por ahora</span>');
+        const all = D.prods.filter((p) => p.st <= p.min || dem(p.id).short),
+          alp = all.filter((p) => !cov(p)),
+          atn = all.filter((p) => cov(p)),
+          zero = alp.filter((p) => p.st == 0),
+          few = alp.filter((p) => p.st > 0 && p.st <= p.min),
+          sc = alp.filter((p) => p.st > p.min),
+          en = D.orders.filter((o) => o.s == 1),
+          hecho = D.orders.filter((o) => o.s == 0),
+          od = (o) => {
+            const p = P(o.p),
+              s = S(p.sup);
+            return '#' + o.id + ' · ' + o.q + ' × ' + pt(p) + '<br>&nbsp;&nbsp;&nbsp;' + esc(s.n) + ' (' + esc(s.c) + ') · ' + fmt(o.cost) + (o.f ? '<br>&nbsp;&nbsp;&nbsp;Pedido el ' + o.f : '');
+          };
         const it = [
           [
             '💰 Ventas',
@@ -682,24 +1204,35 @@
               '</b>',
           ],
           [
-            '⚠️ Con «Queda poco»',
-            lowL.length,
+            '📦 Stock en alerta',
+            alp.length,
             'scm',
-            'Productos con stock igual o menor al mínimo:<br>' +
-              li(lowL.map((p) => esc(p.n) + ': ' + p.st + ' pares (mínimo ' + p.min + ')')) +
-              (lowL.length ? '<br><br>Ve a SCM para hacer el pedido.' : ''),
+            '<b>🚫 Sin stock (' +
+              zero.length +
+              ')</b><br>' +
+              li(
+                zero.map((p) => {
+                  const d = dem(p.id);
+                  return pt(p) + ' · ' + esc(S(p.sup).n) + (d.leads.length ? '<br>&nbsp;&nbsp;&nbsp;👥 ' + d.leads.length + ' cliente(s) esperando · necesitan ' + d.total + ' pares' : '');
+                }),
+              ) +
+              '<br><br><b>⚠️ Queda poco (' +
+              few.length +
+              ')</b><br>' +
+              li(few.map((p) => pt(p) + ': ' + p.st + ' pares (mínimo ' + p.min + ')')) +
+              (sc.length ? '<br><br><b>👥 Clientes sin cubrir (' + sc.length + ')</b><br>' + li(sc.map((p) => pt(p) + ': hay ' + p.st + ', necesitan ' + dem(p.id).total)) : '') +
+              '<br><br><b>✅ Ya en atención (' +
+              atn.length +
+              ')</b><br>' +
+              li(atn.map((p) => pt(p) + ': pedido ' + olist(dem(p.id).ord))),
+            [zero.length ? '🚫 ' + zero.length + ' sin stock' : '', few.length ? '⚠️ ' + few.length + ' queda poco' : '', sc.length ? '👥 ' + sc.length + ' sin cubrir' : '', atn.length ? '✅ ' + atn.length + ' en pedido' : ''].filter(Boolean).join(' · ') || 'Todo con existencias',
           ],
           [
             '🚚 Pedidos por llegar',
             pendL.length,
             'scm',
-            'Pedidos a proveedores que aún no llegan:<br>' +
-              li(
-                pendL.map((o) => {
-                  const p = P(o.p);
-                  return '#' + o.id + ' · ' + o.q + ' × ' + esc(p.n) + ' · ' + OS[o.s];
-                }),
-              ),
+            '<b>🚚 En camino (' + en.length + ')</b><br>' + li(en.map(od)) + '<br><br><b>📝 Pedido hecho, aún no sale (' + hecho.length + ')</b><br>' + li(hecho.map(od)),
+            pendL.length ? '🚚 ' + en.length + (en.length == 1 ? ' pedido en camino' : ' pedidos en camino') + ' · ⏳ ' + hecho.length + ' esperando envío' : 'Ningún pedido pendiente',
           ],
           [
             '💵 Por pagar a proveedores',
@@ -713,12 +1246,12 @@
           ],
         ];
         KD = it.map((x) => x[3]);
-        return it.map((x, i) => `<div class="k ${x[2]}" tabindex="0" data-i="${i}"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('');
+        return it.map((x, i) => `<div class="k ${x[2]}" tabindex="0" data-i="${i}"><small>${x[0]}</small><b>${x[1]}</b>${x[4] ? '<span class="ks">' + x[4] + '</span>' : ''}</div>`).join('');
       }
       const tp = $('#tp'),
         HV = window.matchMedia ? matchMedia('(hover:hover)') : { matches: true };
       function stip(el) {
-        tp.innerHTML = '<h4>' + el.querySelector('small').textContent + '</h4>' + KD[el.dataset.i];
+        tp.innerHTML = '<h4>' + el.querySelector('small').textContent + '</h4>' + KD[el.dataset.i] + '<div class="mu" style="margin-top:8px;font-size:12px">👉 Clic para ' + TG[el.dataset.i][2] + '</div>';
         tp.style.display = 'block';
         const r = el.getBoundingClientRect(),
           w = tp.offsetWidth;
@@ -741,33 +1274,202 @@
         el ? stip(el) : htip();
       });
       document.addEventListener('click', (e) => {
-        if (HV.matches) return;
         const el = kc(e);
-        if (el && tp.dataset.i != el.dataset.i) stip(el);
-        else htip();
+        if (!el) {
+          if (!HV.matches) htip();
+          return;
+        }
+        if (!HV.matches && tp.dataset.i != el.dataset.i) return stip(el);
+        const g = TG[el.dataset.i];
+        goto(g[0], g[1], g[3]);
       });
-      addEventListener('scroll', htip, true);
+      document.addEventListener('keydown', (e) => {
+        const el = kc(e);
+        if (el && (e.key == 'Enter' || e.key == ' ')) {
+          e.preventDefault();
+          const g = TG[el.dataset.i];
+          goto(g[0], g[1], g[3]);
+        }
+      });
+            addEventListener('scroll', htip, true);
+      const F = {};
+      const nz = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(),
+        fs_ = (k, d) => F[k] || (F[k] = { q: '', st: 'all', o: d });
+      function tbar(k, chips, sorts, ph) {
+        const f = F[k];
+        return `<div class="tl">${chips.length > 1 ? chips.map((c) => `<button class="ch${f.st == c[0] ? ' on' : ''}" onclick="fc('${k}','${c[0]}')">${c[1]} <b>${c[2]}</b></button>`).join('') : ''}<input id="q-${k}" type="search" placeholder="🔍 ${ph}" value="${esc(f.q)}" oninput="fq('${k}',this.value)"><select onchange="fo('${k}',this.value)">${sorts.map((s) => `<option value="${s[0]}"${f.o == s[0] ? ' selected' : ''}>↕ ${s[1]}</option>`).join('')}</select>${f.q || f.st != 'all' ? `<button class="ch" onclick="fx('${k}')">✕ Limpiar</button>` : ''}</div>`;
+      }
+      function flt(k, arr, defs, sorts, tx, ph) {
+        const f = fs_(k, sorts[0][0]),
+          chips = [['all', 'Todos', arr.length]].concat(defs.map((d) => [d[0], d[1], arr.filter(d[2]).length])),
+          d = defs.find((x) => x[0] == f.st),
+          so = sorts.find((s) => s[0] == f.o) || sorts[0];
+        const list = arr.filter((x) => (!d || d[2](x)) && (!f.q || nz(tx(x)).includes(nz(f.q)))).sort(so[2]);
+        return { list, bar: tbar(k, chips, sorts, ph) };
+      }
+      function fq(k, v) {
+        const a = document.activeElement,
+          pos = a && a.selectionStart;
+        F[k].q = v;
+        render();
+        const n = document.getElementById('q-' + k);
+        if (n) {
+          n.focus();
+          try {
+            n.setSelectionRange(pos, pos);
+          } catch (e) {}
+        }
+      }
+      function fc(k, v) {
+        F[k].st = v;
+        render();
+      }
+      function fo(k, v) {
+        F[k].o = v;
+        render();
+      }
+      function fx(k) {
+        F[k].q = '';
+        F[k].st = 'all';
+        render();
+      }
+      const none = (k) => `<p class="mu">Ningún resultado con estos filtros. <button class="gh sm" onclick="fx('${k}')">Limpiar filtros</button></p>`;
       function vHome() {
-        return `<div class="c"><h2>📋 Bitácora: qué pasó entre los sistemas</h2>${D.log.length ? D.log.map((l) => `<div class="lg ${l.tag}"><i>${l.t}</i><span>${esc(l.m)}</span></div>`).join('') : '<p class="mu">Todavía no pasó nada. Empieza por el paso 1.</p>'}</div>
+        return `<div class="c"><h2>📋 Bitácora: qué pasó entre los sistemas</h2>${(() => {
+          const r = flt(
+            'log',
+            D.log.map((l, i) => ({ ...l, i })),
+            [
+              ['crm', '👥 CRM', (l) => l.tag == 'crm'],
+              ['erp', '🏢 ERP', (l) => l.tag == 'erp'],
+              ['scm', '🚚 SCM', (l) => l.tag == 'scm'],
+            ],
+            [
+              ['new', 'Más recientes primero', (a, b) => a.i - b.i],
+              ['old', 'Más antiguos primero', (a, b) => b.i - a.i],
+            ],
+            (l) => l.m,
+            'Buscar en la bitácora…',
+          );
+          return D.log.length ? r.bar + (r.list.map((l) => `<div class="lg ${l.tag}"><i>${l.t}</i><span>${esc(l.m)}</span></div>`).join('') || none('log')) : '<p class="mu">Todavía no pasó nada. Empieza por el paso 1.</p>';
+        })()}</div>
 <div class="c"><h2>🧭 Cómo hacer la demo</h2><ol>
 <li>En <b>CRM</b>, Mariela Choque (La Paz) está en «Precio enviado». Pulsa «Marcar como Vendido».</li>
 <li>En <b>ERP</b> verás la factura nueva y que el stock de Botín de cuero bajó.</li>
 <li>En <b>SCM</b> aparece la alerta «Queda poco». Pulsa «Hacer pedido».</li>
 <li>Avanza el pedido: «Marcar en camino» y luego «Marcar recibido».</li>
 <li>Vuelve a <b>ERP</b>: el stock subió y hay una cuenta por pagar al proveedor.</li>
-<li><i>Extra:</i> intenta vender 15 botines a Lourdes Condori (Tarija): no alcanza el stock hasta que llegue el pedido.</li>
+<li><i>Extra:</i> intenta vender 15 botines a Lourdes Condori (Tarija): la tarjeta avisa que no alcanza el stock y ofrece «Solicitar reposición a SCM». Luego ve a <b>SCM</b>: ahí se hace el pedido al proveedor. Avánzalo hasta que llegue.</li>
 <li>Todo es editable: agrega, edita o elimina interesados, productos, proveedores y pedidos.</li></ol></div>
+<div class="c"><h2>🎬 Guion de demostración</h2><p class="mu">Casos listos para mostrar. Toca un botón para ir directo. Si cambias algo, «↺ Reiniciar demo» (arriba a la derecha) restaura todo.</p>
+<h3 style="margin-top:10px">👥 CRM</h3><ul style="margin:4px 0;padding-left:18px;line-height:2"><li><button class="gh sm" onclick="goto('crm','l-3')">Rosario Quispe</button> <span class="mu">pide un producto sin stock que otro cliente también espera: se solicita reposición a SCM.</span></li><li><button class="gh sm" onclick="goto('crm','l-6')">Carla Mendoza</button> <span class="mu">la reposición ya fue solicitada y SCM debe hacer el pedido.</span></li><li><button class="gh sm" onclick="goto('crm','l-12')">Ximena Flores</button> <span class="mu">ya llegó stock: se puede atender y vender.</span></li><li><button class="gh sm" onclick="goto('crm','l-11')">Hugo Medina</button> <span class="mu">venta con factura anulada.</span></li></ul>
+<h3 style="margin-top:10px">🏢 ERP</h3><ul style="margin:4px 0;padding-left:18px;line-height:2"><li><button class="gh sm" onclick="goto('erp','s-fact','r-f-F-0004')">Factura F-0004</button> <span class="mu">anulada: el producto volvió a la bodega.</span></li><li><button class="gh sm" onclick="goto('erp','s-pagar','.g-pay')">Cuentas por pagar</button> <span class="mu">pedidos recibidos que aún no se pagaron.</span></li></ul>
+<h3 style="margin-top:10px">🚚 SCM</h3><ul style="margin:4px 0;padding-left:18px;line-height:2"><li><button class="gh sm" onclick="goto('scm','s-alert','r-a-5')">Zapato escolar</button> <span class="mu">sin stock y sin pedido: hay que pedir.</span></li><li><button class="gh sm" onclick="goto('scm','s-alert','r-a-3')">Botín de cuero</button> <span class="mu">ya se está atendiendo: marca el pedido como recibido.</span></li><li><button class="gh sm" onclick="goto('scm','s-ped','r-p-101')">Pedido #101</button> <span class="mu">esperando envío: márcalo «en camino».</span></li></ul></div>
 <div class="c"><h2>💾 Datos y copia de seguridad</h2><p class="mu">Todo se guarda solo en este navegador. Puedes respaldar, restaurar o empezar de cero.</p><div class="fm"><button onclick="ex()">⬇️ Exportar copia</button><button onclick="$('#imp').click()">⬆️ Importar copia</button><button class="gh" onclick="rst()">↺ Reiniciar con datos de ejemplo</button><button class="gh" onclick="rst(1)">🗑️ Empezar en blanco</button></div></div>`;
       }
 
-      function card(l) {
+      const inc = (pid) => D.orders.filter((o) => o.p == pid && o.s < 2),
+        olist = (a) => a.map((x) => '#' + x.id + ' (' + OI[x.s] + ' ' + OS[x.s] + ')').join(', ');
+      function gap(l) {
         const p = P(l.p);
-        return `<div class="cd"><b>${esc(l.n)}</b><br>📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${esc(p.n)} = <b>${fmt(p.pr * l.q)}</b>${l.s < 3 ? `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>` : ''}<div class="ic">${l.s > 0 && l.s < 3 ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${l.s < 3 ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
+        if (l.s >= 3 || p.st >= l.q) return null;
+        const ord = inc(l.p);
+        return { p, miss: l.q - p.st, ord, inq: ord.reduce((a, o) => a + o.q, 0) };
+      }
+      function ocb(p) {
+        const o = inc(p.id),
+          q1 = o.filter((x) => x.s == 1).reduce((a, x) => a + x.q, 0),
+          q0 = o.filter((x) => x.s == 0).reduce((a, x) => a + x.q, 0);
+        return (q1 ? ' <span class="b i">🚚 +' + q1 + ' en camino</span>' : '') + (q0 ? ' <span class="b w">📝 +' + q0 + ' pedido hecho</span>' : '');
+      }
+      function shared(l) {
+        const d = dem(l.p);
+        if (l.s >= 3 || !d.short) return '';
+        return `<div class="wn">⚠️ <b>Stock compartido</b>: otros clientes también esperan este producto (necesitan ${d.total}, hay ${d.p.st}).${d.miss > 0 ? rqb(d.p.id, d.miss, 'all', '📨 Solicitar reposición a SCM (' + d.miss + ' pares)') : d.ord.length ? '<br>🚚 Ya hay pedido en curso: ' + olist(d.ord) + '.' : ''}</div>`;
+      }
+      const rqb = (pid, q, lid, txt) => {
+        const r = (D.reqs || []).find((x) => x.p == pid);
+        return r
+          ? `<br>📨 Reposición ya solicitada a SCM (${r.q} pares). Falta que SCM haga el pedido.<button class="gh" onclick="goto('scm','s-alert','r-a-${pid}')">Ver en SCM</button>`
+          : `<button onclick="rq(${pid},${q},'${lid}')">${txt}</button>`;
+      };
+      function rq(pid, q, lid) {
+        const p = P(pid),
+          ld = lid && lid != 'all' ? D.leads.find((x) => x.id == lid) : null,
+          who = ld ? ld.n : 'clientes en espera';
+        D.reqs = (D.reqs || []).filter((r) => r.p != pid);
+        D.reqs.push({ p: pid, q, who, f: today() });
+        log('CRM → SCM: solicitud de reposición de ' + q + ' × ' + p.n + ' para ' + who, 'crm');
+        note('scm', 'CRM solicita reponer ' + q + ' × ' + p.n + ' (' + who + '). Haz el pedido al proveedor.', 'crm', ['scm', 's-alert', 'r-a-' + pid], 'rq:' + pid);
+        mark('r-a-' + pid, ['scm']);
+        done();
+        toast('Solicitud enviada a SCM: ellos harán el pedido al proveedor');
+      }
+      function cov(p) {
+        const d = dem(p.id),
+          q1 = d.ord.filter((o) => o.s == 1).reduce((a, o) => a + o.q, 0);
+        return q1 > 0 && d.total - p.st - q1 <= 0 && p.st + q1 > p.min;
+      }
+      function dem(pid) {
+        const p = P(pid),
+          leads = D.leads.filter((l) => l.p == pid && l.s < 3),
+          total = leads.reduce((a, l) => a + l.q, 0),
+          ord = inc(pid),
+          inq = ord.reduce((a, o) => a + o.q, 0);
+        return { p, leads, total, ord, inq, short: total > p.st, miss: Math.max(0, total - p.st - inq) };
+      }
+      function warn(l, g) {
+        const d = dem(l.p),
+          head = `⚠️ <b>Sin stock suficiente</b> para este pedido: pide ${l.q}, hay ${g.p.st} (faltan ${g.miss}).`;
+        let h = head;
+        if (g.inq >= g.miss) h += `<br>🚚 Ya está pedido al proveedor: ${olist(g.ord)}. Al recibirlo podrás vender.<button class="gh" onclick="goto('scm','s-ped','.g-p${g.p.id}')">Ver pedido en SCM</button>`;
+        else {
+          const f = g.miss - g.inq;
+          h += (g.ord.length ? '<br>Pedidos en curso ' + olist(g.ord) + ' suman ' + g.inq + ', aún faltan ' + f + '.' : '') + rqb(g.p.id, f, l.id, '📨 Solicitar a SCM solo para este cliente (' + f + ' pares)');
+        }
+        if (d.leads.length > 1 && d.miss > 0 && !(D.reqs || []).some((x) => x.p == g.p.id)) h += rqb(g.p.id, d.miss, 'all', '📨 Solicitar a SCM todo lo que falta (' + d.miss + ' pares · ' + d.leads.length + ' clientes)');
+        return `<div class="wn">${h}</div>`;
+      }
+      function banner() {
+        return rdy()
+          .map((l) => {
+            const p = P(l.p);
+            return `<div class="al ok" onclick="fl(${l.id})" title="Clic para ir a su tarjeta"><span>✅ <b>¡Ya hay stock!</b> Puedes atender a <b>${esc(l.n)}</b>: ${l.q} × ${pt(p)} = <b>${fmt(p.pr * l.q)}</b>${l.s < 2 ? '<small>Está en «' + ST[l.s] + '»: avánzalo hasta «Precio enviado» para venderle.</small>' : ''}<small>👉 Toca este aviso para ir a su tarjeta</small></span><div class="bt"><button onclick="event.stopPropagation();adv(${l.id})">${l.s == 2 ? '💰 Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button><button class="gh" onclick="event.stopPropagation();dis(${l.id})">Entendido</button></div></div>`;
+          })
+          .join('');
+      }
+      function dis(id) {
+        D.leads.find((x) => x.id == id).seen = true;
+        done();
+      }
+      function fl(id) {
+        D.leads.find((x) => x.id == id).seen = true;
+        save();
+        goto('crm', 'l-' + id);
+      }
+      function card(l) {
+        const p = P(l.p),
+          g = gap(l);
+        return `<div class="cd${nvc('l-' + l.id)}" id="l-${l.id}" style="border-left:4px solid ${pc(p)}">${fresh('l-' + l.id) ? '<span class="nvb">🆕</span>' : ''}<b>${esc(l.n)}</b><br>📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${pt(p)} = <b>${fmt(p.pr * l.q)}</b>${l.fac ? (() => { const sl = D.sales.find((s) => s.num == l.fac); return '<br>🧾 ' + l.fac + (sl && sl.v ? ' <span class="b w">Anulada</span>' : ' <span class="b o">Facturado</span>'); })() : ''}${g ? warn(l, g) : l.wt && l.s < 3 ? '<div class="wn ok">' + (l.seen ? '🟢 <b>En atención</b>: ya hay stock, falta cerrar la venta.' : '✅ Ya llegó stock: se puede atender este pedido.') + '</div>' : ''}${g ? '' : shared(l)}${l.s < 3 ? (l.s == 2 && g ? '<button disabled>🚫 Sin stock para vender</button>' : `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>`) : ''}<div class="ic">${l.s > 0 && l.s < 3 ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${l.s < 3 ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
       }
       function vCrm() {
-        return `<div class="c crm"><div class="hd"><h2>👥 CRM — Gestión de la Relación con el Cliente</h2><button onclick="lf()">+ Nuevo interesado</button></div><p>Aquí ves a las personas interesadas y en qué etapa de la compra están. Al marcar «Vendido», el ERP registra la venta automáticamente.</p></div>
-<div class="kb">${ST.map((s, i) => {
-          const L = D.leads.filter((l) => l.s == i);
+        const sorts = [
+            ['new', 'Más nuevos primero', (a, b) => b.id - a.id],
+            ['old', 'Más antiguos primero', (a, b) => a.id - b.id],
+            ['name', 'Nombre A-Z', (a, b) => a.n.localeCompare(b.n)],
+            ['md', 'Monto: mayor primero', (a, b) => P(b.p).pr * b.q - P(a.p).pr * a.q],
+            ['ma', 'Monto: menor primero', (a, b) => P(a.p).pr * a.q - P(b.p).pr * b.q],
+          ],
+          defs = [
+            ['nostock', '⚠️ Sin stock para atender', (l) => l.s < 3 && !!gap(l)],
+            ['ready', '✅ Stock listo', (l) => l.s < 3 && !!l.wt && !gap(l)],
+            ['ord', '🚚 Con pedido en curso', (l) => l.s < 3 && inc(l.p).length > 0],
+          ];
+        const r = flt('crm', D.leads, defs, sorts, (l) => [l.n, l.c, l.t, P(l.p).n, ST[l.s], l.fac || ''].join(' '), 'Buscar cliente, ciudad o producto…');
+        return `<div class="c crm"><div class="hd"><h2>👥 CRM — Gestión de la Relación con el Cliente</h2><button onclick="lf()">+ Nuevo interesado</button></div><p>Aquí ves a las personas interesadas y en qué etapa de la compra están. Al marcar «Vendido», el ERP registra la venta automáticamente.</p></div>${nbn('crm')}${banner()}
+<div class="c tlc">${r.bar}</div>
+<div class="kb" id="s-crm">${ST.map((s, i) => {
+          const L = r.list.filter((l) => l.s == i);
           return `<div class="col"><h3>${s} (${L.length})</h3>${L.map(card).join('') || '<p class="mu">—</p>'}</div>`;
         }).join('')}</div>`;
       }
@@ -800,10 +1502,13 @@
               return;
             }
             if (id) {
-              Object.assign(l, { n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q });
+              Object.assign(l, { n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, wt: false, seen: false });
+              mark('l-' + id, ['crm']);
               log('CRM: se editó a ' + o.n, 'crm');
             } else {
-              D.leads.push({ id: D.n++, n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, s: 0 });
+              const nid = D.n++;
+              D.leads.push({ id: nid, n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, s: 0 });
+              mark('l-' + nid, ['crm']);
               log('CRM: nuevo interesado ' + o.n + ' (' + o.c + ')', 'crm');
             }
             done();
@@ -828,6 +1533,8 @@
         const l = D.leads.find((x) => x.id == id);
         if (l.s == 2) {
           if (!sell(l.n, l.p, l.q, 'CRM → ERP')) return;
+          l.fac = D.sales[D.sales.length - 1].num;
+          mark('l-' + l.id, ['crm']);
         } else log('CRM: ' + l.n + ' pasó a «' + ST[l.s + 1] + '»', 'crm');
         l.s++;
         done();
@@ -837,6 +1544,7 @@
         if (p.st < q) {
           toast('⚠️ No hay stock suficiente de ' + p.n + ' (hay ' + p.st + '). Ve a SCM y haz un pedido al proveedor.');
           log('ERP: no se pudo vender ' + q + ' × ' + p.n + ' a ' + cl + ' (en bodega: ' + p.st + ')', 'erp');
+          note('scm', 'No se pudo vender ' + q + ' × ' + p.n + ' a ' + cl + ': hay ' + p.st + ' en bodega. Hay que pedir al proveedor.', 'crm', ['scm', 's-alert', 'r-a-' + pid], 'fail:' + cl + pid);
           done();
           return false;
         }
@@ -844,70 +1552,134 @@
         const tot = p.pr * q,
           num = 'F-' + String((D.seq = (D.seq || D.sales.length) + 1)).padStart(4, '0');
         D.sales.push({ num, f: today(), c: cl, pid, pn: p.n, q, tot, iva: (tot * 13) / 113 });
+        note('erp', 'Nueva factura ' + num + ': ' + cl + ' compró ' + q + ' × ' + p.n + ' (' + fmt(tot) + '). El stock se descontó automáticamente.', 'crm', ['erp', 's-fact', 'r-f-' + num], 'sale:' + num);
+        mark('r-f-' + num, ['erp']);
+        mark('r-i-' + pid, ['erp']);
+        if (p.st <= p.min) mark('r-a-' + pid, ['scm']);
         log(from + ': ' + cl + ' compró ' + q + ' × ' + p.n + '. Se descontó del inventario y se emitió la factura ' + num, 'erp');
         if (p.st <= p.min) log('ERP → SCM: «Queda poco» de ' + p.n + ' (' + p.st + ' pares). Conviene pedir más al proveedor', 'scm');
         return true;
       }
 
       function vErp() {
-        const rec = D.orders.filter((o) => o.s == 2);
-        return `<div class="c erp"><h2>🏢 ERP — Planificación de Recursos Empresariales</h2><p>Es el centro de la empresa: inventario, facturas y cuentas, todo con los mismos datos.</p></div>
-<div class="c"><div class="hd"><h3>📦 Inventario</h3><button onclick="pf()">+ Nuevo producto</button></div>${
+        const inv = flt(
+          'inv',
+          D.prods,
+          [
+            ['ok', '✅ Bien', (p) => p.st > p.min],
+            ['low', '⚠️ Queda poco', (p) => p.st > 0 && p.st <= p.min],
+            ['zero', '🚫 Sin stock', (p) => p.st == 0],
+            ['ord', '🚚 Con pedido en curso', (p) => inc(p.id).length > 0],
+            ['dem', '👥 Con clientes esperando', (p) => dem(p.id).leads.length > 0],
+          ],
+          [
+            ['id', 'Orden original', (a, b) => a.id - b.id],
+            ['name', 'Nombre A-Z', (a, b) => a.n.localeCompare(b.n)],
+            ['sa', 'Stock: menor primero', (a, b) => a.st - b.st],
+            ['sd', 'Stock: mayor primero', (a, b) => b.st - a.st],
+            ['pd', 'Precio: mayor primero', (a, b) => b.pr - a.pr],
+            ['pa', 'Precio: menor primero', (a, b) => a.pr - b.pr],
+          ],
+          (p) => [p.n, S(p.sup).n].join(' '),
+          'Buscar producto o proveedor…',
+        );
+        const sal = flt(
+          'fact',
+          D.sales,
+          [
+            ['v', '✅ Vigentes', (s) => !s.v],
+            ['a', '❌ Anuladas', (s) => !!s.v],
+          ],
+          [
+            ['new', 'Más recientes primero', (a, b) => b.num.localeCompare(a.num)],
+            ['old', 'Más antiguas primero', (a, b) => a.num.localeCompare(b.num)],
+            ['td', 'Total: mayor primero', (a, b) => b.tot - a.tot],
+            ['ta', 'Total: menor primero', (a, b) => a.tot - b.tot],
+            ['cl', 'Cliente A-Z', (a, b) => a.c.localeCompare(b.c)],
+          ],
+          (s) => [s.num, s.f, s.c, s.pn, s.v ? 'anulada' : 'vigente'].join(' '),
+          'Buscar factura, cliente o producto…',
+        );
+        const rec = D.orders.filter((o) => o.s == 2),
+          pay = flt(
+            'pagar',
+            rec,
+            [
+              ['u', '💵 Por pagar', (o) => !o.paid],
+              ['p', '💰 Pagadas', (o) => !!o.paid],
+            ],
+            [
+              ['new', 'Más recientes primero', (a, b) => b.id - a.id],
+              ['old', 'Más antiguos primero', (a, b) => a.id - b.id],
+              ['md', 'Monto: mayor primero', (a, b) => b.cost - a.cost],
+              ['ma', 'Monto: menor primero', (a, b) => a.cost - b.cost],
+              ['pr', 'Proveedor A-Z', (a, b) => S(P(a.p).sup).n.localeCompare(S(P(b.p).sup).n)],
+            ],
+            (o) => ['#' + o.id, P(o.p).n, S(P(o.p).sup).n, o.paid ? 'pagado' : 'por pagar'].join(' '),
+            'Buscar pedido o proveedor…',
+          );
+        return `<div class="c erp"><h2>🏢 ERP — Planificación de Recursos Empresariales</h2><p>Es el centro de la empresa: inventario, facturas y cuentas, todo con los mismos datos.</p></div>${nbn('erp')}
+<div class="c" id="s-inv"><div class="hd"><h3>📦 Inventario</h3><button onclick="pf()">+ Nuevo producto</button></div>${
           D.prods.length
-            ? tb(
-                ['Producto', 'Precio', 'En bodega', 'Mínimo', 'Proveedor', 'Estado', ''],
-                D.prods.map((p) => [
-                  esc(p.n),
-                  fmt(p.pr),
-                  p.st + ' pares',
-                  p.min,
-                  esc(S(p.sup).n),
-                  p.st <= p.min ? '<span class="b w">Queda poco</span>' : '<span class="b o">Bien</span>',
-                  ab('✏️ Editar', 'pf(' + p.id + ')') + ab('🗑️', 'dp(' + p.id + ')'),
-                ]),
-              )
-            : '<p class="mu">No hay productos. Agrega el primero (necesitas un proveedor en SCM).</p>'
+            ? inv.bar +
+              (inv.list.length
+                ? tb(
+                    ['Producto', 'Precio', 'En bodega', 'Mínimo', 'Proveedor', 'Clientes (CRM)', 'Estado', ''],
+                    inv.list.map((p) =>
+                      ra(
+                        [
+                          pt(p),
+                          fmt(p.pr),
+                          p.st + ' pares',
+                          p.min,
+                          esc(S(p.sup).n),
+                          dem(p.id).leads.length ? '👥 ' + dem(p.id).leads.length + ' · ' + dem(p.id).total + ' pares' : '—',
+                          (p.st == 0 ? '<span class="b r">🚫 Sin stock</span>' : p.st <= p.min ? '<span class="b w">Queda poco</span>' : '<span class="b o">Bien</span>') + ocb(p),
+                          ab('✏️ Editar', 'pf(' + p.id + ')') + ab('🗑️', 'dp(' + p.id + ')'),
+                        ],
+                        'id="r-i-' + p.id + '"',
+                      ),
+                    ),
+                  )
+                : none('inv'))
+            : '<p class="mu">No hay productos. Agrega el primero (puedes crear el proveedor ahí mismo).</p>'
         }</div>
-<div class="c"><div class="hd"><h3>🧾 Facturas emitidas</h3><button onclick="vf()">+ Venta directa</button></div>${
+<div class="c" id="s-fact"><div class="hd"><h3>🧾 Facturas emitidas</h3><button onclick="vf()">+ Venta directa</button></div>${
           D.sales.length
-            ? tb(
-                ['Factura', 'Fecha', 'Cliente', 'Detalle', 'Total', 'IVA 13% incluido', ''],
-                D.sales.map((s) => [
-                  s.num,
-                  s.f,
-                  esc(s.c),
-                  s.q + ' × ' + esc(s.pn),
-                  fmt(s.tot),
-                  fmt(s.iva),
-                  s.v ? '<span class="b w">Anulada</span>' : ab('Anular', "anu('" + s.num + "')"),
-                ]),
-              )
+            ? sal.bar +
+              (sal.list.length
+                ? tb(
+                    ['Factura', 'Fecha', 'Cliente', 'Detalle', 'Total', 'IVA 13% incluido', ''],
+                    sal.list.map((s) =>
+                      ra(
+                        [s.num, s.f, esc(s.c), s.q + ' × ' + (P(s.pid) ? pt(P(s.pid)) : esc(s.pn)), fmt(s.tot), fmt(s.iva), s.v ? '<span class="b w">Anulada</span>' : ab('Anular', "anu('" + s.num + "')")],
+                        'id="r-f-' + s.num + '" class="' + (s.v ? '' : 'g-sale') + '"',
+                      ),
+                    ),
+                  )
+                : none('fact'))
             : '<p class="mu">Aún no hay facturas. Vende algo desde el CRM o con «Venta directa».</p>'
         }</div>
-<div class="c"><h3>💵 Cuentas por pagar a proveedores</h3>${
+<div class="c" id="s-pagar"><h3>💵 Cuentas por pagar a proveedores</h3>${
           rec.length
-            ? tb(
-                ['Pedido', 'Proveedor', 'Detalle', 'Monto', 'Estado'],
-                rec.map((o) => {
-                  const p = P(o.p);
-                  return [
-                    '#' + o.id,
-                    esc(S(p.sup).n),
-                    o.q + ' × ' + esc(p.n),
-                    fmt(o.cost),
-                    o.paid ? '<span class="b o">Pagado</span>' : `<button class="sm" onclick="pay(${o.id})">Marcar pagado</button>`,
-                  ];
-                }),
-              )
+            ? pay.bar +
+              (pay.list.length
+                ? tb(
+                    ['Pedido', 'Proveedor', 'Detalle', 'Monto', 'Estado'],
+                    pay.list.map((o) => {
+                      const p = P(o.p);
+                      return ra(
+                        ['#' + o.id, esc(S(p.sup).n), o.q + ' × ' + pt(p), fmt(o.cost), o.paid ? '<span class="b o">💰 Pagado</span>' : `<button class="sm" onclick="pay(${o.id})">Marcar pagado</button>`],
+                        'id="r-o-' + o.id + '" class="' + (o.paid ? '' : 'g-pay') + '"',
+                      );
+                    }),
+                  )
+                : none('pagar'))
             : '<p class="mu">Se generan cuando llega un pedido desde SCM.</p>'
         }</div>`;
       }
       function pf(id) {
         const p = id ? P(id) : {};
-        if (!D.sups.length) {
-          toast('Primero agrega un proveedor en SCM');
-          return;
-        }
         fm(
           id ? 'Editar producto' : 'Nuevo producto',
           [
@@ -915,21 +1687,38 @@
             { k: 'pr', l: 'Precio de venta (Bs)', t: 'number', v: p.pr },
             { k: 'st', l: 'En bodega (pares)', t: 'number', v: p.st },
             { k: 'min', l: 'Mínimo para avisar «Queda poco»', t: 'number', v: p.min },
-            { k: 'sup', l: 'Proveedor', o: D.sups.map((s) => [s.id, s.n + ' (' + s.c + ')']), v: p.sup },
+            { k: 'sup', l: 'Proveedor', o: [...D.sups.map((s) => [s.id, s.n + ' (' + s.c + ')']), ['new', '➕ Nuevo proveedor…']], v: p.sup || (D.sups.length ? undefined : 'new') },
+            { k: 'sn', l: 'Nombre del nuevo proveedor', w: 'sup=new' },
+            { k: 'sc', l: 'Ciudad del proveedor', o: CITIES.map((c) => [c, c]), w: 'sup=new' },
           ],
           (o) => {
             if (!o.n || !(+o.pr > 0) || !int(o.st) || !int(o.min) || +o.st < 0 || +o.min < 0) {
               toast('Revisa: nombre, precio mayor a 0 y cantidades enteras');
               return;
             }
-            const v = { n: o.n, pr: +o.pr, st: +o.st, min: +o.min, sup: +o.sup };
+            let sid = +o.sup;
+            if (o.sup == 'new') {
+              if (!o.sn) {
+                toast('Escribe el nombre del nuevo proveedor');
+                return;
+              }
+              sid = D.n++;
+              D.sups.push({ id: sid, n: o.sn, c: o.sc });
+              mark('r-s-' + sid, ['scm']);
+              note('scm', 'Nuevo proveedor ' + o.sn + ' (' + o.sc + ') creado desde el producto ' + o.n + '.', 'erp', ['scm', 's-sup', 'r-s-' + sid], 'sup:' + sid);
+              log('ERP → SCM: se creó el proveedor ' + o.sn + ' (' + o.sc + ') desde el producto ' + o.n, 'scm');
+            }
+            const v = { n: o.n, pr: +o.pr, st: +o.st, min: +o.min, sup: sid };
             if (id) {
               if (v.st != p.st) log('ERP: se ajustó el stock de ' + v.n + ' de ' + p.st + ' a ' + v.st, 'erp');
               else log('ERP: se editó el producto ' + v.n, 'erp');
               Object.assign(p, v);
+              mark('r-i-' + id, ['erp']);
             } else {
-              D.prods.push({ id: D.n++, ...v });
-              log('ERP: nuevo producto ' + v.n, 'erp');
+              const npid = D.n++;
+              D.prods.push({ id: npid, ...v });
+              mark('r-i-' + npid, ['erp']);
+              log('ERP: nuevo producto ' + v.n + ' (proveedor: ' + S(sid).n + ')', 'erp');
             }
             done();
           },
@@ -975,69 +1764,174 @@
           const p = P(s.pid);
           if (p) p.st += s.q;
           log('ERP: se anuló la factura ' + num + ' y volvieron ' + s.q + ' × ' + s.pn + ' a la bodega', 'erp');
+          mark('r-f-' + num, ['erp']);
+          mark('r-i-' + s.pid, ['erp']);
+          const ld = D.leads.find((l) => l.fac == num);
+          if (ld) mark('l-' + ld.id, ['crm']);
           done();
         });
       }
       function pay(id) {
         const o = D.orders.find((x) => x.id == id);
         o.paid = true;
+        mark('r-o-' + id, ['erp']);
+        mark('r-p-' + id, ['scm']);
         log('ERP: se pagó el pedido #' + id + ' a ' + S(P(o.p).sup).n + ' (' + fmt(o.cost) + ')', 'erp');
         done();
       }
 
       function vScm() {
-        const low = D.prods.filter((p) => p.st <= p.min);
-        return `<div class="c scm"><h2>🚚 SCM — Gestión de la Cadena de Suministro</h2><p>Cuida que el producto llegue a tiempo: avisa cuándo falta algo y sigue los pedidos a los proveedores.</p></div>
-<div class="c"><h3>🔔 Alertas</h3>${low.length ? low.map((p) => `<div class="al"><span><b>${esc(p.n)}</b>: quedan ${p.st} pares (mínimo ${p.min}). Proveedor: ${esc(S(p.sup).n)}, ${esc(S(p.sup).c)}.</span><button onclick="of(${p.id})">Hacer pedido</button></div>`).join('') : '<p class="mu">✅ Todo el inventario está bien.</p>'}</div>
-<div class="c"><div class="hd"><h3>📋 Pedidos a proveedores</h3><button onclick="of()">+ Nuevo pedido</button></div>${
+        const ped = flt(
+          'ped',
+          D.orders,
+          [
+            ['0', '📝 Pedido hecho', (o) => o.s == 0],
+            ['1', '🚚 En camino', (o) => o.s == 1],
+            ['2', '✅ Recibido', (o) => o.s == 2],
+            ['u', '💵 Por pagar', (o) => o.s == 2 && !o.paid],
+            ['p', '💰 Pagado', (o) => !!o.paid],
+          ],
+          [
+            ['new', 'Más recientes primero', (a, b) => b.id - a.id],
+            ['old', 'Más antiguos primero', (a, b) => a.id - b.id],
+            ['cd', 'Costo: mayor primero', (a, b) => b.cost - a.cost],
+            ['ca', 'Costo: menor primero', (a, b) => a.cost - b.cost],
+            ['pr', 'Producto A-Z', (a, b) => P(a.p).n.localeCompare(P(b.p).n)],
+          ],
+          (o) => ['#' + o.id, P(o.p).n, S(P(o.p).sup).n, OS[o.s], o.s == 2 ? (o.paid ? 'pagado' : 'por pagar') : ''].join(' '),
+          'Buscar pedido, producto o proveedor…',
+        );
+        const open = (s) => D.orders.filter((o) => o.s < 2 && P(o.p).sup == s.id),
+          sup = flt(
+            'sup',
+            D.sups,
+            [
+              ['act', '🚚 Con pedidos en curso', (s) => open(s).length > 0],
+              ['no', 'Sin pedidos en curso', (s) => open(s).length == 0],
+            ],
+            [
+              ['id', 'Orden original', (a, b) => a.id - b.id],
+              ['name', 'Nombre A-Z', (a, b) => a.n.localeCompare(b.n)],
+              ['city', 'Ciudad A-Z', (a, b) => a.c.localeCompare(b.c)],
+            ],
+            (s) => [s.n, s.c, ...D.prods.filter((p) => p.sup == s.id).map((p) => p.n)].join(' '),
+            'Buscar proveedor, ciudad o producto…',
+          );
+        return `<div class="c scm"><h2>🚚 SCM — Gestión de la Cadena de Suministro</h2><p>Cuida que el producto llegue a tiempo: avisa cuándo falta algo y sigue los pedidos a los proveedores.</p></div>${nbn('scm')}
+<div class="c" id="s-alert"><h3>🔔 Alertas</h3>${alerts()}</div>
+<div class="c" id="s-ped"><div class="hd"><h3>📋 Pedidos a proveedores</h3><button onclick="of()">+ Nuevo pedido</button></div>${
           D.orders.length
-            ? tb(
-                ['Pedido', 'Producto', 'Proveedor', 'Costo', 'Estado', ''],
-                D.orders.map((o) => {
-                  const p = P(o.p);
-                  return [
-                    '#' + o.id,
-                    o.q + ' × ' + esc(p.n),
-                    esc(S(p.sup).n),
-                    fmt(o.cost),
-                    '<span class="b ' + (o.s == 2 ? 'o' : 'w') + '">' + OS[o.s] + '</span>',
-                    o.s < 2
-                      ? `<button class="sm" onclick="ad(${o.id})">${o.s == 0 ? 'Marcar en camino' : 'Marcar recibido'}</button>` +
-                        ab('Cancelar', 'cx(' + o.id + ')')
-                      : '',
-                  ];
-                }),
-              )
+            ? ped.bar +
+              (ped.list.length
+                ? tb(
+                    ['Pedido', 'Producto', 'Proveedor', 'Costo', 'Estado', ''],
+                    ped.list.map((o) => {
+                      const p = P(o.p);
+                      return ra(
+                        [
+                          '#' + o.id,
+                          o.q + ' × ' + pt(p),
+                          esc(S(p.sup).n),
+                          fmt(o.cost),
+                          '<span class="b ' + ['w', 'i', 'o'][o.s] + '">' + OI[o.s] + ' ' + OS[o.s] + '</span>' + (o.s == 2 ? (o.paid ? ' <span class="b o">💰 Pagado</span>' : ' <span class="b w">💵 Por pagar</span>') : ''),
+                          o.s < 2 ? `<button class="sm" onclick="ad(${o.id})">${o.s == 0 ? '🚚 Marcar en camino' : '✅ Marcar recibido'}</button>` + ab('Cancelar', 'cx(' + o.id + ')') : '',
+                        ],
+                        'id="r-p-' + o.id + '" class="g-p' + o.p + (o.s < 2 ? ' g-pend' : '') + '"',
+                      );
+                    }),
+                  )
+                : none('ped'))
             : '<p class="mu">Aún no hay pedidos.</p>'
         }</div>
-<div class="c"><div class="hd"><h3>🏭 Proveedores</h3><button onclick="sf()">+ Nuevo proveedor</button></div>${
+<div class="c" id="s-sup"><div class="hd"><h3>🏭 Proveedores</h3><button onclick="sf()">+ Nuevo proveedor</button></div>${
           D.sups.length
-            ? tb(
-                ['Nombre', 'Ciudad', 'Nos vende', ''],
-                D.sups.map((s) => [
-                  esc(s.n),
-                  esc(s.c),
-                  D.prods
-                    .filter((p) => p.sup == s.id)
-                    .map((p) => esc(p.n))
-                    .join(', ') || '—',
-                  ab('✏️ Editar', 'sf(' + s.id + ')') + ab('🗑️', 'ds(' + s.id + ')'),
-                ]),
-              )
+            ? sup.bar +
+              (sup.list.length
+                ? tb(
+                    ['Nombre', 'Ciudad', 'Nos vende', 'Pedidos en curso', ''],
+                    sup.list.map((s) => {
+                      const o = open(s),
+                        h = o.filter((x) => x.s == 0).length,
+                        c = o.filter((x) => x.s == 1).length;
+                      return ra([
+                        esc(s.n),
+                        esc(s.c),
+                        D.prods
+                          .filter((p) => p.sup == s.id)
+                          .map((p) => pt(p))
+                          .join(' ') || '—',
+                        o.length ? (c ? '🚚 ' + c + ' en camino' : '') + (c && h ? ' · ' : '') + (h ? '📝 ' + h + ' hecho' + (h > 1 ? 's' : '') : '') : '—',
+                        ab('✏️ Editar', 'sf(' + s.id + ')') + ab('🗑️', 'ds(' + s.id + ')'),
+                      ], 'id="r-s-' + s.id + '"');
+                    }),
+                  )
+                : none('sup'))
             : '<p class="mu">No hay proveedores. Agrega el primero.</p>'
         }</div>`;
       }
-      function of(pid) {
+      function alerts() {
+        const all = D.prods.filter((p) => p.st <= p.min || dem(p.id).short).map((p) => ({ p, d: dem(p.id), c: cov(p) }));
+        if (!all.length) return '<p class="mu">✅ Todo el inventario está bien.</p>';
+        const fr = flt(
+          'alert',
+          all,
+          [
+            ['act', '🔴 Requieren acción', (x) => !x.c],
+            ['zero', '🚫 Sin stock', (x) => x.p.st == 0],
+            ['few', '⚠️ Queda poco', (x) => x.p.st > 0 && x.p.st <= x.p.min],
+            ['sc', '👥 Clientes sin cubrir', (x) => x.p.st > x.p.min && x.d.short],
+            ['att', '✅ En atención', (x) => x.c],
+          ],
+          [
+            ['urg', 'Más urgentes primero', (a, b) => a.c - b.c || a.p.st - b.p.st],
+            ['name', 'Producto A-Z', (a, b) => a.p.n.localeCompare(b.p.n)],
+          ],
+          (x) => [x.p.n, S(x.p.sup).n, ...x.d.leads.map((l) => l.n)].join(' '),
+          'Buscar producto o cliente…',
+        );
+        const rows = fr.list;
+        const stt = (p) => (p.st == 0 ? '<span class="b r">🚫 Sin stock</span>' : p.st <= p.min ? '<span class="b w">⚠️ Queda poco</span>' : '<span class="b w">👥 Clientes sin cubrir</span>');
+        const act = rows
+          .filter((x) => !x.c)
+          .map(({ p, d }) => {
+            const sup = S(p.sup);
+            let tx = `${pt(p)} ${stt(p)}<small>Hay ${p.st} pares${p.st <= p.min ? ' (mínimo ' + p.min + ')' : ''}. Proveedor: ${esc(sup.n)}, ${esc(sup.c)}.</small>`,
+              bt = '';
+            if (d.short) tx += `<small>👥 Clientes esperando: ${d.leads.map((l) => esc(l.n) + ' (' + l.q + ')').join(', ')} → necesitan <b>${d.total}</b> en total, faltan <b>${d.total - p.st}</b>.</small>`;
+            const pend = d.ord.filter((o) => o.s == 0);
+            bt += d.ord.map((o) => `<button onclick="ad(${o.id})">${o.s == 0 ? '🚚 Marcar #' + o.id + ' en camino' : '✅ Marcar #' + o.id + ' recibido'}</button>`).join('');
+            if (d.ord.length) tx += `<small>📋 Ya hay pedido: ${olist(d.ord)} (suma ${d.inq}). ${d.miss > 0 ? 'Aún no alcanza: faltan ' + d.miss + '.' : pend.length ? 'Todavía no sale del proveedor: márcalo «en camino» cuando salga.' : 'Aún no deja stock sobre el mínimo.'}</small>`;
+            if (d.miss > 0) {
+              bt += `<button onclick="of(${p.id},${d.miss},'all')">📦 Pedir lo que falta (${d.miss})</button>`;
+              if (d.leads.length > 1)
+                bt += d.leads
+                  .map((l) => gap(l) && `<button class="gh" onclick="of(${p.id},${gap(l).miss},${l.id})">Solo ${esc(l.n.split(' ')[0])} (${gap(l).miss})</button>`)
+                  .filter(Boolean)
+                  .join('');
+              bt += `<button class="gh" onclick="of(${p.id})">Otra cantidad…</button>`;
+            } else {
+              bt += `<button class="${d.ord.length ? 'gh' : ''}" onclick="of(${p.id})">${d.ord.length ? 'Pedir más' : 'Hacer pedido'}</button>`;
+            }
+            return `<div id="r-a-${p.id}" class="al g-act${nvc('r-a-' + p.id)}${p.st == 0 ? ' r' : ''}" style="border-left:5px solid ${pc(p)}"><span>${tx}</span><div class="bt">${bt}</div></div>`;
+          });
+        const ok = rows
+          .filter((x) => x.c)
+          .map(({ p, d }) => `<div id="r-a-${p.id}" class="al ok${nvc('r-a-' + p.id)}" style="border-left:5px solid ${pc(p)}" tabindex="0" role="link" title="Clic para ver sus pedidos a proveedores" onclick="goto('scm','s-ped','.g-p${p.id}.g-pend')" onkeydown="if(event.key=='Enter'){goto('scm','s-ped','.g-p${p.id}.g-pend')}"><span>${pt(p)} ${stt(p)} <span class="b o">✅ Ya se está atendiendo</span><small>Hay ${p.st} pares. Viene en camino: ${d.ord.filter((o) => o.s == 1).reduce((a, o) => a + o.q, 0)} pares. Pedidos: ${olist(d.ord)}.${d.short ? ' Alcanza para: ' + d.leads.map((l) => esc(l.n)).join(', ') + '.' : ''}</small></span><div class="bt">${d.ord.map((o) => `<button onclick="event.stopPropagation();ad(${o.id})">${o.s == 0 ? '🚚 Marcar #' + o.id + ' en camino' : '✅ Marcar #' + o.id + ' recibido'}</button>`).join('')}<button class="gh" onclick="event.stopPropagation();of(${p.id})">Pedir más</button><button class="gh" onclick="event.stopPropagation();goto('scm','s-ped','.g-p${p.id}.g-pend')">Ver pedidos</button></div></div>`);
+        return fr.bar + (rows.length ? act.concat(ok).join('') : none('alert'));
+      }
+      function of(pid, qty, lid) {
         if (!D.prods.length) {
           toast('Primero agrega un producto en ERP');
           return;
         }
-        const p = pid ? P(pid) : D.prods[0];
+        const p = pid ? P(pid) : D.prods[0],
+          all = lid == 'all',
+          ld = lid && !all ? D.leads.find((x) => x.id == lid) : null;
         fm(
-          'Nuevo pedido a proveedor',
+          ld ? 'Pedido para atender a ' + ld.n : all ? 'Pedido para todos los clientes en espera' : 'Nuevo pedido a proveedor',
           [
             { k: 'p', l: 'Producto', o: D.prods.map((x) => [x.id, x.n]), v: p.id },
-            { k: 'q', l: 'Cantidad (pares)', t: 'number', v: p.min * 2 || 10 },
+            { k: 'q', l: 'Cantidad (pares)', t: 'number', v: qty || p.min * 2 || 10 },
             { k: 'u', l: 'Costo por par (Bs)', t: 'number', v: Math.round(p.pr * 0.55) },
           ],
           (o) => {
@@ -1046,39 +1940,67 @@
               return;
             }
             const q = +o.q,
-              pr = P(o.p);
-            D.orders.push({ id: D.n++, p: pr.id, q, s: 0, cost: q * +o.u, f: today() });
-            log('SCM: pedido de ' + q + ' × ' + pr.n + ' a ' + S(pr.sup).n + ' (' + S(pr.sup).c + ')', 'scm');
-            done();
+              pr = P(o.p),
+              dd = dem(pr.id);
+            const mk = () => {
+              const id = D.n++;
+              D.orders.push({ id, p: pr.id, q, s: 0, cost: q * +o.u, f: today() });
+              D.reqs = (D.reqs || []).filter((r) => r.p != pr.id);
+              mark('r-p-' + id, ['scm']);
+              mark('r-i-' + pr.id, ['erp']);
+              log('SCM: pedido #' + id + ' de ' + q + ' × ' + pr.n + ' a ' + S(pr.sup).n + ' (' + S(pr.sup).c + ')' + (ld ? ' para atender a ' + ld.n + ' (CRM)' : all ? ' para todos los clientes en espera (CRM)' : ''), 'scm');
+              note('scm', 'Nuevo pedido #' + id + ' creado para ' + (ld ? ld.n : 'todos los clientes en espera') + ': ' + q + ' × ' + pr.n + '. Envíalo al proveedor y márcalo «en camino».', 'crm', ['scm', 's-ped', 'r-p-' + id], 'ord:' + id);
+              unnote('fail:' + (ld ? ld.n : '') + pr.id);
+              if (ld || all) toast('📦 Pedido #' + id + ' enviado a ' + S(pr.sup).n + '. Sigue su estado en SCM.');
+              done();
+            };
+            if (dd.ord.length && dd.miss == 0 && cov(pr)) cf('Ya hay pedido en curso de ' + pr.n + ' (' + olist(dd.ord) + ') que cubre lo necesario. ¿Hacer otro pedido de todos modos?', mk);
+            else mk();
           },
         );
       }
       function ad(id) {
         const o = D.orders.find((x) => x.id == id),
           p = P(o.p);
+        unnote('ord:' + id);
         if (o.s == 0) {
+          const wl = D.leads.filter((l) => l.p == p.id && l.s < 3 && (gap(l) || dem(p.id).short));
           o.s = 1;
-          log('SCM: el pedido #' + id + ' salió de ' + S(p.sup).n + ' hacia la tienda', 'scm');
+          mark('r-p-' + id, ['scm']);
+          mark('r-i-' + p.id, ['erp']);
+          log('🚚 SCM: el pedido #' + id + ' salió de ' + S(p.sup).n + ' hacia la tienda', 'scm');
+          if (wl.length) {
+            note('crm', 'El pedido #' + id + ' de ' + p.n + ' (' + o.q + ' pares) ya va en camino. Cuando llegue podrás vender a: ' + wl.map((l) => l.n + ' (' + l.q + ')').join(', ') + '.', 'scm', ['crm', 's-crm', 'l-' + wl[0].id], 'way:' + id);
+            wl.forEach((l) => mark('l-' + l.id, ['crm']));
+          }
+          note('erp', 'El pedido #' + id + ' (' + o.q + ' × ' + p.n + ') de ' + S(p.sup).n + ' ya va en camino. Al recibirlo subirá el inventario y se generará una cuenta por pagar de ' + fmt(o.cost) + '.', 'scm', ['erp', 's-inv', 'r-i-' + p.id], 'wayerp:' + id);
         } else {
           o.s = 2;
           p.st += o.q;
-          log(
-            'SCM → ERP: llegó el pedido #' +
-              id +
-              '. El inventario de ' +
-              p.n +
-              ' sube a ' +
-              p.st +
-              ' y se registra una cuenta por pagar de ' +
-              fmt(o.cost),
-            'erp',
-          );
+          mark('r-p-' + id, ['scm']);
+          mark('r-o-' + id, ['erp']);
+          mark('r-i-' + p.id, ['erp']);
+          unnote('way:' + id);
+          unnote('wayerp:' + id);
+          note('erp', 'Llegó el pedido #' + id + ' (' + o.q + ' × ' + p.n + '). Nueva cuenta por pagar de ' + fmt(o.cost) + ' a ' + S(p.sup).n + '.', 'scm', ['erp', 's-pagar', 'r-o-' + id], 'rec:' + id);
+          log('SCM → ERP: llegó el pedido #' + id + '. El inventario de ' + p.n + ' sube a ' + p.st + ' y se registra una cuenta por pagar de ' + fmt(o.cost), 'erp');
+          const w = D.leads.filter((l) => l.p == p.id && l.s < 3 && p.st >= l.q && p.st - o.q < l.q);
+          w.forEach((l) => mark('l-' + l.id, ['crm']));
+          w.forEach((l) => log('SCM → CRM: ya hay stock para atender a ' + l.n + ' (' + l.q + ' × ' + p.n + ')', 'crm'));
+          if (w.length) toast('✅ Llegó el pedido: ya puedes vender a ' + w.map((l) => l.n).join(', '));
         }
         done();
       }
       function cx(id) {
         cf('¿Cancelar el pedido #' + id + '?', () => {
-          D.orders = D.orders.filter((o) => o.id != id);
+          const o = D.orders.find((x) => x.id == id);
+          D.orders = D.orders.filter((x) => x.id != id);
+          mark('r-i-' + o.p, ['erp']);
+          unnote('way:' + id);
+          unnote('wayerp:' + id);
+          unnote('ord:' + id);
+          const wl = D.leads.filter((l) => l.p == o.p && l.s < 3 && gap(l));
+          if (wl.length) note('crm', 'Se canceló el pedido #' + id + ' de ' + P(o.p).n + ': ' + wl.map((l) => l.n).join(', ') + ' sigue sin stock suficiente.', 'scm', ['crm', 's-crm', 'l-' + wl[0].id], 'cx:' + id);
           log('SCM: se canceló el pedido #' + id, 'scm');
           done();
         });
@@ -1098,9 +2020,12 @@
             }
             if (id) {
               Object.assign(s, o);
+              mark('r-s-' + id, ['scm']);
               log('SCM: se editó el proveedor ' + o.n, 'scm');
             } else {
-              D.sups.push({ id: D.n++, n: o.n, c: o.c });
+              const nsid = D.n++;
+              D.sups.push({ id: nsid, n: o.n, c: o.c });
+              mark('r-s-' + nsid, ['scm']);
               log('SCM: nuevo proveedor ' + o.n, 'scm');
             }
             done();
@@ -1120,6 +2045,49 @@
         });
       }
       render();
+    
+      /* ===== Mejoras UI/UX ===== */
+      (function () {
+        const TABS = ['home', 'crm', 'erp', 'scm'], TK = 'zs_tab';
+        // botón volver arriba
+        const up = document.createElement('button');
+        up.id = 'up'; up.textContent = '↑'; up.title = 'Volver arriba'; up.setAttribute('aria-label', 'Volver arriba');
+        up.onclick = () => scrollTo({ top: 0 });
+        document.body.appendChild(up);
+        addEventListener('scroll', () => {
+          up.classList.toggle('on', scrollY > 400);
+          const st = $('.stk'); if (st) st.classList.toggle('sc', scrollY > 10);
+        }, { passive: true });
+        document.querySelectorAll('nav button').forEach((b) => b.setAttribute('role', 'tab'));
+        const nv = $('nav'); if (nv) nv.setAttribute('role', 'tablist');
+        // render mejorado: conserva scroll y foco, ARIA y contador en el título
+        const _r = render;
+        render = function () {
+          const y = scrollY, a = document.activeElement, v = $('#v');
+          const idx = a && v && v.contains(a) && /INPUT|SELECT/.test(a.tagName) ? [...v.querySelectorAll('input,select')].indexOf(a) : -1;
+          const pos = idx >= 0 && a.selectionStart != null ? [a.selectionStart, a.selectionEnd] : null;
+          const same = render.last === T; render.last = T;
+          _r();
+          { const bar = v.querySelector('.al.nvh'), sp = v.querySelector('.nvsp'); if (bar && sp) { v.prepend(bar); v.prepend(sp); nvUp(); } }
+          if (same) scrollTo({ top: y, behavior: 'instant' });
+          if (idx >= 0) { const n = v.querySelectorAll('input,select')[idx]; if (n) { n.focus(); if (pos) try { n.setSelectionRange(pos[0], pos[1]); } catch (_) {} } }
+          document.querySelectorAll('nav button').forEach((b) => b.setAttribute('aria-selected', b.dataset.t == T));
+          const pend = [...document.querySelectorAll('nav .nb')].reduce((n, b) => n + (parseInt(b.textContent.replace(/\D/g, '')) || 0), 0);
+          document.title = (pend ? '(' + pend + ') ' : '') + 'Zapatos Sol — CRM · ERP · SCM';
+          try { localStorage.setItem(TK, T); } catch (_) {}
+        };
+        // diálogos: foco inicial y cerrar al tocar fuera
+        new MutationObserver((ms) => ms.forEach((m) => m.addedNodes.forEach((d) => {
+          if (d.tagName != 'DIALOG') return;
+          setTimeout(() => { const f = d.querySelector('input,select') || d.querySelector('button[type=submit]'); if (f) f.focus(); });
+          d.addEventListener('mousedown', (e) => { if (e.target === d) d.dispatchEvent(new Event('cancel')); });
+        }))).observe(document.body, { childList: true });
+        // aviso: accesible y se cierra al tocarlo
+        const t = $('#t'); if (t) { t.setAttribute('role', 'status'); t.setAttribute('aria-live', 'polite'); t.onclick = () => (t.style.display = 'none'); }
+        // recordar la última pestaña
+        let sv = null; try { sv = localStorage.getItem(TK); } catch (_) {}
+        if (sv && TABS.includes(sv) && sv != T) go(sv); else render();
+      })();
     </script>
   </body>
 </html>
