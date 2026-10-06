@@ -715,7 +715,7 @@
           <h1>🛍️ Zapatos Sol — Demo CRM · ERP · SCM</h1>
           <small>Tienda ficticia de calzado en Bolivia. Funciona en tu navegador, sin base de datos.</small>
         </div>
-        <div class="rs"><select id="lv" onchange="setLv(this.value)" title="Datos con los que arranca la demo" aria-label="Datos de la demo"><option value="min">Datos muy básicos</option><option value="bas">Datos básicos</option><option value="med">Datos medios</option><option value="adv">Datos avanzados</option></select><button onclick="rst()" title="Restaura la demo con los datos seleccionados">↺ Reiniciar demo</button></div>
+        <div class="rs"><select id="lv" onchange="setLv(this.value)" title="Al elegir una opción, los datos se cargan al instante" aria-label="Datos de la demo"><option value="min">Datos muy básicos</option><option value="bas">Datos básicos</option><option value="med">Datos medios</option><option value="adv">Datos avanzados</option></select><button onclick="rst()" title="Restaura la demo con los datos seleccionados">↺ Reiniciar demo</button></div>
       </div>
       <div class="stk">
         <nav>
@@ -1137,7 +1137,15 @@ let NVI = -1;
       function setLv(v) {
         LV = v;
         try { localStorage.setItem('zs_lv', v); } catch (e) {}
-        toast('Seleccionado: ' + LVS[v] + '. Pulsa «Reiniciar demo» para cargarlos.');
+        try {
+          localStorage.removeItem(KEY);
+        } catch (e) {}
+        D = seed(LV);
+        Object.keys(F).forEach((k) => delete F[k]);
+        FLASH.clear();
+        done();
+        go('crm');
+        toast('Datos cargados: ' + LVS[v]);
       }
       function rst(b) {
         cf(b ? '¿Borrar todo y empezar en blanco?' : '¿Reiniciar con «' + LVS[LV] + '»? Se perderán los cambios.', () => {
