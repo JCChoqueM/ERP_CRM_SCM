@@ -690,6 +690,22 @@
       @media (max-width: 380px) { h1 { font-size: 17px; } nav button { padding: 7px 12px; font-size: 13px; } }
       .al.ok[onclick]:hover { background: color-mix(in srgb, var(--ok) 20%, var(--bg)); }
       tr.fl-r td { background: color-mix(in srgb, var(--wr) 38%, transparent) !important; box-shadow: inset 0 2px 0 var(--wr), inset 0 -2px 0 var(--wr); }
+
+      /* ===== CRM mejorado ===== */
+      .rs { display: flex; gap: 6px; align-items: center; }
+      .rs select { width: auto; margin: 0; padding: 7px 8px; font-size: 13px; }
+      .cd .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+      .dot.d-r { background: var(--rd); } .dot.d-w { background: var(--wr); } .dot.d-g { background: var(--ok); }
+      .cd .ic { flex-wrap: wrap; } .cd .ic button, .cd .ic a.btn { flex: 1 1 auto; min-width: 0; }
+      .col h3 small { font-weight: 400; margin-left: 4px; }
+      .cd .b { margin-top: 3px; display: inline-block; }
+      .ic a.btn { flex: 1; text-align: center; text-decoration: none; color: var(--tx); border: 1px solid var(--bd); border-radius: 8px; padding: 4px 8px; font-size: 12px; font-weight: 600; }
+      .ic a.btn:hover { background: color-mix(in srgb, var(--tx) 8%, transparent); }
+      .wn:not(.open) .wnb { display: none; }
+      .wn .wnt { width: 100%; text-align: left; background: transparent; border: 0; padding: 0; color: var(--wr); font-size: 12px; font-weight: 600; }
+      .wn .wnt u { opacity: .8; margin-left: 4px; }
+      .wn.open .wnt { margin-bottom: 6px; }
+      @media (max-width: 640px) { .rs { width: 100%; } .rs select { flex: 1; min-width: 0; } .top > .rs button { width: auto; } }
     </style>
   </head>
   <body>
@@ -699,7 +715,7 @@
           <h1>🛍️ Zapatos Sol — Demo CRM · ERP · SCM</h1>
           <small>Tienda ficticia de calzado en Bolivia. Funciona en tu navegador, sin base de datos.</small>
         </div>
-        <button onclick="rst()" title="Restaura los datos de demostración originales">↺ Reiniciar demo</button>
+        <div class="rs"><select id="lv" onchange="setLv(this.value)" title="Datos con los que arranca la demo" aria-label="Datos de la demo"><option value="min">Datos muy básicos</option><option value="bas">Datos básicos</option><option value="med">Datos medios</option><option value="adv">Datos avanzados</option></select><button onclick="rst()" title="Restaura la demo con los datos seleccionados">↺ Reiniciar demo</button></div>
       </div>
       <div class="stk">
         <nav>
@@ -744,11 +760,11 @@
     <div id="tp"></div>
     <script>
       const KEY = 'zapatos_sol_demo_v1',
-        ST = ['Nuevo', 'Contactado', 'Precio enviado', 'Vendido'],
+        ST = ['Nuevo', 'Contactado', 'Precio enviado', 'Vendido', 'Perdido'],
         CITIES = ['La Paz', 'El Alto', 'Cochabamba', 'Santa Cruz', 'Sucre', 'Tarija', 'Potosí', 'Oruro', 'Trinidad', 'Cobija'],
         OS = ['Esperando envío', 'En camino', 'Recibido'],
         OI = ['⏳', '🚚', '✅'];
-      const seed = () => {
+      const seedAdv = () => {
         const dd = (n) => new Date(Date.now() - n * 864e5).toLocaleDateString('es-BO'),
           hh = (h, m) => String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0'),
           iva = (t) => (t * 13) / 113;
@@ -784,6 +800,7 @@
             { id: 10, n: 'Silvia Torrez', t: '', c: 'Cochabamba', p: 8, q: 3, s: 3, fac: 'F-0003' },
             { id: 11, n: 'Hugo Medina', t: '69988776', c: 'Trinidad', p: 2, q: 1, s: 3, fac: 'F-0004' },
             { id: 12, n: 'Ximena Flores', t: '', c: 'Santa Cruz', p: 2, q: 4, s: 2, wt: true, seen: false },
+            { id: 16, n: 'Gabriela Soria', t: '72200441', c: 'Sucre', p: 1, q: 2, s: 4, lost: 'Precio' },
             { id: 14, n: 'Marcos Aliaga', t: '70011223', c: 'Cobija', p: 7, q: 3, s: 1 },
             { id: 15, n: 'Elena Gutiérrez', t: '73322110', c: 'Trinidad', p: 7, q: 3, s: 0 },
             { id: 13, n: 'Eduardo Paz', t: '74455667', c: 'Sucre', p: 1, q: 1, s: 1, wt: true, seen: true },
@@ -827,6 +844,41 @@
             { t: hh(7, 30), m: 'CRM: Silvia Torrez compró 3 × Pantufla de lana. Se descontó del inventario y se emitió la factura F-0003', tag: 'erp' },
           ],
         };
+      };
+      const LVS = { min: 'Datos muy básicos', bas: 'Datos básicos', med: 'Datos medios', adv: 'Datos avanzados' };
+      let LV = 'adv';
+      try { const x = localStorage.getItem('zs_lv'); if (LVS[x]) LV = x; } catch (e) {}
+      const stamp = () => new Date().toLocaleDateString('es-BO') + ' ' + new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' });
+      const seed = (lv = LV) => {
+        const A = seedAdv(), keep = (a, ids) => a.filter((x) => ids.includes(x.id));
+        let X;
+        if (lv == 'min')
+          X = { n: 100, seq: 0, sales: [], orders: [], log: [], notes: [], fresh: [], reqs: [],
+            sups: [{ id: 1, n: 'Curtiembre Andina', c: 'La Paz' }],
+            prods: [{ id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 1 }, { id: 2, n: 'Botín de cuero', pr: 420, st: 20, min: 10, sup: 1 }],
+            leads: [{ id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 1, q: 2, s: 0 }, { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 2, q: 1, s: 1 }, { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 1, q: 1, s: 2 }] };
+        else if (lv == 'bas')
+          X = { n: 100, seq: 0, sales: [], orders: [], log: [], notes: [], fresh: [], reqs: [], sups: A.sups.slice(0, 3),
+            prods: [{ id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 2 }, { id: 2, n: 'Zapatilla deportiva', pr: 350, st: 20, min: 10, sup: 2 }, { id: 3, n: 'Botín de cuero', pr: 420, st: 12, min: 10, sup: 1 }, { id: 4, n: 'Sandalia', pr: 150, st: 40, min: 15, sup: 3 }],
+            leads: [{ id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 3, q: 3, s: 2 }, { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 1, q: 2, s: 1 }, { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 2, q: 1, s: 0 }, { id: 4, n: 'Fernando Vargas', t: '72345678', c: 'Sucre', p: 4, q: 4, s: 0 }, { id: 5, n: 'Lourdes Condori', t: '70123456', c: 'Tarija', p: 3, q: 15, s: 2 }] };
+        else if (lv == 'med')
+          X = { ...A, seq: 4, sups: A.sups.filter((x) => x.id <= 3), prods: A.prods.filter((x) => x.id <= 6),
+            leads: keep(A.leads, [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 16]), orders: A.orders.filter((o) => o.p <= 6), sales: A.sales.filter((x) => x.pid <= 6),
+            fresh: A.fresh.filter((f) => f.k != 'r-o-105'), log: A.log.filter((x) => !/vestir|Pantufla/.test(x.m)) };
+        else X = A;
+        const fd = (n) => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4 + n * 864e5).toISOString().slice(0, 10),
+          FU = { 2: 0, 3: -1, 4: 2, 6: 1, 13: 3 }, ago = (n) => new Date(Date.now() - n * 864e5).toLocaleDateString('es-BO');
+        X.leads.forEach((l, i) => {
+          if (FU[l.id] != null && l.s < 3) l.fu = fd(FU[l.id]);
+          const d = [3, 1, 5, 0, 2, 6, 4][i % 7];
+          l.sd = Date.now() - d * 864e5;
+          const txt = ['Registrado como interesado', 'Pasó a «Contactado»', 'Precio enviado al cliente', 'Vendido y facturado ' + (l.fac || '')];
+          l.h = [];
+          for (let k = Math.min(l.s, 3); k >= 0; k--) l.h.push({ t: ago(d + (Math.min(l.s, 3) - k) * 2) + ' 10:00', m: txt[k] });
+          if (l.s == 4) l.h.unshift({ t: ago(d) + ' 11:30', m: '❌ Marcado como perdido (' + l.lost + ')' });
+          if (l.id == 1) l.h.unshift({ t: ago(1) + ' 10:20', m: '📝 Pidió rebaja por llevar 3 pares' });
+        });
+        return X;
       };
       const blank = () => ({ n: 100, seq: 0, sales: [], orders: [], log: [], sups: [], prods: [], leads: [] });
       let D = null,
@@ -908,7 +960,7 @@
           if (l.s >= 3) l.wt = false;
         });
       }
-      const rdy = () => D.leads.filter((l) => l.wt && !l.seen && l.s < 3 && !gap(l));
+      const rdy = () => D.leads.filter((l) => l.wt && !l.seen && l.s < 3 && !gap(l)).sort((a, b) => (a.sd || a.id) - (b.sd || b.id));
       const done = () => {
         sync();
         save();
@@ -1082,17 +1134,22 @@ let NVI = -1;
           });
         });
       }
+      function setLv(v) {
+        LV = v;
+        try { localStorage.setItem('zs_lv', v); } catch (e) {}
+        toast('Seleccionado: ' + LVS[v] + '. Pulsa «Reiniciar demo» para cargarlos.');
+      }
       function rst(b) {
-        cf(b ? '¿Borrar todo y empezar en blanco?' : '¿Reiniciar con los datos de ejemplo originales? Se perderán los cambios.', () => {
+        cf(b ? '¿Borrar todo y empezar en blanco?' : '¿Reiniciar con «' + LVS[LV] + '»? Se perderán los cambios.', () => {
           try {
             localStorage.removeItem(KEY);
           } catch (e) {}
-          D = b ? blank() : seed();
+          D = b ? blank() : seed(LV);
           Object.keys(F).forEach((k) => delete F[k]);
           FLASH.clear();
           done();
           go(b ? 'home' : 'crm');
-          toast(b ? 'Demo en blanco: agrega proveedores y productos para empezar' : 'Demo reiniciada: todo volvió al inicio');
+          toast(b ? 'Demo en blanco: agrega proveedores y productos para empezar' : 'Demo reiniciada con ' + LVS[LV].toLowerCase());
         });
       }
       function ex() {
@@ -1447,10 +1504,48 @@ let NVI = -1;
         save();
         goto('crm', 'l-' + id);
       }
+      const TD = () => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+      const fuTag = (l) => {
+        if (!l.fu || l.s >= 3) return '';
+        const d = l.fu.slice(8) + '/' + l.fu.slice(5, 7), t = TD();
+        return l.fu < t ? ` <span class="b r">📅 Vencido ${d}</span>` : l.fu == t ? ' <span class="b w">📅 Hoy</span>' : ` <span class="b">📅 ${d}</span>`;
+      };
+      function hist(l, m) {
+        l.h = l.h || [];
+        l.h.unshift({ t: stamp(), m });
+        l.h = l.h.slice(0, 40);
+      }
+      function hv(id) {
+        const l = D.leads.find((x) => x.id == id),
+          li = (l.h || []).map((x) => `<li><i class="mu">${esc(x.t)}</i> ${esc(x.m)}</li>`).join('') || '<li class="mu">Sin movimientos</li>';
+        fm('📜 Historial de ' + esc(l.n) + `<ul style="font:13px/1.6 system-ui;padding-left:18px;max-height:230px;overflow:auto;margin:8px 0">${li}</ul>`, [{ k: 'm', l: 'Agregar una nota (opcional)' }], (o) => {
+          if (o.m) { hist(l, '📝 ' + o.m); done(); }
+        }, 'Guardar nota');
+      }
+      function lost(id) {
+        const l = D.leads.find((x) => x.id == id);
+        fm('❌ ¿Por qué se perdió la venta a ' + esc(l.n) + '?', [{ k: 'm', l: 'Motivo', o: [['Precio', 'Precio muy alto'], ['Sin stock', 'No había stock'], ['Competencia', 'Compró en otra tienda'], ['Sin respuesta', 'No respondió'], ['Otro', 'Otro motivo']] }], (o) => {
+          Object.assign(l, { s: 4, lost: o.m, sd: Date.now(), wt: false, seen: false });
+          hist(l, '❌ Marcado como perdido (' + o.m + ')');
+          log('CRM: ' + l.n + ' se marcó como perdido (' + o.m + ')', 'crm');
+          done();
+        }, 'Marcar perdido');
+      }
+      function reo(id) {
+        const l = D.leads.find((x) => x.id == id);
+        Object.assign(l, { s: 0, lost: '', sd: Date.now() });
+        hist(l, '↩ Reabierto como «Nuevo»');
+        log('CRM: ' + l.n + ' se reabrió', 'crm');
+        mark('l-' + id, ['crm']);
+        done();
+      }
       function card(l) {
-        const p = P(l.p),
-          g = gap(l);
-        return `<div class="cd${nvc('l-' + l.id)}" id="l-${l.id}" style="border-left:4px solid ${pc(p)}">${fresh('l-' + l.id) ? '<span class="nvb">🆕</span>' : ''}<b>${esc(l.n)}</b><br>📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${pt(p)} = <b>${fmt(p.pr * l.q)}</b>${l.fac ? (() => { const sl = D.sales.find((s) => s.num == l.fac); return '<br>🧾 ' + l.fac + (sl && sl.v ? ' <span class="b w">Anulada</span>' : ' <span class="b o">Facturado</span>'); })() : ''}${g ? warn(l, g) : l.wt && l.s < 3 ? '<div class="wn ok">' + (l.seen ? '🟢 <b>En atención</b>: ya hay stock, falta cerrar la venta.' : '✅ Ya llegó stock: se puede atender este pedido.') + '</div>' : ''}${g ? '' : shared(l)}${l.s < 3 ? (l.s == 2 && g ? '<button disabled>🚫 Sin stock para vender</button>' : `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>`) : ''}<div class="ic">${l.s > 0 && l.s < 3 ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${l.s < 3 ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
+        const p = P(l.p), g = gap(l), first = l.n.split(' ')[0], open = l.s < 3,
+          sh = g ? '' : shared(l), rd = !g && l.wt && open,
+          dot = !open ? '' : g ? (p.st == 0 ? 'r' : 'w') : sh ? 'w' : rd ? 'g' : '',
+          days = l.sd ? Math.max(0, Math.floor((Date.now() - l.sd) / 864e5)) : null,
+          msg = g ? `Hola ${first}, te escribimos de Zapatos Sol: tu pedido de ${p.n} está en camino, te avisamos apenas llegue.` : rd ? `Hola ${first}, ya llegó tu ${p.n} a Zapatos Sol. ¿Coordinamos la entrega?` : `Hola ${first}, te escribimos de Zapatos Sol sobre tu interés en ${p.n} (${l.q} par${l.q > 1 ? 'es' : ''}).`;
+        return `<div class="cd${nvc('l-' + l.id)}" id="l-${l.id}" style="border-left:4px solid ${pc(p)}">${fresh('l-' + l.id) ? '<span class="nvb">🆕</span>' : ''}${dot ? `<span class="dot d-${dot}"></span>` : ''}<b>${esc(l.n)}</b><br>📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${pt(p)} = <b>${fmt(p.pr * l.q)}</b>${open && days != null ? `<br><small>⏱ ${days == 0 ? 'Hoy' : days + ' d'} en esta etapa</small>` : ''}${fuTag(l)}${l.s == 4 ? `<br>❌ Motivo: <b>${esc(l.lost || '—')}</b>` : ''}${l.fac ? (() => { const sl = D.sales.find((s) => s.num == l.fac); return '<br>🧾 ' + l.fac + (sl && sl.v ? ' <span class="b w">Anulada</span>' : ' <span class="b o">Facturado</span>'); })() : ''}${g ? warn(l, g) : rd ? '<div class="wn ok">' + (l.seen ? '🟢 <b>En atención</b>: ya hay stock, falta cerrar la venta.' : '✅ Ya llegó stock: se puede atender este pedido.') + '</div>' : ''}${sh}${open ? (l.s == 2 && g ? '<button disabled>🚫 Sin stock para vender</button>' : `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>`) : ''}${l.s == 4 ? `<button onclick="reo(${l.id})">↩ Reabrir</button>` : ''}${open && l.t ? `<div class="ic"><a class="btn" href="tel:+591${esc(l.t)}">📞 Llamar</a><a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(l.t)}?text=${encodeURIComponent(msg)}">💬 WhatsApp</a></div>` : ''}<div class="ic">${l.s > 0 && open ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${open ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="hv(${l.id})">📜 ${(l.h || []).length}</button>${open ? `<button class="gh sm" onclick="lost(${l.id})" title="Marcar como perdido">❌</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
       }
       function vCrm() {
         const sorts = [
@@ -1459,18 +1554,21 @@ let NVI = -1;
             ['name', 'Nombre A-Z', (a, b) => a.n.localeCompare(b.n)],
             ['md', 'Monto: mayor primero', (a, b) => P(b.p).pr * b.q - P(a.p).pr * a.q],
             ['ma', 'Monto: menor primero', (a, b) => P(a.p).pr * a.q - P(b.p).pr * b.q],
+            ['wait', 'Más tiempo en su etapa', (a, b) => (a.sd || 0) - (b.sd || 0)],
+            ['fu', 'Seguimiento más próximo', (a, b) => (a.fu || '9') < (b.fu || '9') ? -1 : 1],
           ],
           defs = [
             ['nostock', '⚠️ Sin stock para atender', (l) => l.s < 3 && !!gap(l)],
             ['ready', '✅ Stock listo', (l) => l.s < 3 && !!l.wt && !gap(l)],
             ['ord', '🚚 Con pedido en curso', (l) => l.s < 3 && inc(l.p).length > 0],
+            ['fu', '📅 Para contactar hoy', (l) => l.s < 3 && !!l.fu && l.fu <= TD()],
           ];
         const r = flt('crm', D.leads, defs, sorts, (l) => [l.n, l.c, l.t, P(l.p).n, ST[l.s], l.fac || ''].join(' '), 'Buscar cliente, ciudad o producto…');
         return `<div class="c crm"><div class="hd"><h2>👥 CRM — Gestión de la Relación con el Cliente</h2><button onclick="lf()">+ Nuevo interesado</button></div><p>Aquí ves a las personas interesadas y en qué etapa de la compra están. Al marcar «Vendido», el ERP registra la venta automáticamente.</p></div>${nbn('crm')}${banner()}
 <div class="c tlc">${r.bar}</div>
 <div class="kb" id="s-crm">${ST.map((s, i) => {
           const L = r.list.filter((l) => l.s == i);
-          return `<div class="col"><h3>${s} (${L.length})</h3>${L.map(card).join('') || '<p class="mu">—</p>'}</div>`;
+          return `<div class="col"><h3>${s} (${L.length}) <small>${L.length ? fmt(L.reduce((a, l) => a + P(l.p).pr * l.q, 0)) : ''}</small></h3>${L.map(card).join('') || '<p class="mu">—</p>'}</div>`;
         }).join('')}</div>`;
       }
       function lf(id) {
@@ -1487,6 +1585,7 @@ let NVI = -1;
             { k: 'c', l: 'Ciudad', o: CITIES.map((c) => [c, c]), v: l.c },
             { k: 'p', l: 'Producto de interés', o: D.prods.map((p) => [p.id, p.n]), v: l.p },
             { k: 'q', l: 'Cantidad', t: 'number', v: l.q || 1 },
+            { k: 'fu', l: 'Volver a contactar el… (opcional)', t: 'date', v: l.fu || '' },
           ],
           (o) => {
             if (!o.n) {
@@ -1502,12 +1601,13 @@ let NVI = -1;
               return;
             }
             if (id) {
-              Object.assign(l, { n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, wt: false, seen: false });
+              Object.assign(l, { n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, fu: o.fu || '', wt: false, seen: false });
+              hist(l, '✏️ Datos editados');
               mark('l-' + id, ['crm']);
               log('CRM: se editó a ' + o.n, 'crm');
             } else {
               const nid = D.n++;
-              D.leads.push({ id: nid, n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, s: 0 });
+              D.leads.push({ id: nid, n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, s: 0, fu: o.fu || '', sd: Date.now(), h: [{ t: stamp(), m: 'Registrado como interesado' }] });
               mark('l-' + nid, ['crm']);
               log('CRM: nuevo interesado ' + o.n + ' (' + o.c + ')', 'crm');
             }
@@ -1516,16 +1616,24 @@ let NVI = -1;
         );
       }
       function dl(id) {
-        const l = D.leads.find((x) => x.id == id);
+        const l = D.leads.find((x) => x.id == id), i = D.leads.indexOf(l);
         cf('¿Eliminar a ' + l.n + '?', () => {
           D.leads = D.leads.filter((x) => x.id != id);
           log('CRM: se eliminó a ' + l.n, 'crm');
           done();
+          const e = $('#t');
+          e.innerHTML = 'Cliente eliminado · <b style="text-decoration:underline">Deshacer</b>';
+          e.style.display = 'block';
+          e.onclick = () => { D.leads.splice(i, 0, l); log('CRM: se recuperó a ' + l.n, 'crm'); done(); e.style.display = 'none'; e.onclick = () => (e.style.display = 'none'); };
+          clearTimeout(toast.h);
+          toast.h = setTimeout(() => { e.style.display = 'none'; e.onclick = () => (e.style.display = 'none'); }, 7000);
         });
       }
       function bk(id) {
         const l = D.leads.find((x) => x.id == id);
         l.s--;
+        l.sd = Date.now();
+        hist(l, 'Volvió a «' + ST[l.s] + '»');
         log('CRM: ' + l.n + ' volvió a «' + ST[l.s] + '»', 'crm');
         done();
       }
@@ -1537,6 +1645,8 @@ let NVI = -1;
           mark('l-' + l.id, ['crm']);
         } else log('CRM: ' + l.n + ' pasó a «' + ST[l.s + 1] + '»', 'crm');
         l.s++;
+        l.sd = Date.now();
+        hist(l, l.s == 3 ? '💰 Vendido y facturado ' + l.fac : 'Pasó a «' + ST[l.s] + '»');
         done();
       }
       function sell(cl, pid, q, from) {
@@ -2071,6 +2181,16 @@ let NVI = -1;
           { const bar = v.querySelector('.al.nvh'), sp = v.querySelector('.nvsp'); if (bar && sp) { v.prepend(bar); v.prepend(sp); nvUp(); } }
           if (same) scrollTo({ top: y, behavior: 'instant' });
           if (idx >= 0) { const n = v.querySelectorAll('input,select')[idx]; if (n) { n.focus(); if (pos) try { n.setSelectionRange(pos[0], pos[1]); } catch (_) {} } }
+          document.querySelectorAll('#v .cd .wn:not(.ok)').forEach((w) => {
+            const t = (w.querySelector('b') || {}).textContent || 'Aviso', body = document.createElement('div'), hd = document.createElement('button');
+            body.className = 'wnb';
+            while (w.firstChild) body.appendChild(w.firstChild);
+            hd.className = 'wnt';
+            hd.innerHTML = '⚠️ ' + t + ' <u>ver opciones ▾</u>';
+            hd.onclick = () => w.classList.toggle('open');
+            w.append(hd, body);
+          });
+          const ls = $('#lv'); if (ls) ls.value = LV;
           document.querySelectorAll('nav button').forEach((b) => b.setAttribute('aria-selected', b.dataset.t == T));
           const pend = [...document.querySelectorAll('nav .nb')].reduce((n, b) => n + (parseInt(b.textContent.replace(/\D/g, '')) || 0), 0);
           document.title = (pend ? '(' + pend + ') ' : '') + 'Zapatos Sol — CRM · ERP · SCM';
