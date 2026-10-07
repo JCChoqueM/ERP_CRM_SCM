@@ -15,6 +15,7 @@
         --mu: #5b6075;
         --bd: #e0e3ee;
         --crm: #2563eb;
+        --mkt: #db2777;
         --scm: #c2410c;
         --erp: #0f766e;
         --ok: #15803d;
@@ -29,6 +30,7 @@
           --mu: #a3a9c4;
           --bd: #2a3050;
           --crm: #60a5fa;
+          --mkt: #f472b6;
           --scm: #fb923c;
           --erp: #2dd4bf;
           --ok: #4ade80;
@@ -81,34 +83,13 @@
         margin: 0 0 8px;
       }
       /* Una fila: Bitácora y Marketing ajustados a su texto · CRM, ERP, SCM ocupan el resto */
-      nav button[data-t='home'] {
-        grid-column: 1;
-        grid-row: 1;
-      }
-      nav button[data-t='mkt'] {
-        grid-column: 2;
-        grid-row: 1;
-      }
-      .b.lk {
-        cursor: pointer;
-      }
-      .b.lk:hover,
-      .b.lk:focus-visible {
-        filter: brightness(1.25);
-        text-decoration: underline;
-      }
-      nav button[data-t='crm'] {
-        grid-column: 3;
-        grid-row: 1;
-      }
-      nav button[data-t='erp'] {
-        grid-column: 4;
-        grid-row: 1;
-      }
-      nav button[data-t='scm'] {
-        grid-column: 5;
-        grid-row: 1;
-      }
+      nav button[data-t=home] { grid-column: 1; grid-row: 1; }
+      nav button[data-t=mkt] { grid-column: 2; grid-row: 1; }
+      .b.lk { cursor: pointer; }
+      .b.lk:hover, .b.lk:focus-visible { filter: brightness(1.25); text-decoration: underline; }
+      nav button[data-t=crm] { grid-column: 3; grid-row: 1; }
+      nav button[data-t=erp] { grid-column: 4; grid-row: 1; }
+      nav button[data-t=scm] { grid-column: 5; grid-row: 1; }
       nav button {
         border: 1px solid var(--bd);
         background: var(--cd);
@@ -126,53 +107,30 @@
         font-weight: 700;
       }
       /* Colores por sector: CRM azul · ERP verde azulado · SCM naranja */
-      nav button[data-t='crm'] {
-        --c: var(--crm);
-      }
-      nav button[data-t='erp'] {
-        --c: var(--erp);
-      }
-      nav button[data-t='scm'] {
-        --c: var(--scm);
-      }
+      nav button[data-t=crm] { --c: var(--crm); }
+      nav button[data-t=erp] { --c: var(--erp); }
+      nav button[data-t=scm] { --c: var(--scm); }
       /* Inactivas: discretas (borde fino del color del sector, sin relleno) */
-      nav button[data-t='crm'],
-      nav button[data-t='erp'],
-      nav button[data-t='scm'] {
+      nav button[data-t=crm], nav button[data-t=erp], nav button[data-t=scm] {
         border: 1px solid color-mix(in srgb, var(--c) 45%, var(--bd));
         background: var(--cd);
         color: color-mix(in srgb, var(--tx) 75%, transparent);
       }
-      nav button[data-t='home'],
-      nav button[data-t='mkt'] {
-        color: color-mix(in srgb, var(--tx) 75%, transparent);
-      }
+      nav button[data-t=home], nav button[data-t=mkt] { color: color-mix(in srgb, var(--tx) 75%, transparent); }
       /* Activa: relleno sólido + anillo exterior + marca ● para que se vea claro dónde estás */
       nav button.on,
-      nav button[data-t='crm'].on,
-      nav button[data-t='erp'].on,
-      nav button[data-t='scm'].on {
+      nav button[data-t=crm].on, nav button[data-t=erp].on, nav button[data-t=scm].on {
         background: var(--c, var(--tx));
         border-color: var(--c, var(--tx));
         color: #fff;
         font-weight: 800;
-        box-shadow:
-          0 0 0 2px var(--bg),
-          0 0 0 4px var(--c, var(--tx));
+        box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--c, var(--tx));
         opacity: 1;
       }
-      nav button.on::before {
-        content: '● ';
-        font-size: 10px;
-        vertical-align: 2px;
-      }
+      nav button.on::before { content: "● "; font-size: 10px; vertical-align: 2px; }
       @media (prefers-color-scheme: dark) {
         nav button.on,
-        nav button[data-t='crm'].on,
-        nav button[data-t='erp'].on,
-        nav button[data-t='scm'].on {
-          color: #0e1120;
-        }
+        nav button[data-t=crm].on, nav button[data-t=erp].on, nav button[data-t=scm].on { color: #0e1120; }
       }
       .c {
         background: var(--cd);
@@ -237,9 +195,7 @@
         min-width: 0;
         box-shadow: 0 2px 8px color-mix(in srgb, var(--c) 22%, transparent);
       }
-      .k b {
-        color: var(--c);
-      }
+      .k b { color: var(--c); }
       .k small {
         display: block;
         font-size: 12px;
@@ -287,52 +243,22 @@
         font-size: 14px;
       }
       /* Tablero CRM: columnas por etapa, tarjetas por color de producto */
-      .col.s0 {
-        --sc: var(--crm);
-      }
-      .col.s1 {
-        --sc: var(--wr);
-      }
-      .col.s2 {
-        --sc: #a855f7;
-      }
-      .col.s3 {
-        --sc: var(--ok);
-      }
-      .col.s4 {
-        --sc: var(--rd);
-      }
-      .col[class*=' s'] {
+      .col.s0 { --sc: var(--crm); } .col.s1 { --sc: var(--wr); } .col.s2 { --sc: #a855f7; } .col.s3 { --sc: var(--ok); } .col.s4 { --sc: var(--rd); }
+      .col[class*=" s"] {
         background: color-mix(in srgb, var(--sc) 7%, var(--cd));
         border: 1px solid color-mix(in srgb, var(--sc) 40%, var(--bd));
         border-top: 5px solid var(--sc);
       }
-      .col[class*=' s'] h3 {
-        color: var(--sc);
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .col[class*=' s'] h3 .cn {
-        background: var(--sc);
-        color: var(--cd);
-        border-radius: 99px;
-        padding: 0 9px;
-        font-size: 13px;
-        font-weight: 800;
-      }
-      .cd[id^='l-'] {
+      .col[class*=" s"] h3 { color: var(--sc); font-size: 15px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+      .col[class*=" s"] h3 .cn { background: var(--sc); color: var(--cd); border-radius: 99px; padding: 0 9px; font-size: 13px; font-weight: 800; }
+      .cd[id^="l-"] {
         border-left: 7px solid var(--pc, var(--bd));
         border-color: color-mix(in srgb, var(--pc, var(--bd)) 45%, var(--bd));
         border-left-color: var(--pc, var(--bd));
         background: color-mix(in srgb, var(--pc, var(--cd)) 12%, var(--cd));
         box-shadow: 0 2px 8px color-mix(in srgb, var(--pc, #000) 20%, transparent);
       }
-      .cd[id^='l-'] > b:first-of-type {
-        font-size: 15px;
-      }
+      .cd[id^="l-"] > b:first-of-type { font-size: 15px; }
       .cd > button {
         margin-top: 6px;
         width: 100%;
@@ -459,22 +385,9 @@
         }
       }
       @keyframes fl {
-        0%,
-        65% {
-          box-shadow:
-            0 0 0 4px #facc15,
-            inset 0 0 0 999px #facc1538;
-        }
-        80% {
-          box-shadow:
-            0 0 0 3px #facc1599,
-            inset 0 0 0 999px #facc1522;
-        }
-        100% {
-          box-shadow:
-            0 0 0 0 transparent,
-            inset 0 0 0 999px transparent;
-        }
+        0%, 65% { box-shadow: 0 0 0 4px #facc15, inset 0 0 0 999px #facc1538; }
+        80% { box-shadow: 0 0 0 3px #facc1599, inset 0 0 0 999px #facc1522; }
+        100% { box-shadow: 0 0 0 0 transparent, inset 0 0 0 999px transparent; }
       }
       .wn {
         border: 1px solid var(--wr);
@@ -526,9 +439,7 @@
         padding: 7px 10px;
         border-color: var(--ok);
         background: color-mix(in srgb, var(--ok) 18%, var(--bg));
-        box-shadow:
-          0 4px 16px #0008,
-          0 0 0 1px var(--ok);
+        box-shadow: 0 4px 16px #0008, 0 0 0 1px var(--ok);
         cursor: pointer;
         flex-wrap: nowrap;
       }
@@ -546,50 +457,13 @@
         margin-left: 6px;
         opacity: 0.8;
       }
-      .nvch {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-top: 6px;
-      }
-      .nvr {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .nvw {
-        font-size: 13px;
-        color: var(--tx);
-        opacity: 0.9;
-        flex: 1 1 260px;
-        min-width: 0;
-      }
-      .why {
-        background: color-mix(in srgb, var(--ok) 16%, transparent);
-        border-left: 3px solid var(--ok);
-        border-radius: 6px;
-        padding: 4px 8px;
-        margin: 4px 0;
-        font-size: 12.5px;
-      }
-      .nvch .cp {
-        border: 1px solid var(--ok);
-        background: color-mix(in srgb, var(--ok) 14%, var(--cd));
-        color: var(--tx);
-        border-radius: 99px;
-        padding: 3px 11px;
-        font-size: 13px;
-        font-weight: 600;
-      }
-      .nvch .cp:hover {
-        background: color-mix(in srgb, var(--ok) 30%, var(--cd));
-      }
-      .nvch .cp.on {
-        background: var(--ok);
-        color: #fff;
-        box-shadow: 0 0 10px var(--ok);
-      }
+      .nvch { display: flex; flex-direction: column; gap: 5px; margin-top: 6px; }
+      .nvr { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .nvw { font-size: 13px; color: var(--tx); opacity: .9; flex: 1 1 260px; min-width: 0; }
+      .why { background: color-mix(in srgb, var(--ok) 16%, transparent); border-left: 3px solid var(--ok); border-radius: 6px; padding: 4px 8px; margin: 4px 0; font-size: 12.5px; }
+      .nvch .cp { border: 1px solid var(--ok); background: color-mix(in srgb, var(--ok) 14%, var(--cd)); color: var(--tx); border-radius: 99px; padding: 3px 11px; font-size: 13px; font-weight: 600; }
+      .nvch .cp:hover { background: color-mix(in srgb, var(--ok) 30%, var(--cd)); }
+      .nvch .cp.on { background: var(--ok); color: #fff; box-shadow: 0 0 10px var(--ok); }
       .al.nvh .bt {
         flex-wrap: nowrap;
         flex: none;
@@ -608,13 +482,8 @@
         z-index: 2;
       }
       @keyframes nvp {
-        0%,
-        100% {
-          outline-color: var(--ok);
-        }
-        50% {
-          outline-color: color-mix(in srgb, var(--ok) 35%, transparent);
-        }
+        0%, 100% { outline-color: var(--ok); }
+        50% { outline-color: color-mix(in srgb, var(--ok) 35%, transparent); }
       }
       tr.nv.nvcur td {
         background: color-mix(in srgb, var(--ok) 30%, transparent);
@@ -776,129 +645,20 @@
         justify-content: flex-end;
         margin-top: 12px;
       }
-      .cmp .cpv {
-        margin: 12px 0;
-        padding: 12px 14px;
-        background: color-mix(in srgb, var(--mc) 14%, var(--cd));
-        border: 1px solid color-mix(in srgb, var(--mc) 55%, transparent);
-        border-left: 6px solid var(--mc);
-        border-radius: 12px;
-        font-size: 15px;
-        line-height: 1.5;
-        white-space: pre-wrap;
-      }
-      .cmp .cpv small {
-        display: block;
-        color: var(--mc);
-        font-weight: 700;
-        font-size: 12px;
-        margin-bottom: 6px;
-        white-space: normal;
-      }
-      #bq .bm {
-        flex-basis: 100%;
-        padding: 8px 10px;
-        border-left: 5px solid var(--ok);
-        background: color-mix(in srgb, var(--ok) 14%, var(--cd));
-        border-radius: 8px;
-        font-size: 13px;
-        white-space: pre-wrap;
-        max-height: 96px;
-        overflow: auto;
-      }
-      .nm {
-        cursor: help;
-        border-bottom: 1px dotted var(--mu);
-      }
-      #mtip {
-        position: fixed;
-        z-index: 80;
-        display: none;
-        max-width: min(420px, calc(100vw - 24px));
-        padding: 10px 12px;
-        background: var(--cd);
-        color: var(--tx);
-        border: 2px solid var(--ok);
-        border-left: 6px solid var(--ok);
-        border-radius: 12px;
-        box-shadow: 0 8px 30px #0007;
-        font-size: 14px;
-        line-height: 1.45;
-        white-space: pre-wrap;
-        pointer-events: none;
-      }
-      #mtip b {
-        display: block;
-        color: var(--ok);
-        font-size: 12px;
-        margin-bottom: 4px;
-      }
-      #tr-hl {
-        position: fixed;
-        z-index: 90;
-        border: 3px solid #fbbf24;
-        border-radius: 12px;
-        box-shadow: 0 0 0 9999px #000a;
-        pointer-events: none;
-        transition: all 0.25s ease;
-      }
-      #tr-cd {
-        position: fixed;
-        z-index: 91;
-        width: min(380px, calc(100vw - 24px));
-        padding: 16px;
-        background: var(--cd);
-        color: var(--tx);
-        border: 2px solid #fbbf24;
-        border-radius: 16px;
-        box-shadow: 0 12px 40px #000a;
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      #tr-cd h3 {
-        margin: 0 0 6px;
-        font-size: 17px;
-      }
-      #tr-cd p {
-        margin: 0 0 8px;
-      }
-      #tr-cd .tr-tip {
-        padding: 8px 10px;
-        border-left: 4px solid #fbbf24;
-        background: color-mix(in srgb, #fbbf24 12%, var(--cd));
-        border-radius: 8px;
-        font-size: 13px;
-      }
-      #tr-cd .tr-bar {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 12px;
-        flex-wrap: wrap;
-      }
-      #tr-cd .tr-bar .sp {
-        flex: 1;
-        font-size: 12px;
-        color: var(--mu);
-      }
-      #bq {
-        position: fixed;
-        left: 50%;
-        bottom: 16px;
-        transform: translateX(-50%);
-        z-index: 60;
-        max-width: calc(100% - 24px);
-        display: none;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        padding: 10px 14px;
-        background: var(--cd);
-        color: var(--tx);
-        border: 2px solid var(--crm);
-        border-radius: 14px;
-        box-shadow: 0 8px 30px #0006;
-      }
+      .cmp .cpv { margin: 12px 0; padding: 12px 14px; background: color-mix(in srgb, var(--mc) 14%, var(--cd)); border: 1px solid color-mix(in srgb, var(--mc) 55%, transparent); border-left: 6px solid var(--mc); border-radius: 12px; font-size: 15px; line-height: 1.5; white-space: pre-wrap; }
+      .cmp .cpv small { display: block; color: var(--mc); font-weight: 700; font-size: 12px; margin-bottom: 6px; white-space: normal; }
+      #bq .bm { flex-basis: 100%; padding: 8px 10px; border-left: 5px solid var(--ok); background: color-mix(in srgb, var(--ok) 14%, var(--cd)); border-radius: 8px; font-size: 13px; white-space: pre-wrap; max-height: 96px; overflow: auto; }
+      .nm { cursor: help; border-bottom: 1px dotted var(--mu); }
+      #mtip { position: fixed; z-index: 80; display: none; max-width: min(420px, calc(100vw - 24px)); padding: 10px 12px; background: var(--cd); color: var(--tx); border: 2px solid var(--ok); border-left: 6px solid var(--ok); border-radius: 12px; box-shadow: 0 8px 30px #0007; font-size: 14px; line-height: 1.45; white-space: pre-wrap; pointer-events: none; }
+      #mtip b { display: block; color: var(--ok); font-size: 12px; margin-bottom: 4px; }
+      #tr-hl { position: fixed; z-index: 90; border: 3px solid #fbbf24; border-radius: 12px; box-shadow: 0 0 0 9999px #000a; pointer-events: none; transition: all .25s ease; }
+      #tr-cd { position: fixed; z-index: 91; width: min(380px, calc(100vw - 24px)); padding: 16px; background: var(--cd); color: var(--tx); border: 2px solid #fbbf24; border-radius: 16px; box-shadow: 0 12px 40px #000a; font-size: 14px; line-height: 1.5; }
+      #tr-cd h3 { margin: 0 0 6px; font-size: 17px; }
+      #tr-cd p { margin: 0 0 8px; }
+      #tr-cd .tr-tip { padding: 8px 10px; border-left: 4px solid #fbbf24; background: color-mix(in srgb, #fbbf24 12%, var(--cd)); border-radius: 8px; font-size: 13px; }
+      #tr-cd .tr-bar { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+      #tr-cd .tr-bar .sp { flex: 1; font-size: 12px; color: var(--mu); }
+      #bq { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 60; max-width: calc(100% - 24px); display: none; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 14px; background: var(--cd); color: var(--tx); border: 2px solid var(--crm); border-radius: 14px; box-shadow: 0 8px 30px #0006; }
       #t {
         position: fixed;
         left: 50%;
@@ -946,512 +706,121 @@
       }
 
       /* ===== Mejoras UI/UX ===== */
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 130px;
-      }
-      ::selection {
-        background: color-mix(in srgb, var(--ok) 35%, transparent);
-      }
-      button,
-      .cd,
-      .k,
-      nav button {
-        transition:
-          background 0.15s,
-          border-color 0.15s,
-          box-shadow 0.15s,
-          transform 0.1s,
-          opacity 0.15s;
-      }
-      button:not(:disabled):hover {
-        opacity: 0.88;
-      }
-      button:not(:disabled):active {
-        transform: scale(0.96);
-      }
-      button:focus-visible,
-      input:focus-visible,
-      select:focus-visible,
-      .k:focus-visible,
-      .al[onclick]:focus-visible {
-        outline: 3px solid color-mix(in srgb, var(--crm) 75%, white);
-        outline-offset: 2px;
-      }
-      input:focus,
-      select:focus {
-        border-color: var(--crm);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--crm) 25%, transparent);
-        outline: none;
-      }
-      nav button:not(.on):hover {
-        border-color: var(--tx);
-      }
-      .stk {
-        transition: box-shadow 0.2s;
-      }
-      .stk.sc {
-        box-shadow: 0 6px 18px #0006;
-      }
-      .cd:hover {
-        border-color: color-mix(in srgb, var(--tx) 35%, var(--bd));
-        box-shadow: 0 3px 10px #0004;
-      }
-      .k:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px #0004;
-      }
-      tr:not(:first-child):hover td {
-        background: color-mix(in srgb, var(--tx) 6%, transparent);
-      }
-      tr.nv:hover td {
-        background: color-mix(in srgb, var(--ok) 20%, transparent);
-      }
-      th {
-        position: sticky;
-        top: 0;
-        background: var(--cd);
-      }
-      button:disabled {
-        cursor: not-allowed;
-      }
-      #t {
-        cursor: pointer;
-        box-shadow: 0 8px 24px #0007;
-        animation: tin 0.25s;
-      }
-      @keyframes tin {
-        from {
-          opacity: 0;
-          translate: 0 12px;
-        }
-      }
-      dialog {
-        border-radius: 14px;
-        animation: tin 0.2s;
-      }
-      dialog::backdrop {
-        background: #0009;
-        backdrop-filter: blur(3px);
-      }
-      #up {
-        position: fixed;
-        right: 14px;
-        bottom: 14px;
-        width: 42px;
-        height: 42px;
-        border-radius: 50% !important;
-        padding: 0 !important;
-        font-size: 18px !important;
-        box-shadow: 0 4px 14px #0007;
-        z-index: 30;
-        opacity: 0;
-        pointer-events: none;
-      }
-      #up.on {
-        opacity: 0.92;
-        pointer-events: auto;
-      }
+      html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+      ::selection { background: color-mix(in srgb, var(--ok) 35%, transparent); }
+      button, .cd, .k, nav button { transition: background .15s, border-color .15s, box-shadow .15s, transform .1s, opacity .15s; }
+      button:not(:disabled):hover { opacity: .88; }
+      button:not(:disabled):active { transform: scale(.96); }
+      button:focus-visible, input:focus-visible, select:focus-visible, .k:focus-visible, .al[onclick]:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--crm) 75%, white); outline-offset: 2px; }
+      input:focus, select:focus { border-color: var(--crm); box-shadow: 0 0 0 3px color-mix(in srgb, var(--crm) 25%, transparent); outline: none; }
+      nav button:not(.on):hover { border-color: var(--tx); }
+      .stk { transition: box-shadow .2s; }
+      .stk.sc { box-shadow: 0 6px 18px #0006; }
+      .cd:hover { border-color: color-mix(in srgb, var(--tx) 35%, var(--bd)); box-shadow: 0 3px 10px #0004; }
+      .k:hover { transform: translateY(-2px); box-shadow: 0 4px 12px #0004; }
+      tr:not(:first-child):hover td { background: color-mix(in srgb, var(--tx) 6%, transparent); }
+      tr.nv:hover td { background: color-mix(in srgb, var(--ok) 20%, transparent); }
+      th { position: sticky; top: 0; background: var(--cd); }
+      button:disabled { cursor: not-allowed; }
+      #t { cursor: pointer; box-shadow: 0 8px 24px #0007; animation: tin .25s; }
+      @keyframes tin { from { opacity: 0; translate: 0 12px; } }
+      dialog { border-radius: 14px; animation: tin .2s; }
+      dialog::backdrop { background: #0009; backdrop-filter: blur(3px); }
+      #up { position: fixed; right: 14px; bottom: 14px; width: 42px; height: 42px; border-radius: 50% !important; padding: 0 !important;
+        font-size: 18px !important; box-shadow: 0 4px 14px #0007; z-index: 30; opacity: 0; pointer-events: none; }
+      #up.on { opacity: .92; pointer-events: auto; }
       @media (max-width: 899px) {
-        nav {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-        nav button {
-          padding: 8px 6px;
-          font-size: 13px;
-          text-align: center;
-          white-space: normal;
-        }
-        nav button[data-t='home'],
-        nav button[data-t='mkt'] {
-          justify-self: start;
-          white-space: nowrap;
-          padding: 8px 14px;
-        }
-        nav button[data-t='home'] {
-          grid-column: 1;
-          grid-row: 1;
-        }
-        nav button[data-t='mkt'] {
-          grid-column: 2;
-          grid-row: 1;
-        }
-        nav button[data-t='crm'] {
-          grid-column: 1;
-          grid-row: 2;
-        }
-        nav button[data-t='erp'] {
-          grid-column: 2;
-          grid-row: 2;
-        }
-        nav button[data-t='scm'] {
-          grid-column: 3;
-          grid-row: 2;
-        }
+        nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        nav button { padding: 8px 6px; font-size: 13px; text-align: center; white-space: normal; }
+        nav button[data-t=home], nav button[data-t=mkt] { justify-self: start; white-space: nowrap; padding: 8px 14px; }
+        nav button[data-t=home] { grid-column: 1; grid-row: 1; }
+        nav button[data-t=mkt] { grid-column: 2; grid-row: 1; }
+        nav button[data-t=crm] { grid-column: 1; grid-row: 2; }
+        nav button[data-t=erp] { grid-column: 2; grid-row: 2; }
+        nav button[data-t=scm] { grid-column: 3; grid-row: 2; }
       }
       @media (max-width: 640px) {
-        h1 {
-          font-size: 19px;
-        }
+        h1 { font-size: 19px; }
       }
-      @media (pointer: coarse) {
-        button:not(.sm) {
-          min-height: 40px;
-        }
-        button.sm {
-          min-height: 34px;
-        }
-      }
+      @media (pointer: coarse) { button:not(.sm) { min-height: 40px; } button.sm { min-height: 34px; } }
 
       /* ===== Responsive ===== */
-      .tw {
-        background:
-          linear-gradient(to right, var(--cd) 30%, transparent) left,
-          linear-gradient(to left, var(--cd) 30%, transparent) right,
-          radial-gradient(farthest-side at 0 50%, #0006, transparent) left,
-          radial-gradient(farthest-side at 100% 50%, #0006, transparent) right;
-        background-repeat: no-repeat;
-        background-size:
-          28px 100%,
-          28px 100%,
-          10px 100%,
-          10px 100%;
-        background-attachment: local, local, scroll, scroll;
-      }
-      dialog {
-        max-height: 92vh;
-        overflow-y: auto;
-      }
+      .tw { background: linear-gradient(to right, var(--cd) 30%, transparent) left, linear-gradient(to left, var(--cd) 30%, transparent) right,
+        radial-gradient(farthest-side at 0 50%, #0006, transparent) left, radial-gradient(farthest-side at 100% 50%, #0006, transparent) right;
+        background-repeat: no-repeat; background-size: 28px 100%, 28px 100%, 10px 100%, 10px 100%; background-attachment: local, local, scroll, scroll; }
+      dialog { max-height: 92vh; overflow-y: auto; }
       @media (max-width: 900px) {
-        .kb {
-          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        }
+        .kb { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
       }
       @media (max-width: 640px) {
-        .w {
-          padding: 10px;
-        }
-        .top > button {
-          width: 100%;
-        }
-        .top small {
-          display: block;
-          font-size: 12px;
-        }
-        .stk {
-          margin: 0 -10px 10px;
-          padding: 6px 10px;
-        }
-        .kp {
-          grid-auto-flow: row;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-        .k {
-          padding: 5px 8px;
-        }
-        .k b {
-          font-size: 15px;
-        }
-        .c {
-          padding: 12px;
-          border-radius: 12px;
-        }
-        .c h2 {
-          font-size: 16px;
-        }
-        .kb {
-          grid-template-columns: 1fr;
-        }
-        .hd > button,
-        .fm > button {
-          flex: 1 1 100%;
-        }
-        .ic button {
-          min-height: 38px;
-        }
-        th,
-        td {
-          padding: 6px;
-          font-size: 12px;
-        }
-        .tl input,
-        .tl select {
-          flex: 1 1 100%;
-          min-width: 0;
-        }
-        input,
-        select {
-          font-size: 16px;
-        }
-        dialog {
-          width: 96vw;
-          padding: 14px;
-        }
-        .ac {
-          flex-direction: column-reverse;
-        }
-        .ac button {
-          width: 100%;
-        }
-        #t {
-          width: 92vw;
-          max-width: 92vw;
-          text-align: center;
-          bottom: 70px;
-        }
-        #up {
-          bottom: 14px;
-          right: 10px;
-        }
-        .al.nvh {
-          padding: 6px 8px;
-          font-size: 13px;
-        }
-        .al.nvh .bt {
-          width: 100%;
-        }
-        .al.nvh .bt button {
-          flex: 1;
-        }
+        .w { padding: 10px; }
+        .top > button { width: 100%; }
+        .top small { display: block; font-size: 12px; }
+        .stk { margin: 0 -10px 10px; padding: 6px 10px; }
+        .kp { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .k { padding: 5px 8px; }
+        .k b { font-size: 15px; }
+        .c { padding: 12px; border-radius: 12px; }
+        .c h2 { font-size: 16px; }
+        .kb { grid-template-columns: 1fr; }
+        .hd > button, .fm > button { flex: 1 1 100%; }
+        .ic button { min-height: 38px; }
+        th, td { padding: 6px; font-size: 12px; }
+        .tl input, .tl select { flex: 1 1 100%; min-width: 0; }
+        input, select { font-size: 16px; }
+        dialog { width: 96vw; padding: 14px; }
+        .ac { flex-direction: column-reverse; }
+        .ac button { width: 100%; }
+        #t { width: 92vw; max-width: 92vw; text-align: center; bottom: 70px; }
+        #up { bottom: 14px; right: 10px; }
+        .al.nvh { padding: 6px 8px; font-size: 13px; }
+        .al.nvh .bt { width: 100%; }
+        .al.nvh .bt button { flex: 1; }
       }
-      @media (min-width: 641px) and (max-width: 1000px) {
-        .kp {
-          grid-auto-flow: row;
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-      }
-      @media (max-width: 380px) {
-        h1 {
-          font-size: 17px;
-        }
-        nav button {
-          padding: 7px 12px;
-          font-size: 13px;
-        }
-      }
-      .al.ok[onclick]:hover {
-        background: color-mix(in srgb, var(--ok) 20%, var(--bg));
-      }
-      tr.fl-r td {
-        background: color-mix(in srgb, var(--wr) 38%, transparent) !important;
-        box-shadow:
-          inset 0 2px 0 var(--wr),
-          inset 0 -2px 0 var(--wr);
-      }
+      @media (min-width: 641px) and (max-width: 1000px) { .kp { grid-auto-flow: row; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
+      @media (max-width: 380px) { h1 { font-size: 17px; } nav button { padding: 7px 12px; font-size: 13px; } }
+      .al.ok[onclick]:hover { background: color-mix(in srgb, var(--ok) 20%, var(--bg)); }
+      tr.fl-r td { background: color-mix(in srgb, var(--wr) 38%, transparent) !important; box-shadow: inset 0 2px 0 var(--wr), inset 0 -2px 0 var(--wr); }
 
       /* ===== Marketing ===== */
-      .mst {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 6px;
-        margin: 8px 0 2px;
-      }
-      .mst > div {
-        border: 1px solid var(--bd);
-        border-radius: 10px;
-        padding: 5px 9px;
-      }
-      .mst small {
-        display: block;
-        font-size: 11px;
-      }
-      .mst b {
-        font-size: 15px;
-      }
-      .sea.act {
-        border-color: var(--ok);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 35%, transparent);
-      }
-      .sea p {
-        margin: 6px 0;
-      }
-      .sea .pl {
-        display: flex;
-        gap: 4px 8px;
-        flex-wrap: wrap;
-        align-items: center;
-        margin: 6px 0;
-      }
-      .sea.go {
-        cursor: pointer;
-      }
-      .sea.go:hover,
-      .sea.go:focus-visible {
-        border-color: var(--ok);
-        box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 45%, transparent);
-      }
-      .cmp {
-        padding: 0 !important;
-        margin: 0 0 56px !important;
-        border: 3px solid var(--mc, var(--bd)) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 24px #0005;
-        overflow: hidden;
-      }
-      .cmp.cc0 {
-        --mc: #3b82f6;
-      }
-      .cmp.cc1 {
-        --mc: #a855f7;
-      }
-      .cmp.cc2 {
-        --mc: #ec4899;
-      }
-      .cmp.cc3 {
-        --mc: #f59e0b;
-      }
-      .cmp.cc4 {
-        --mc: #14b8a6;
-      }
-      .cmp.cc5 {
-        --mc: #f97316;
-      }
-      .cmp > .hd {
-        padding: 14px 16px;
-        margin: 0 !important;
-        background: color-mix(in srgb, var(--mc) 24%, var(--cd));
-        border-bottom: 3px solid var(--mc);
-      }
-      .cmp > .hd b {
-        font-size: 18px;
-      }
-      .cmp .cno {
-        display: inline-block;
-        margin-right: 8px;
-        padding: 2px 10px;
-        border-radius: 999px;
-        background: var(--mc);
-        color: #0e1120;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.05em;
-        vertical-align: middle;
-      }
-      .cmp > .cpv,
-      .cmp > .mst,
-      .cmp > .tw,
-      .cmp > .rh {
-        margin-left: 16px;
-        margin-right: 16px;
-      }
-      .cmp > .mst {
-        margin-top: 12px;
-      }
-      .cmp .rh {
-        font-weight: 700;
-        margin-top: 14px;
-        margin-bottom: 4px;
-        color: var(--mc);
-      }
-      .cmp .cend {
-        margin-top: 14px;
-        padding: 9px 16px;
-        text-align: center;
-        font-size: 13px;
-        font-weight: 800;
-        color: #0e1120;
-        background: var(--mc);
-      }
-      .cmp {
-        padding: 10px;
-      }
-      .cmp .hd {
-        align-items: flex-start;
-      }
-      .cmp .tw {
-        margin-top: 8px;
-      }
+      .mst { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; margin: 8px 0 2px; }
+      .mst > div { border: 1px solid var(--bd); border-radius: 10px; padding: 5px 9px; }
+      .mst small { display: block; font-size: 11px; }
+      .mst b { font-size: 15px; }
+      .sea.act { border-color: var(--ok); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 35%, transparent); }
+      .sea p { margin: 6px 0; }
+      .sea .pl { display: flex; gap: 4px 8px; flex-wrap: wrap; align-items: center; margin: 6px 0; }
+      .sea.go { cursor: pointer; }
+      .sea.go:hover, .sea.go:focus-visible { border-color: var(--ok); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 45%, transparent); }
+      .cmp { padding: 0 !important; margin: 0 0 56px !important; border: 3px solid var(--mc, var(--bd)) !important; border-radius: 16px !important; box-shadow: 0 8px 24px #0005; overflow: hidden; }
+      .cmp.cc0 { --mc: #3b82f6; } .cmp.cc1 { --mc: #a855f7; } .cmp.cc2 { --mc: #ec4899; } .cmp.cc3 { --mc: #f59e0b; } .cmp.cc4 { --mc: #14b8a6; } .cmp.cc5 { --mc: #f97316; }
+      .cmp > .hd { padding: 14px 16px; margin: 0 !important; background: color-mix(in srgb, var(--mc) 24%, var(--cd)); border-bottom: 3px solid var(--mc); }
+      .cmp > .hd b { font-size: 18px; }
+      .cmp .cno { display: inline-block; margin-right: 8px; padding: 2px 10px; border-radius: 999px; background: var(--mc); color: #0e1120; font-size: 11px; font-weight: 800; letter-spacing: .05em; vertical-align: middle; }
+      .cmp > .cpv, .cmp > .mst, .cmp > .tw, .cmp > .rh { margin-left: 16px; margin-right: 16px; }
+      .cmp > .mst { margin-top: 12px; }
+      .cmp .rh { font-weight: 700; margin-top: 14px; margin-bottom: 4px; color: var(--mc); }
+      .cmp .cend { margin-top: 14px; padding: 9px 16px; text-align: center; font-size: 13px; font-weight: 800; color: #0e1120; background: var(--mc); }
+      .cmp { padding: 10px; }
+      .cmp .hd { align-items: flex-start; }
+      .cmp .tw { margin-top: 8px; }
 
       /* ===== CRM mejorado ===== */
-      .rs {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-      }
-      .rs select {
-        width: auto;
-        margin: 0;
-        padding: 7px 8px;
-        font-size: 13px;
-      }
-      .cd .dot {
-        display: inline-block;
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        margin-right: 6px;
-      }
-      .dot.d-r {
-        background: var(--rd);
-      }
-      .dot.d-w {
-        background: var(--wr);
-      }
-      .dot.d-g {
-        background: var(--ok);
-      }
-      .cd .ic {
-        flex-wrap: wrap;
-      }
-      .cd .ic button,
-      .cd .ic a.btn {
-        flex: 1 1 auto;
-        min-width: 0;
-      }
-      .col h3 small {
-        font-weight: 400;
-        margin-left: 4px;
-      }
-      .cd .b {
-        margin-top: 3px;
-        display: inline-block;
-      }
-      .ic a.btn {
-        flex: 1;
-        text-align: center;
-        text-decoration: none;
-        color: var(--tx);
-        border: 1px solid var(--bd);
-        border-radius: 8px;
-        padding: 4px 8px;
-        font-size: 12px;
-        font-weight: 600;
-      }
-      .ic a.btn:hover {
-        background: color-mix(in srgb, var(--tx) 8%, transparent);
-      }
-      .wn:not(.open) .wnb {
-        display: none;
-      }
-      .wn .wnt {
-        width: 100%;
-        text-align: left;
-        background: transparent;
-        border: 0;
-        padding: 0;
-        color: var(--wr);
-        font-size: 12px;
-        font-weight: 600;
-      }
-      .wn .wnt u {
-        opacity: 0.8;
-        margin-left: 4px;
-      }
-      .wn.open .wnt {
-        margin-bottom: 6px;
-      }
-      @media (max-width: 640px) {
-        .rs {
-          width: 100%;
-        }
-        .rs select {
-          flex: 1;
-          min-width: 0;
-        }
-        .top > .rs button {
-          width: auto;
-        }
-      }
+      .rs { display: flex; gap: 6px; align-items: center; }
+      .rs select { width: auto; margin: 0; padding: 7px 8px; font-size: 13px; }
+      .cd .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+      .dot.d-r { background: var(--rd); } .dot.d-w { background: var(--wr); } .dot.d-g { background: var(--ok); }
+      .cd .ic { flex-wrap: wrap; } .cd .ic button, .cd .ic a.btn { flex: 1 1 auto; min-width: 0; }
+      .col h3 small { font-weight: 400; margin-left: 4px; }
+      .cd .b { margin-top: 3px; display: inline-block; }
+      .ic a.btn { flex: 1; text-align: center; text-decoration: none; color: var(--tx); border: 1px solid var(--bd); border-radius: 8px; padding: 4px 8px; font-size: 12px; font-weight: 600; }
+      .ic a.btn:hover { background: color-mix(in srgb, var(--tx) 8%, transparent); }
+      .wn:not(.open) .wnb { display: none; }
+      .wn .wnt { width: 100%; text-align: left; background: transparent; border: 0; padding: 0; color: var(--wr); font-size: 12px; font-weight: 600; }
+      .wn .wnt u { opacity: .8; margin-left: 4px; }
+      .wn.open .wnt { margin-bottom: 6px; }
+      @media (max-width: 640px) { .rs { width: 100%; } .rs select { flex: 1; min-width: 0; } .top > .rs button { width: auto; } }
     </style>
   </head>
   <body>
@@ -1461,35 +830,7 @@
           <h1>🛍️ Zapatos Sol — Demo CRM · ERP · SCM</h1>
           <small>Tienda ficticia de calzado en Bolivia. Funciona en tu navegador, sin base de datos.</small>
         </div>
-        <div class="rs">
-          <select
-            id="lv"
-            onchange="setLv(this.value)"
-            title="Al elegir una opción, los datos se cargan al instante"
-            aria-label="Datos de la demo"
-          >
-            <option value="min">Datos muy básicos</option>
-            <option value="bas">Datos básicos</option>
-            <option value="med">Datos medios</option>
-            <option value="adv">Datos avanzados</option>
-            <optgroup label="Escenarios de prueba">
-              <option value="cri">🚨 Crisis de stock</option>
-              <option value="ok">✅ Todo al día</option>
-              <option value="vol">📈 Mucho volumen (60+ clientes)</option>
-              <option value="camp">📣 Campañas en marcha</option>
-            </optgroup></select
-          ><button
-            onclick="tour()"
-            title="Recorrido paso a paso para entender qué hace cada parte"
-          >
-            🧭 Tour guiado</button
-          ><button
-            onclick="rst()"
-            title="Restaura la demo con los datos seleccionados"
-          >
-            ↺ Reiniciar demo
-          </button>
-        </div>
+        <div class="rs"><select id="lv" onchange="setLv(this.value)" title="Al elegir una opción, los datos se cargan al instante" aria-label="Datos de la demo"><option value="min">Datos muy básicos</option><option value="bas">Datos básicos</option><option value="med">Datos medios</option><option value="adv">Datos avanzados</option><optgroup label="Escenarios de prueba"><option value="cri">🚨 Crisis de stock</option><option value="ok">✅ Todo al día</option><option value="vol">📈 Mucho volumen (60+ clientes)</option><option value="camp">📣 Campañas en marcha</option></optgroup></select><button onclick="tour()" title="Recorrido paso a paso para entender qué hace cada parte">🧭 Tour guiado</button><button onclick="rst()" title="Restaura la demo con los datos seleccionados">↺ Reiniciar demo</button></div>
       </div>
       <div class="stk">
         <nav>
@@ -1589,18 +930,7 @@
             { num: 'F-0001', f: dd(90), ts: tt(90), c: 'Daniela Rojas', pid: 1, pn: 'Zapatilla urbana', q: 2, tot: 560, iva: iva(560) },
             { num: 'F-0002', f: dd(70), ts: tt(70), c: 'Pedro Alanoca', pid: 7, pn: 'Zapato de vestir', q: 1, tot: 390, iva: iva(390) },
             { num: 'F-0003', f: dd(2), ts: tt(2), c: 'Silvia Torrez', pid: 8, pn: 'Pantufla de lana', q: 3, tot: 285, iva: iva(285) },
-            {
-              num: 'F-0004',
-              f: dd(1),
-              ts: tt(1),
-              c: 'Hugo Medina',
-              pid: 2,
-              pn: 'Zapatilla deportiva',
-              q: 1,
-              tot: 350,
-              iva: iva(350),
-              v: 1,
-            },
+            { num: 'F-0004', f: dd(1), ts: tt(1), c: 'Hugo Medina', pid: 2, pn: 'Zapatilla deportiva', q: 1, tot: 350, iva: iva(350), v: 1 },
           ],
           orders: [
             { id: 101, p: 2, q: 24, s: 0, cost: 4560, f: dd(0) }, // esperando envío
@@ -1613,71 +943,21 @@
           reqs: [{ p: 6, q: 2, who: 'Carla Mendoza', f: dd(0) }],
           camps: [
             {
-              id: 110,
-              n: 'Te extrañamos',
-              ev: '',
-              seg: 'dormidos',
-              pid: 0,
-              disc: 10,
-              days: 30,
-              ts: tt(1),
-              f: dd(1),
+              id: 110, n: 'Te extrañamos', ev: '', seg: 'dormidos', pid: 0, disc: 10, days: 30, ts: tt(1), f: dd(1),
               msg: 'Hola {nombre}, te escribimos de Zapatos Sol 👟 Hace tiempo no te vemos y te extrañamos 💙 {oferta} Válido hasta el {hasta}. ¿Te reservamos tu par?',
-              r: [
-                { k: 'daniela rojas', n: 'Daniela Rojas', t: '73344556' },
-                { k: 'pedro alanoca', n: 'Pedro Alanoca', t: '65432198' },
-              ],
-              sent: { 'daniela rojas': tt(1) },
-              used: {},
+              r: [{ k: 'daniela rojas', n: 'Daniela Rojas', t: '73344556' }, { k: 'pedro alanoca', n: 'Pedro Alanoca', t: '65432198' }],
+              sent: { 'daniela rojas': tt(1) }, used: {},
             },
           ],
           notes: [
-            {
-              id: 90,
-              to: 'scm',
-              fr: 'crm',
-              m: 'CRM solicita reponer 2 × Bota de lluvia (Carla Mendoza). Haz el pedido al proveedor.',
-              tg: ['scm', 's-alert', 'r-a-6'],
-              key: 'rq:6',
-              pid: 6,
-              t: hh(9, 40),
-            },
-            {
-              id: 91,
-              to: 'crm',
-              fr: 'scm',
-              m: 'El pedido #103 de Botín de cuero (20 pares) ya va en camino. Cuando llegue podrás vender a: Mariela Choque (3), Lourdes Condori (15).',
-              tg: ['crm', 'l-5', ''],
-              key: 'way:103',
-              t: hh(9, 10),
-            },
-            {
-              id: 92,
-              to: 'erp',
-              fr: 'scm',
-              m: 'El pedido #104 (16 × Sandalia) de Suelas del Oriente ya va en camino. Al recibirlo subirá el inventario y se generará una cuenta por pagar de Bs 1.280,00.',
-              tg: ['erp', 's-pagar', '.g-pay'],
-              key: 'wayerp:104',
-              t: hh(8, 55),
-            },
-            {
-              id: 93,
-              to: 'scm',
-              fr: 'crm',
-              m: 'No se pudo vender 6 × Zapato escolar a Rosario Quispe: hay 0 en bodega. Hay que pedir al proveedor.',
-              tg: ['scm', 's-alert', 'r-a-5'],
-              key: 'fail:Rosario Quispe5',
-              pid: 5,
-              t: hh(8, 30),
-            },
+            { id: 90, to: 'scm', fr: 'crm', m: 'CRM solicita reponer 2 × Bota de lluvia (Carla Mendoza). Haz el pedido al proveedor.', tg: ['scm', 's-alert', 'r-a-6'], key: 'rq:6', pid: 6, t: hh(9, 40) },
+            { id: 91, to: 'crm', fr: 'scm', m: 'El pedido #103 de Botín de cuero (20 pares) ya va en camino. Cuando llegue podrás vender a: Mariela Choque (3), Lourdes Condori (15).', tg: ['crm', 'l-5', ''], key: 'way:103', t: hh(9, 10) },
+            { id: 92, to: 'erp', fr: 'scm', m: 'El pedido #104 (16 × Sandalia) de Suelas del Oriente ya va en camino. Al recibirlo subirá el inventario y se generará una cuenta por pagar de Bs 1.280,00.', tg: ['erp', 's-pagar', '.g-pay'], key: 'wayerp:104', t: hh(8, 55) },
+            { id: 93, to: 'scm', fr: 'crm', m: 'No se pudo vender 6 × Zapato escolar a Rosario Quispe: hay 0 en bodega. Hay que pedir al proveedor.', tg: ['scm', 's-alert', 'r-a-5'], key: 'fail:Rosario Quispe5', pid: 5, t: hh(8, 30) },
           ],
           fresh: [
             { k: 'r-a-6', to: 'scm', why: 'CRM pidió reponer 2 × Bota de lluvia para Carla Mendoza. Falta hacer el pedido al proveedor.' },
-            {
-              k: 'r-a-5',
-              to: 'scm',
-              why: 'CRM no pudo vender 6 × Zapato escolar a Rosario Quispe: hay 0 en bodega. Hay que pedir al proveedor.',
-            },
+            { k: 'r-a-5', to: 'scm', why: 'CRM no pudo vender 6 × Zapato escolar a Rosario Quispe: hay 0 en bodega. Hay que pedir al proveedor.' },
             { k: 'l-1', to: 'crm', why: 'SCM: el pedido #103 de Botín de cuero ya va en camino. Cuando llegue podrás venderle 3 pares.' },
             { k: 'l-5', to: 'crm', why: 'SCM: el pedido #103 de Botín de cuero ya va en camino. Cuando llegue podrás venderle 15 pares.' },
             { k: 'r-o-105', to: 'erp', why: 'SCM: llegó el pedido #105 y se generó esta cuenta por pagar al proveedor.' },
@@ -1690,31 +970,14 @@
             { t: hh(8, 20), m: 'SCM: pedido #101 de 24 × Zapatilla deportiva a Calzados Illimani (El Alto)', tag: 'scm' },
             { t: hh(8, 5), m: 'ERP: se anuló la factura F-0004 y volvió 1 × Zapatilla deportiva a la bodega', tag: 'erp' },
             { t: hh(7, 50), m: 'ERP → SCM: «Queda poco» de Zapato de vestir (5 pares). Conviene pedir más al proveedor', tag: 'scm' },
-            {
-              t: hh(7, 30),
-              m: 'CRM: Silvia Torrez compró 3 × Pantufla de lana. Se descontó del inventario y se emitió la factura F-0003',
-              tag: 'erp',
-            },
+            { t: hh(7, 30), m: 'CRM: Silvia Torrez compró 3 × Pantufla de lana. Se descontó del inventario y se emitió la factura F-0003', tag: 'erp' },
           ],
         };
       };
-      const LVS = {
-        min: 'Datos muy básicos',
-        bas: 'Datos básicos',
-        med: 'Datos medios',
-        adv: 'Datos avanzados',
-        cri: '🚨 Crisis de stock',
-        ok: '✅ Todo al día',
-        vol: '📈 Mucho volumen (60+ clientes)',
-        camp: '📣 Campañas en marcha',
-      };
+      const LVS = { min: 'Datos muy básicos', bas: 'Datos básicos', med: 'Datos medios', adv: 'Datos avanzados', cri: '🚨 Crisis de stock', ok: '✅ Todo al día', vol: '📈 Mucho volumen (60+ clientes)', camp: '📣 Campañas en marcha' };
       let LV = 'adv';
-      try {
-        const x = localStorage.getItem('zs_lv');
-        if (LVS[x]) LV = x;
-      } catch (e) {}
-      const stamp = () =>
-        new Date().toLocaleDateString('es-BO') + ' ' + new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' });
+      try { const x = localStorage.getItem('zs_lv'); if (LVS[x]) LV = x; } catch (e) {}
+      const stamp = () => new Date().toLocaleDateString('es-BO') + ' ' + new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' });
       // Clientes de ejemplo para campañas: cubren cada segmento según el nivel de datos
       // [nombre, teléfono, ciudad, compras [[días atrás, producto, cantidad]], lead abierto/perdido opcional {p,q,s,lost}]
       function addPeople(X, lv) {
@@ -1722,122 +985,46 @@
           dd = (n) => new Date(tt(n)).toLocaleDateString('es-BO'),
           has = (id) => X.prods.some((p) => p.id == id);
         const key = { cri: 'adv', ok: 'adv', camp: 'adv', vol: 'adv' }[lv] || lv;
-        const PEOPLE =
-          {
-            min: [
-              ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]], // compró una vez, reciente
-              ['Beto Colque', '71900220', 'Oruro', [[75, 2, 1]]], // dormido
-              [
-                'Rubén Limachi',
-                '76600211',
-                'Cochabamba',
-                [
-                  [30, 1, 1],
-                  [8, 2, 1],
-                ],
-              ], // fiel por 2 compras
-              ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }], // venta perdida
-            ],
-            bas: [
-              ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]],
-              ['Beto Colque', '71900220', 'Oruro', [[75, 3, 1]]],
-              [
-                'Rubén Limachi',
-                '76600211',
-                'Cochabamba',
-                [
-                  [30, 4, 1],
-                  [8, 2, 1],
-                ],
-              ], // fiel por 2 compras
-              ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }],
-              [
-                'Lucía Fernández',
-                '71500123',
-                'La Paz',
-                [
-                  [100, 2, 2],
-                  [45, 3, 1],
-                  [12, 1, 2],
-                ],
-              ], // nivel Oro
-            ],
-            med: [
-              ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]],
-              ['Beto Colque', '71900220', 'Oruro', [[75, 3, 1]]],
-              [
-                'Rubén Limachi',
-                '76600211',
-                'Cochabamba',
-                [
-                  [30, 4, 1],
-                  [8, 2, 1],
-                ],
-              ],
-              [
-                'Lucía Fernández',
-                '71500123',
-                'La Paz',
-                [
-                  [100, 2, 2],
-                  [45, 3, 1],
-                  [12, 1, 2],
-                ],
-              ], // nivel Oro
-              ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }],
-            ],
-            adv: [
-              ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]], // compró una vez, reciente
-              ['Beto Colque', '71900220', 'Oruro', [[75, 3, 1]]], // dormido
-              [
-                'Rubén Limachi',
-                '76600211',
-                'Cochabamba',
-                [
-                  [30, 4, 1],
-                  [8, 8, 2],
-                ],
-              ], // fiel por 2 compras
-              [
-                'Lucía Fernández',
-                '71500123',
-                'La Paz',
-                [
-                  [100, 2, 2],
-                  [45, 3, 1],
-                  [12, 1, 2],
-                ],
-              ], // nivel Oro (más de Bs 1.500)
-              ['Beatriz Calle', '73211876', 'Sucre', [[150, 5, 1]], { p: 6, q: 1, s: 4, lost: 'Competencia' }], // dormida y venta perdida a la vez
-              ['Óscar Limachi', '69877012', 'Potosí', [[20, 1, 1]], { p: 8, q: 2, s: 2 }], // compró y tiene precio enviado
-              ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }], // nunca compró, perdido
-            ],
-          }[key] || [];
+        const PEOPLE = {
+          min: [
+            ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]], // compró una vez, reciente
+            ['Beto Colque', '71900220', 'Oruro', [[75, 2, 1]]], // dormido
+            ['Rubén Limachi', '76600211', 'Cochabamba', [[30, 1, 1], [8, 2, 1]]], // fiel por 2 compras
+            ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }], // venta perdida
+          ],
+          bas: [
+            ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]],
+            ['Beto Colque', '71900220', 'Oruro', [[75, 3, 1]]],
+            ['Rubén Limachi', '76600211', 'Cochabamba', [[30, 4, 1], [8, 2, 1]]], // fiel por 2 compras
+            ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }],
+            ['Lucía Fernández', '71500123', 'La Paz', [[100, 2, 2], [45, 3, 1], [12, 1, 2]]], // nivel Oro
+          ],
+          med: [
+            ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]],
+            ['Beto Colque', '71900220', 'Oruro', [[75, 3, 1]]],
+            ['Rubén Limachi', '76600211', 'Cochabamba', [[30, 4, 1], [8, 2, 1]]],
+            ['Lucía Fernández', '71500123', 'La Paz', [[100, 2, 2], [45, 3, 1], [12, 1, 2]]], // nivel Oro
+            ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }],
+          ],
+          adv: [
+            ['Ana Rivera', '72100110', 'La Paz', [[3, 1, 1]]], // compró una vez, reciente
+            ['Beto Colque', '71900220', 'Oruro', [[75, 3, 1]]], // dormido
+            ['Rubén Limachi', '76600211', 'Cochabamba', [[30, 4, 1], [8, 8, 2]]], // fiel por 2 compras
+            ['Lucía Fernández', '71500123', 'La Paz', [[100, 2, 2], [45, 3, 1], [12, 1, 2]]], // nivel Oro (más de Bs 1.500)
+            ['Beatriz Calle', '73211876', 'Sucre', [[150, 5, 1]], { p: 6, q: 1, s: 4, lost: 'Competencia' }], // dormida y venta perdida a la vez
+            ['Óscar Limachi', '69877012', 'Potosí', [[20, 1, 1]], { p: 8, q: 2, s: 2 }], // compró y tiene precio enviado
+            ['Carlos Yujra', '70500330', 'Sucre', [], { p: 1, q: 2, s: 4, lost: 'Precio' }], // nunca compró, perdido
+          ],
+        }[key] || [];
         if (lv == 'vol') {
           const F = ['Marco', 'Rosa', 'Jorge', 'Elena', 'Pablo', 'Lidia', 'Nilo', 'Sandra', 'Wilson', 'Teresa'],
             L = ['Quispe', 'Mamani', 'Condori', 'Flores', 'Choque', 'Huanca', 'Apaza', 'Ticona', 'Nina', 'Copa'],
             C = ['La Paz', 'El Alto', 'Cochabamba', 'Santa Cruz', 'Oruro', 'Sucre', 'Potosí', 'Tarija'];
           for (let i = 0; i < 40; i++) {
             const nb = [0, 1, 1, 2, 3, 1][i % 6],
-              buys = Array.from({ length: nb }, (_, k) => [((i * 37 + k * 53) % 380) + 1, 1 + ((i + k * 3) % 8), 1 + ((i + k) % 3)]).sort(
-                (a, b) => b[0] - a[0],
-              ),
-              lead =
-                nb == 0
-                  ? i % 12 == 0
-                    ? { p: 1 + (i % 8), q: 1 + (i % 4), s: 4, lost: ['Precio', 'Competencia', 'Sin respuesta'][i % 3] }
-                    : { p: 1 + (i % 8), q: 1 + (i % 4), s: i % 3 }
-                  : null;
-            PEOPLE.push([
-              F[i % 10] + ' ' + L[(i * 3 + Math.floor(i / 10)) % 10],
-              '7' +
-                String(1000000 + i * 137911)
-                  .padStart(7, '0')
-                  .slice(0, 7),
-              C[i % 8],
-              buys,
-              lead,
-            ]);
+              buys = Array.from({ length: nb }, (_, k) => [((i * 37 + k * 53) % 380) + 1, 1 + ((i + k * 3) % 8), 1 + ((i + k) % 3)]).sort((a, b) => b[0] - a[0]),
+              lead = nb == 0 ? (i % 12 == 0 ? { p: 1 + (i % 8), q: 1 + (i % 4), s: 4, lost: ['Precio', 'Competencia', 'Sin respuesta'][i % 3] } : { p: 1 + (i % 8), q: 1 + (i % 4), s: i % 3 }) : null;
+            PEOPLE.push([F[i % 10] + ' ' + L[(i * 3 + Math.floor(i / 10)) % 10], '7' + String(1000000 + i * 137911).padStart(7, '0').slice(0, 7), C[i % 8], buys, lead]);
           }
         }
         let lid = 30;
@@ -1861,31 +1048,8 @@
           if (cp && p) {
             const tot = p.pr * 0.9,
               num = 'F-' + String(++X.seq).padStart(4, '0');
-            X.sales.push({
-              num: 'F-' + String(++X.seq).padStart(4, '0'),
-              f: dd(100),
-              ts: tt(100),
-              c: 'Nelly Cruz',
-              pid: 1,
-              pn: p.n,
-              q: 1,
-              tot: p.pr,
-              iva: (p.pr * 13) / 113,
-            });
-            X.sales.push({
-              num,
-              f: dd(0),
-              ts: tt(0),
-              c: 'Nelly Cruz',
-              pid: 1,
-              pn: p.n,
-              q: 1,
-              tot,
-              iva: (tot * 13) / 113,
-              dto: p.pr - tot,
-              why: 'campaña «' + cp.n + '»',
-              camp: 110,
-            });
+            X.sales.push({ num: 'F-' + String(++X.seq).padStart(4, '0'), f: dd(100), ts: tt(100), c: 'Nelly Cruz', pid: 1, pn: p.n, q: 1, tot: p.pr, iva: (p.pr * 13) / 113 });
+            X.sales.push({ num, f: dd(0), ts: tt(0), c: 'Nelly Cruz', pid: 1, pn: p.n, q: 1, tot, iva: (tot * 13) / 113, dto: p.pr - tot, why: 'campaña «' + cp.n + '»', camp: 110 });
             X.leads.push({ id: lid++, n: 'Nelly Cruz', t: '77011990', c: 'Oruro', p: 1, q: 1, s: 3, fac: num });
             cp.r.push({ k: 'nelly cruz', n: 'Nelly Cruz', t: '77011990' });
             cp.sent = { ...cp.sent, 'nelly cruz': tt(1) };
@@ -1897,110 +1061,19 @@
       function addCamps(X) {
         const tt = (n) => Date.now() - n * 864e5,
           dd = (n) => new Date(tt(n)).toLocaleDateString('es-BO'),
-          nz = (s) =>
-            String(s)
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '')
-              .toLowerCase(),
+          nz = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(),
           R = (l) => l.map(([n, t]) => ({ k: nz(n), n, t })),
           M = (g) => 'Hola {nombre}, te escribimos de Zapatos Sol 👟 ' + g + ' {oferta} Válido hasta el {hasta}. ¿Te reservamos tu par?',
           p = X.prods.find((x) => x.id == 3),
           tot = p.pr * 0.85,
           num = 'F-' + String(++X.seq).padStart(4, '0');
-        X.sales.push({
-          num,
-          f: dd(0),
-          ts: tt(0),
-          c: 'Lucía Fernández',
-          pid: 3,
-          pn: p.n,
-          q: 1,
-          tot,
-          iva: (tot * 13) / 113,
-          dto: p.pr - tot,
-          why: 'campaña «Black Friday»',
-          camp: 111,
-        });
-        const rf = R([
-          ['Daniela Rojas', '73344556'],
-          ['Rubén Limachi', '76600211'],
-          ['Lucía Fernández', '71500123'],
-          ['Nelly Cruz', '77011990'],
-        ]);
+        X.sales.push({ num, f: dd(0), ts: tt(0), c: 'Lucía Fernández', pid: 3, pn: p.n, q: 1, tot, iva: (tot * 13) / 113, dto: p.pr - tot, why: 'campaña «Black Friday»', camp: 111 });
+        const rf = R([['Daniela Rojas', '73344556'], ['Rubén Limachi', '76600211'], ['Lucía Fernández', '71500123'], ['Nelly Cruz', '77011990']]);
         X.camps.push(
-          {
-            id: 111,
-            n: 'Black Friday',
-            ev: 'black',
-            seg: 'fieles',
-            pid: 0,
-            disc: 15,
-            days: 10,
-            ts: tt(3),
-            f: dd(3),
-            msg: M('Llegó el Black Friday 🛍️ Descuentos por tiempo limitado.'),
-            r: rf,
-            sent: { [rf[0].k]: tt(3), [rf[2].k]: tt(3) },
-            used: { [rf[2].k]: num },
-          },
-          {
-            id: 112,
-            n: 'Recupera lo perdido',
-            ev: '',
-            seg: 'perdidos',
-            pid: 1,
-            disc: 20,
-            days: 15,
-            ts: tt(1),
-            f: dd(1),
-            msg: M('Tenemos novedades que te pueden interesar.'),
-            r: R([
-              ['Beatriz Calle', '73211876'],
-              ['Gabriela Soria', '72200441'],
-              ['Carlos Yujra', '70500330'],
-            ]),
-            sent: {},
-            used: {},
-          },
-          {
-            id: 113,
-            n: 'Gracias por tu compra',
-            ev: '',
-            seg: 'nuevos',
-            pid: 0,
-            disc: 5,
-            days: 7,
-            ts: tt(20),
-            f: dd(20),
-            msg: M('Gracias por tu primera compra 💙 Queremos verte de vuelta.'),
-            r: R([
-              ['Ana Rivera', '72100110'],
-              ['Óscar Limachi', '69877012'],
-              ['Pedro Alanoca', '65432198'],
-            ]),
-            sent: { 'ana rivera': tt(20), 'oscar limachi': tt(20), 'pedro alanoca': tt(20) },
-            used: {},
-          },
-          {
-            id: 114,
-            n: 'Vuelta a clases',
-            ev: 'escolar',
-            seg: 'todos',
-            pid: 5,
-            disc: 10,
-            days: 30,
-            ts: tt(60),
-            f: dd(60),
-            x: true,
-            msg: M('Se viene la vuelta a clases 🎒 Zapatos escolares resistentes.'),
-            r: R([
-              ['Daniela Rojas', '73344556'],
-              ['Pedro Alanoca', '65432198'],
-              ['Silvia Torrez', ''],
-            ]),
-            sent: { 'daniela rojas': tt(60), 'pedro alanoca': tt(60) },
-            used: {},
-          },
+          { id: 111, n: 'Black Friday', ev: 'black', seg: 'fieles', pid: 0, disc: 15, days: 10, ts: tt(3), f: dd(3), msg: M('Llegó el Black Friday 🛍️ Descuentos por tiempo limitado.'), r: rf, sent: { [rf[0].k]: tt(3), [rf[2].k]: tt(3) }, used: { [rf[2].k]: num } },
+          { id: 112, n: 'Recupera lo perdido', ev: '', seg: 'perdidos', pid: 1, disc: 20, days: 15, ts: tt(1), f: dd(1), msg: M('Tenemos novedades que te pueden interesar.'), r: R([['Beatriz Calle', '73211876'], ['Gabriela Soria', '72200441'], ['Carlos Yujra', '70500330']]), sent: {}, used: {} },
+          { id: 113, n: 'Gracias por tu compra', ev: '', seg: 'nuevos', pid: 0, disc: 5, days: 7, ts: tt(20), f: dd(20), msg: M('Gracias por tu primera compra 💙 Queremos verte de vuelta.'), r: R([['Ana Rivera', '72100110'], ['Óscar Limachi', '69877012'], ['Pedro Alanoca', '65432198']]), sent: { 'ana rivera': tt(20), 'oscar limachi': tt(20), 'pedro alanoca': tt(20) }, used: {} },
+          { id: 114, n: 'Vuelta a clases', ev: 'escolar', seg: 'todos', pid: 5, disc: 10, days: 30, ts: tt(60), f: dd(60), x: true, msg: M('Se viene la vuelta a clases 🎒 Zapatos escolares resistentes.'), r: R([['Daniela Rojas', '73344556'], ['Pedro Alanoca', '65432198'], ['Silvia Torrez', '']]), sent: { 'daniela rojas': tt(60), 'pedro alanoca': tt(60) }, used: {} },
         );
       }
       // Niveles «muy básicos» y «básicos»: también traen pedidos, una alerta de stock, una solicitud y una campaña,
@@ -2013,38 +1086,13 @@
           rq = (pid, q, who, lead) => {
             const p = pr(pid);
             X.reqs.push({ p: pid, q, who, f: dd(0) });
-            X.notes.push({
-              id: X.n++,
-              to: 'scm',
-              fr: 'crm',
-              m: 'CRM solicita reponer ' + q + ' × ' + p.n + ' (' + who + '). Haz el pedido al proveedor.',
-              tg: ['scm', 's-alert', 'r-a-' + pid],
-              key: 'rq:' + pid,
-              pid,
-              t: hh(9, 40),
-            });
-            X.fresh.push({
-              k: 'r-a-' + pid,
-              to: 'scm',
-              why: 'CRM pidió reponer ' + q + ' × ' + p.n + ' para ' + who + '. Falta hacer el pedido al proveedor.',
-            });
+            X.notes.push({ id: X.n++, to: 'scm', fr: 'crm', m: 'CRM solicita reponer ' + q + ' × ' + p.n + ' (' + who + '). Haz el pedido al proveedor.', tg: ['scm', 's-alert', 'r-a-' + pid], key: 'rq:' + pid, pid, t: hh(9, 40) });
+            X.fresh.push({ k: 'r-a-' + pid, to: 'scm', why: 'CRM pidió reponer ' + q + ' × ' + p.n + ' para ' + who + '. Falta hacer el pedido al proveedor.' });
             X.log.unshift({ t: hh(9, 40), m: 'CRM → SCM: solicitud de reposición de ' + q + ' × ' + p.n + ' para ' + who, tag: 'crm' });
           };
-        const camp = {
-          id: 110,
-          n: 'Te extrañamos',
-          ev: '',
-          seg: 'dormidos',
-          pid: 0,
-          disc: 10,
-          days: 30,
-          ts: tt(1),
-          f: dd(1),
+        const camp = { id: 110, n: 'Te extrañamos', ev: '', seg: 'dormidos', pid: 0, disc: 10, days: 30, ts: tt(1), f: dd(1),
           msg: 'Hola {nombre}, te escribimos de Zapatos Sol 👟 Hace tiempo no te vemos y te extrañamos 💙 {oferta} Válido hasta el {hasta}. ¿Te reservamos tu par?',
-          r: [{ k: 'beto colque', n: 'Beto Colque', t: '71900220' }],
-          sent: {},
-          used: {},
-        };
+          r: [{ k: 'beto colque', n: 'Beto Colque', t: '71900220' }], sent: {}, used: {} };
         X.n = Math.max(X.n, 120);
         X.camps.push(camp);
         if (lv == 'min') {
@@ -2058,136 +1106,45 @@
             { id: 101, p: 3, q: 20, s: 1, cost: 4600, f: dd(2) },
             { id: 102, p: 1, q: 30, s: 2, cost: 4650, f: dd(9), paid: true },
             { id: 103, p: 2, q: 10, s: 2, cost: 1900, f: dd(5) },
-            { id: 104, p: 4, q: 16, s: 0, cost: 1280, f: dd(0) },
-          );
+            { id: 104, p: 4, q: 16, s: 0, cost: 1280, f: dd(0) });
           rq(4, 3, 'Fernando Vargas');
-          X.notes.push({
-            id: X.n++,
-            to: 'crm',
-            fr: 'scm',
-            m: 'El pedido #101 de Botín de cuero (20 pares) ya va en camino. Cuando llegue podrás vender a: Lourdes Condori (15).',
-            tg: ['crm', 'l-5', ''],
-            key: 'way:101',
-            t: hh(9, 10),
-          });
-          X.fresh.push({
-            k: 'l-5',
-            to: 'crm',
-            why: 'SCM: el pedido #101 de Botín de cuero ya va en camino. Cuando llegue podrás venderle 15 pares.',
-          });
+          X.notes.push({ id: X.n++, to: 'crm', fr: 'scm', m: 'El pedido #101 de Botín de cuero (20 pares) ya va en camino. Cuando llegue podrás vender a: Lourdes Condori (15).', tg: ['crm', 'l-5', ''], key: 'way:101', t: hh(9, 10) });
+          X.fresh.push({ k: 'l-5', to: 'crm', why: 'SCM: el pedido #101 de Botín de cuero ya va en camino. Cuando llegue podrás venderle 15 pares.' });
           X.log.unshift({ t: hh(9, 10), m: '🚚 SCM: el pedido #101 salió de Curtiembre Andina hacia la tienda', tag: 'scm' });
         }
       }
       const seed = (lv = LV) => {
-        const A = seedAdv(),
-          keep = (a, ids) => a.filter((x) => ids.includes(x.id));
+        const A = seedAdv(), keep = (a, ids) => a.filter((x) => ids.includes(x.id));
         let X;
         if (lv == 'min')
-          X = {
-            n: 100,
-            seq: 0,
-            sales: [],
-            orders: [],
-            log: [],
-            notes: [],
-            fresh: [],
-            reqs: [],
-            camps: [],
+          X = { n: 100, seq: 0, sales: [], orders: [], log: [], notes: [], fresh: [], reqs: [], camps: [],
             sups: [{ id: 1, n: 'Curtiembre Andina', c: 'La Paz' }],
-            prods: [
-              { id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 1 },
-              { id: 2, n: 'Botín de cuero', pr: 420, st: 20, min: 10, sup: 1 },
-            ],
-            leads: [
-              { id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 1, q: 2, s: 0 },
-              { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 2, q: 1, s: 1 },
-              { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 1, q: 1, s: 2 },
-            ],
-          };
+            prods: [{ id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 1 }, { id: 2, n: 'Botín de cuero', pr: 420, st: 20, min: 10, sup: 1 }],
+            leads: [{ id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 1, q: 2, s: 0 }, { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 2, q: 1, s: 1 }, { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 1, q: 1, s: 2 }] };
         else if (lv == 'bas')
-          X = {
-            n: 100,
-            seq: 0,
-            sales: [],
-            orders: [],
-            log: [],
-            notes: [],
-            fresh: [],
-            reqs: [],
-            camps: [],
-            sups: A.sups.slice(0, 3),
-            prods: [
-              { id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 2 },
-              { id: 2, n: 'Zapatilla deportiva', pr: 350, st: 20, min: 10, sup: 2 },
-              { id: 3, n: 'Botín de cuero', pr: 420, st: 12, min: 10, sup: 1 },
-              { id: 4, n: 'Sandalia', pr: 150, st: 40, min: 15, sup: 3 },
-            ],
-            leads: [
-              { id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 3, q: 3, s: 2 },
-              { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 1, q: 2, s: 1 },
-              { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 2, q: 1, s: 0 },
-              { id: 4, n: 'Fernando Vargas', t: '72345678', c: 'Sucre', p: 4, q: 4, s: 0 },
-              { id: 5, n: 'Lourdes Condori', t: '70123456', c: 'Tarija', p: 3, q: 15, s: 2 },
-            ],
-          };
+          X = { n: 100, seq: 0, sales: [], orders: [], log: [], notes: [], fresh: [], reqs: [], camps: [], sups: A.sups.slice(0, 3),
+            prods: [{ id: 1, n: 'Zapatilla urbana', pr: 280, st: 35, min: 15, sup: 2 }, { id: 2, n: 'Zapatilla deportiva', pr: 350, st: 20, min: 10, sup: 2 }, { id: 3, n: 'Botín de cuero', pr: 420, st: 12, min: 10, sup: 1 }, { id: 4, n: 'Sandalia', pr: 150, st: 40, min: 15, sup: 3 }],
+            leads: [{ id: 1, n: 'Mariela Choque', t: '71234567', c: 'La Paz', p: 3, q: 3, s: 2 }, { id: 2, n: 'Juan Carlos Mamani', t: '76543210', c: 'Cochabamba', p: 1, q: 2, s: 1 }, { id: 3, n: 'Rosario Quispe', t: '68765432', c: 'Santa Cruz', p: 2, q: 1, s: 0 }, { id: 4, n: 'Fernando Vargas', t: '72345678', c: 'Sucre', p: 4, q: 4, s: 0 }, { id: 5, n: 'Lourdes Condori', t: '70123456', c: 'Tarija', p: 3, q: 15, s: 2 }] };
         else if (lv == 'med')
-          X = {
-            ...A,
-            seq: 4,
-            sups: A.sups.filter((x) => x.id <= 3),
-            prods: A.prods.filter((x) => x.id <= 6),
-            leads: keep(A.leads, [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 16]),
-            orders: A.orders.filter((o) => o.p <= 6),
-            sales: A.sales.filter((x) => x.pid <= 6),
-            fresh: A.fresh.filter((f) => f.k != 'r-o-105'),
-            log: A.log.filter((x) => !/vestir|Pantufla/.test(x.m)),
-            camps: A.camps.map((c) => ({
-              ...c,
-              r: c.r.filter((x) => x.k == 'daniela rojas'),
-              sent: { 'daniela rojas': c.sent['daniela rojas'] },
-              used: {},
-            })),
-          };
-        else if (lv == 'cri')
-          // casi todo sin stock, sin pedidos: todas las alertas de SCM encendidas
-          X = {
-            ...A,
-            prods: A.prods.map((p) => ({ ...p, st: p.id % 2 ? 0 : p.id % 4 == 2 ? 1 : 2 })),
-            orders: [],
-            reqs: [],
-            notes: [],
-            fresh: [],
-            log: [],
-            camps: [],
-          };
-        else if (lv == 'ok')
-          // todo recibido y pagado, stock alto: prueba los estados vacíos (sin alertas)
-          X = {
-            ...A,
-            prods: A.prods.map((p) => ({ ...p, st: p.min * 3 + 5 })),
-            orders: A.orders.map((o) => ({ ...o, s: 2, paid: true })),
-            reqs: [],
-            notes: [],
-            fresh: [],
-            log: [],
-          };
+          X = { ...A, seq: 4, sups: A.sups.filter((x) => x.id <= 3), prods: A.prods.filter((x) => x.id <= 6),
+            leads: keep(A.leads, [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 16]), orders: A.orders.filter((o) => o.p <= 6), sales: A.sales.filter((x) => x.pid <= 6),
+            fresh: A.fresh.filter((f) => f.k != 'r-o-105'), log: A.log.filter((x) => !/vestir|Pantufla/.test(x.m)),
+            camps: A.camps.map((c) => ({ ...c, r: c.r.filter((x) => x.k == 'daniela rojas'), sent: { 'daniela rojas': c.sent['daniela rojas'] }, used: {} })) };
+        else if (lv == 'cri') // casi todo sin stock, sin pedidos: todas las alertas de SCM encendidas
+          X = { ...A, prods: A.prods.map((p) => ({ ...p, st: p.id % 2 ? 0 : p.id % 4 == 2 ? 1 : 2 })), orders: [], reqs: [], notes: [], fresh: [], log: [], camps: [] };
+        else if (lv == 'ok') // todo recibido y pagado, stock alto: prueba los estados vacíos (sin alertas)
+          X = { ...A, prods: A.prods.map((p) => ({ ...p, st: p.min * 3 + 5 })), orders: A.orders.map((o) => ({ ...o, s: 2, paid: true })), reqs: [], notes: [], fresh: [], log: [] };
         else X = A;
         addPeople(X, lv);
         if (lv == 'min' || lv == 'bas') addBase(X, lv);
         if (lv == 'camp') addCamps(X);
         const fd = (n) => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4 + n * 864e5).toISOString().slice(0, 10),
-          FU = { 2: 0, 3: -1, 4: 2, 6: 1, 13: 3 },
-          ago = (n) => new Date(Date.now() - n * 864e5).toLocaleDateString('es-BO');
+          FU = { 2: 0, 3: -1, 4: 2, 6: 1, 13: 3 }, ago = (n) => new Date(Date.now() - n * 864e5).toLocaleDateString('es-BO');
         X.leads.forEach((l, i) => {
           if (FU[l.id] != null && l.s < 3) l.fu = fd(FU[l.id]);
           const d = [3, 1, 5, 0, 2, 6, 4][i % 7];
           l.sd = Date.now() - d * 864e5;
-          const txt = [
-            'Registrado como interesado',
-            'Pasó a «Contactado»',
-            'Precio enviado al cliente',
-            'Vendido y facturado ' + (l.fac || ''),
-          ];
+          const txt = ['Registrado como interesado', 'Pasó a «Contactado»', 'Precio enviado al cliente', 'Vendido y facturado ' + (l.fac || '')];
           l.h = [];
           for (let k = Math.min(l.s, 3); k >= 0; k--) l.h.push({ t: ago(d + (Math.min(l.s, 3) - k) * 2) + ' 10:00', m: txt[k] });
           if (l.s == 4) l.h.unshift({ t: ago(d) + ' 11:30', m: '❌ Marcado como perdido (' + l.lost + ')' });
@@ -2225,20 +1182,12 @@
         D.log.unshift({ t: new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }), m, tag });
         D.log = D.log.slice(0, 50);
       }
-      const SN = { crm: 'CRM', erp: 'ERP', scm: 'SCM' },
+      const SN = { crm: 'CRM', erp: 'ERP', scm: 'SCM', mkt: 'Marketing' },
         nts = (tab) => (D.notes || []).filter((n) => n.to == tab);
       function note(to, m, fr, tg, key) {
         if (to === T) return;
         D.notes = (D.notes || []).filter((n) => !(key && n.key == key));
-        D.notes.unshift({
-          id: D.n++,
-          to,
-          fr,
-          m,
-          tg,
-          key,
-          t: new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }),
-        });
+        D.notes.unshift({ id: D.n++, to, fr, m, tg, key, t: new Date().toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' }) });
         D.notes = D.notes.slice(0, 30);
       }
       const unnote = (key) => (D.notes = (D.notes || []).filter((n) => n.key != key));
@@ -2257,10 +1206,7 @@
           t = m && m[1],
           id = m && m[2],
           nm = (x) => (P(x) ? esc(P(x).n) : 'producto');
-        if (k.startsWith('l-')) {
-          const l = D.leads.find((x) => x.id == k.slice(2));
-          return '👤 ' + (l ? esc(l.n) : 'Cliente');
-        }
+        if (k.startsWith('l-')) { const l = D.leads.find((x) => x.id == k.slice(2)); return '👤 ' + (l ? esc(l.n) : 'Cliente'); }
         if (t == 'a') return '⚠️ Alerta: ' + nm(id);
         if (t == 'i') return '📦 Inventario: ' + nm(id);
         if (t == 'f') return '🧾 Factura ' + esc(id);
@@ -2275,14 +1221,7 @@
         if (!n.pid || !P(n.pid)) return n.m;
         const d = dem(n.pid);
         if (d.leads.length < 2) return n.m;
-        return (
-          n.m.replace(/ Hay que pedir al proveedor\.$/, '') +
-          ' Esperan este producto: ' +
-          d.leads.map((l) => l.n + ' (' + l.q + ')').join(', ') +
-          ' → necesitan ' +
-          d.total +
-          ' en total. Hay que pedir al proveedor.'
-        );
+        return n.m.replace(/ Hay que pedir al proveedor\.$/, '') + ' Esperan este producto: ' + d.leads.map((l) => l.n + ' (' + l.q + ')').join(', ') + ' → necesitan ' + d.total + ' en total. Hay que pedir al proveedor.';
       };
       // Aviso de producto: mismo resumen que la tarjeta de alerta de SCM (producto, estado, proveedor, clientes esperando, faltante)
       const nmHtml = (n) => {
@@ -2290,15 +1229,9 @@
         const d = dem(n.pid),
           p = d.p,
           sup = S(p.sup),
-          st =
-            p.st == 0
-              ? '<span class="b r">🚫 Sin stock</span>'
-              : p.st <= p.min
-                ? '<span class="b w">⚠️ Queda poco</span>'
-                : '<span class="b w">👥 Clientes sin cubrir</span>';
+          st = p.st == 0 ? '<span class="b r">🚫 Sin stock</span>' : p.st <= p.min ? '<span class="b w">⚠️ Queda poco</span>' : '<span class="b w">👥 Clientes sin cubrir</span>';
         let h = `<b>${esc(p.n)}</b> ${st}<small>Hay ${p.st} pares${p.st <= p.min ? ' (mínimo ' + p.min + ')' : ''}. Proveedor: ${esc(sup.n)}, ${esc(sup.c)}.</small>`;
-        if (d.short)
-          h += `<small>👥 Clientes esperando: ${d.leads.map((l) => esc(l.n) + ' (' + l.q + ')').join(', ')} → necesitan <b>${d.total}</b> en total, faltan <b>${d.total - p.st}</b>.</small>`;
+        if (d.short) h += `<small>👥 Clientes esperando: ${d.leads.map((l) => esc(l.n) + ' (' + l.q + ')').join(', ')} → necesitan <b>${d.total}</b> en total, faltan <b>${d.total - p.st}</b>.</small>`;
         else h += `<small>${esc(n.m)}</small>`;
         return h;
       };
@@ -2311,14 +1244,13 @@
         return (
           hd +
           a
-            .map((n) => {
-              const ac = NTACT.test(n.key || '');
-              return `<div class="al nt${ac ? '' : ' info'}" style="border-left:5px solid var(--${n.fr})"${n.tg ? ` onclick="ack(${n.id});goto('${n.tg[0]}','${n.tg[1]}','${n.tg[2] || ''}')"` : ''}><span>${ac ? '🔔' : 'ℹ️'} ${nmHtml(n)}<small>Aviso de ${SN[n.fr]} · ${n.t}</small></span><div class="bt">${n.tg ? `<button onclick="event.stopPropagation();ack(${n.id});goto('${n.tg[0]}','${n.tg[1]}','${n.tg[2] || ''}')">Ver</button>` : ''}<button class="gh" onclick="event.stopPropagation();ack(${n.id})">Entendido</button></div></div>`;
-            })
-            .join('') +
-          (a.length > 1
-            ? `<div class="fm" style="margin:-2px 0 8px"><button class="gh sm" onclick="ackAll('${tab}')">Marcar todas como vistas</button></div>`
-            : '')
+            .map(
+              (n) => {
+                const ac = NTACT.test(n.key || '');
+                return `<div class="al nt${ac ? '' : ' info'}" style="border-left:5px solid var(--${n.fr})"${n.tg ? ` onclick="ack(${n.id});goto('${n.tg[0]}','${n.tg[1]}','${n.tg[2] || ''}')"` : ''}><span>${ac ? '🔔' : 'ℹ️'} ${nmHtml(n)}<small>Aviso de ${SN[n.fr]} · ${n.t}</small></span><div class="bt">${n.tg ? `<button onclick="event.stopPropagation();ack(${n.id});goto('${n.tg[0]}','${n.tg[1]}','${n.tg[2] || ''}')">Ver</button>` : ''}<button class="gh" onclick="event.stopPropagation();ack(${n.id})">Entendido</button></div></div>`;
+              },
+            )
+            .join('') + (a.length > 1 ? `<div class="fm" style="margin:-2px 0 8px"><button class="gh sm" onclick="ackAll('${tab}')">Marcar todas como vistas</button></div>` : '')
         );
       }
       function toast(m, fn) {
@@ -2373,34 +1305,20 @@
         const f = (D.fresh || []).find((x) => x.k == k && x.to == (to || T));
         if (f && f.why) return f.why;
         const t = k.startsWith('l-') ? 'l' : (/^r-([a-z])-/.exec(k) || [])[1];
-        return (
-          {
-            l: 'Otro sector cambió algo que afecta a este cliente.',
-            a: 'Cambió el stock o hubo una solicitud que afecta a este producto.',
-            i: 'El inventario cambió por una acción en otro sector.',
-            f: 'Esta factura se generó o cambió por una acción en otro sector.',
-            o: 'Esta cuenta por pagar se generó o cambió por una acción en otro sector.',
-            p: 'Este pedido cambió por una acción en otro sector.',
-            s: 'Este proveedor cambió por una acción en otro sector.',
-          }[t] || 'Cambió por una acción en otro sector.'
-        );
+        return { l: 'Otro sector cambió algo que afecta a este cliente.', a: 'Cambió el stock o hubo una solicitud que afecta a este producto.', i: 'El inventario cambió por una acción en otro sector.', f: 'Esta factura se generó o cambió por una acción en otro sector.', o: 'Esta cuenta por pagar se generó o cambió por una acción en otro sector.', p: 'Este pedido cambió por una acción en otro sector.', s: 'Este proveedor cambió por una acción en otro sector.' }[t] || 'Cambió por una acción en otro sector.';
       };
-      let NVI = -1;
+let NVI = -1;
       const nvEls = () => [...document.querySelectorAll('#v .nv')].filter((e) => !e.classList.contains('nvh'));
       // Un solo brillo a la vez: al ir a otro elemento se apaga el anterior de inmediato
       let GLT;
       function glow(els) {
         clearTimeout(GLT);
         document.querySelectorAll('.fl, .fl-r, .flash').forEach((e) => e.classList.remove('fl', 'fl-r', 'flash'));
-        els.forEach((e) => {
-          void e.offsetWidth;
-          e.classList.add(e.tagName == 'TR' ? 'fl-r' : 'fl');
-        });
+        els.forEach((e) => { void e.offsetWidth; e.classList.add(e.tagName == 'TR' ? 'fl-r' : 'fl'); });
         GLT = setTimeout(() => els.forEach((e) => e.classList.remove('fl', 'fl-r')), 2700);
       }
       function nvTo(k) {
-        const el = document.getElementById(k),
-          els = nvEls();
+        const el = document.getElementById(k), els = nvEls();
         if (!el) return toast('Ese elemento no está visible en esta pestaña.');
         NVI = els.indexOf(el);
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2418,9 +1336,7 @@
         const els = nvEls();
         if (NVI >= els.length) NVI = els.length - 1;
         els.forEach((e, i) => e.classList.toggle('nvcur', i == NVI));
-        document
-          .querySelectorAll('.nvch .cp')
-          .forEach((c) => c.classList.toggle('on', NVI >= 0 && !!els[NVI] && els[NVI].id == c.dataset.k));
+        document.querySelectorAll('.nvch .cp').forEach((c) => c.classList.toggle('on', NVI >= 0 && !!els[NVI] && els[NVI].id == c.dataset.k));
         const c = $('#nvc');
         if (c) c.textContent = els.length ? ' (' + (NVI >= 0 ? NVI + 1 : '–') + '/' + els.length + ')' : '';
         const st = $('.stk');
@@ -2429,15 +1345,8 @@
         if (bar) document.documentElement.style.setProperty('--nvh', bar.offsetHeight + 12 + 'px');
       }
       addEventListener('resize', nvUp);
-      addEventListener(
-        'scroll',
-        () => {
-          const st = $('.stk');
-          if (st) document.documentElement.style.setProperty('--nvtop', Math.max(0, st.getBoundingClientRect().bottom) + 8 + 'px');
-        },
-        { passive: true },
-      );
-      function clr(tab) {
+      addEventListener('scroll', () => { const st = $('.stk'); if (st) document.documentElement.style.setProperty('--nvtop', Math.max(0, st.getBoundingClientRect().bottom) + 8 + 'px'); }, { passive: true });
+            function clr(tab) {
         D.fresh = (D.fresh || []).filter((f) => f.to != tab);
         NVI = -1;
         done();
@@ -2513,8 +1422,7 @@
           },
           lb = { mkt: '📣 Marketing', crm: '👥 CRM (clientes)', erp: '🏢 ERP (empresa)', scm: '🚚 SCM (proveedores)' };
         Object.keys(lb).forEach((k) => {
-          $('nav [data-t=' + k + ']').innerHTML =
-            lb[k] + (cnt[k] ? '<span class="nb" title="Avisos pendientes en este sector">🔔 ' + cnt[k] + '</span>' : '');
+          $('nav [data-t=' + k + ']').innerHTML = lb[k] + (cnt[k] ? '<span class="nb" title="Avisos pendientes en este sector">🔔 ' + cnt[k] + '</span>' : '');
         });
         document.querySelectorAll('nav button').forEach((b) => b.classList.toggle('on', b.dataset.t == T));
         $('#kp').innerHTML = kpis();
@@ -2579,9 +1487,7 @@
       }
       function setLv(v) {
         LV = v;
-        try {
-          localStorage.setItem('zs_lv', v);
-        } catch (e) {}
+        try { localStorage.setItem('zs_lv', v); } catch (e) {}
         try {
           localStorage.removeItem(KEY);
         } catch (e) {}
@@ -2663,21 +1569,7 @@
           od = (o) => {
             const p = P(o.p),
               s = S(p.sup);
-            return (
-              '#' +
-              o.id +
-              ' · ' +
-              o.q +
-              ' × ' +
-              pt(p) +
-              '<br>&nbsp;&nbsp;&nbsp;' +
-              esc(s.n) +
-              ' (' +
-              esc(s.c) +
-              ') · ' +
-              fmt(o.cost) +
-              (o.f ? '<br>&nbsp;&nbsp;&nbsp;Pedido el ' + o.f : '')
-            );
+            return '#' + o.id + ' · ' + o.q + ' × ' + pt(p) + '<br>&nbsp;&nbsp;&nbsp;' + esc(s.n) + ' (' + esc(s.c) + ') · ' + fmt(o.cost) + (o.f ? '<br>&nbsp;&nbsp;&nbsp;Pedido el ' + o.f : '');
           };
         const it = [
           [
@@ -2739,59 +1631,26 @@
               li(
                 zero.map((p) => {
                   const d = dem(p.id);
-                  return (
-                    pt(p) +
-                    ' · ' +
-                    esc(S(p.sup).n) +
-                    (d.leads.length
-                      ? '<br>&nbsp;&nbsp;&nbsp;👥 ' + d.leads.length + ' cliente(s) esperando · necesitan ' + d.total + ' pares'
-                      : '')
-                  );
+                  return pt(p) + ' · ' + esc(S(p.sup).n) + (d.leads.length ? '<br>&nbsp;&nbsp;&nbsp;👥 ' + d.leads.length + ' cliente(s) esperando · necesitan ' + d.total + ' pares' : '');
                 }),
               ) +
               '<br><br><b>⚠️ Queda poco (' +
               few.length +
               ')</b><br>' +
               li(few.map((p) => pt(p) + ': ' + p.st + ' pares (mínimo ' + p.min + ')')) +
-              (sc.length
-                ? '<br><br><b>👥 Clientes sin cubrir (' +
-                  sc.length +
-                  ')</b><br>' +
-                  li(sc.map((p) => pt(p) + ': hay ' + p.st + ', necesitan ' + dem(p.id).total))
-                : '') +
+              (sc.length ? '<br><br><b>👥 Clientes sin cubrir (' + sc.length + ')</b><br>' + li(sc.map((p) => pt(p) + ': hay ' + p.st + ', necesitan ' + dem(p.id).total)) : '') +
               '<br><br><b>✅ Ya en atención (' +
               atn.length +
               ')</b><br>' +
               li(atn.map((p) => pt(p) + ': pedido ' + olist(dem(p.id).ord))),
-            [
-              zero.length ? '🚫 ' + zero.length + ' sin stock' : '',
-              few.length ? '⚠️ ' + few.length + ' queda poco' : '',
-              sc.length ? '👥 ' + sc.length + ' sin cubrir' : '',
-              atn.length ? '✅ ' + atn.length + ' en pedido' : '',
-            ]
-              .filter(Boolean)
-              .join(' · ') || 'Todo con existencias',
+            [zero.length ? '🚫 ' + zero.length + ' sin stock' : '', few.length ? '⚠️ ' + few.length + ' queda poco' : '', sc.length ? '👥 ' + sc.length + ' sin cubrir' : '', atn.length ? '✅ ' + atn.length + ' en pedido' : ''].filter(Boolean).join(' · ') || 'Todo con existencias',
           ],
           [
             '🚚 Pedidos por llegar',
             pendL.length,
             'scm',
-            '<b>🚚 En camino (' +
-              en.length +
-              ')</b><br>' +
-              li(en.map(od)) +
-              '<br><br><b>📝 Pedido hecho, aún no sale (' +
-              hecho.length +
-              ')</b><br>' +
-              li(hecho.map(od)),
-            pendL.length
-              ? '🚚 ' +
-                en.length +
-                (en.length == 1 ? ' pedido en camino' : ' pedidos en camino') +
-                ' · ⏳ ' +
-                hecho.length +
-                ' esperando envío'
-              : 'Ningún pedido pendiente',
+            '<b>🚚 En camino (' + en.length + ')</b><br>' + li(en.map(od)) + '<br><br><b>📝 Pedido hecho, aún no sale (' + hecho.length + ')</b><br>' + li(hecho.map(od)),
+            pendL.length ? '🚚 ' + en.length + (en.length == 1 ? ' pedido en camino' : ' pedidos en camino') + ' · ⏳ ' + hecho.length + ' esperando envío' : 'Ningún pedido pendiente',
           ],
           [
             '💵 Por pagar a proveedores',
@@ -2812,16 +1671,7 @@
           '📣 Campañas activas',
           ac.length,
           'crm',
-          'Campañas vigentes: <b>' +
-            ac.length +
-            '</b> de ' +
-            camps().length +
-            '<br>' +
-            li(ac.map((c) => esc(c.n) + ' · hasta ' + new Date(until(c)).toLocaleDateString('es-BO'))) +
-            '<br><br>Ventas logradas por campañas: <b>' +
-            cv +
-            '</b> · ' +
-            fmt(ci),
+          'Campañas vigentes: <b>' + ac.length + '</b> de ' + camps().length + '<br>' + li(ac.map((c) => esc(c.n) + ' · hasta ' + new Date(until(c)).toLocaleDateString('es-BO'))) + '<br><br>Ventas logradas por campañas: <b>' + cv + '</b> · ' + fmt(ci),
           cv ? '🛒 ' + cv + (cv == 1 ? ' venta · ' : ' ventas · ') + fmt(ci) : 'Aún sin ventas',
         ]);
         it.forEach((x, i) => (x.tg = TG[i]));
@@ -2830,25 +1680,13 @@
         it.sort((x, y) => rk(x) - rk(y));
         KD = it.map((x) => x[3]);
         TGS = it.map((x) => x.tg);
-        return it
-          .map(
-            (x, i) =>
-              `<div class="k ${x[2]}" tabindex="0" data-i="${i}"><small>${x[0]}</small><b>${x[1]}</b>${x[4] ? '<span class="ks">' + x[4] + '</span>' : ''}</div>`,
-          )
-          .join('');
+        return it.map((x, i) => `<div class="k ${x[2]}" tabindex="0" data-i="${i}"><small>${x[0]}</small><b>${x[1]}</b>${x[4] ? '<span class="ks">' + x[4] + '</span>' : ''}</div>`).join('');
       }
       const tp = $('#tp'),
         HV = window.matchMedia ? matchMedia('(hover:hover)') : { matches: true };
       function stip(el) {
         if (tp.style.display == 'block' && tp.dataset.i == el.dataset.i) return;
-        tp.innerHTML =
-          '<h4>' +
-          el.querySelector('small').textContent +
-          '</h4>' +
-          KD[el.dataset.i] +
-          '<div class="mu" style="margin-top:8px;font-size:12px">👉 Clic para ' +
-          TGS[el.dataset.i][2] +
-          '</div>';
+        tp.innerHTML = '<h4>' + el.querySelector('small').textContent + '</h4>' + KD[el.dataset.i] + '<div class="mu" style="margin-top:8px;font-size:12px">👉 Clic para ' + TGS[el.dataset.i][2] + '</div>';
         tp.style.display = 'block';
         const r = el.getBoundingClientRect(),
           w = tp.offsetWidth;
@@ -2888,13 +1726,9 @@
           goto(g[0], g[1], g[3]);
         }
       });
-      addEventListener('scroll', htip, true);
+            addEventListener('scroll', htip, true);
       const F = {};
-      const nz = (s) =>
-          String(s)
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase(),
+      const nz = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(),
         fs_ = (k, d) => F[k] || (F[k] = { q: '', st: 'all', o: d });
       function tbar(k, chips, sorts, ph) {
         const f = F[k];
@@ -2938,8 +1772,7 @@
         F[k].st = 'all';
         render();
       }
-      const none = (k) =>
-        `<p class="mu">Ningún resultado con estos filtros. <button class="gh sm" onclick="fx('${k}')">Limpiar filtros</button></p>`;
+      const none = (k) => `<p class="mu">Ningún resultado con estos filtros. <button class="gh sm" onclick="fx('${k}')">Limpiar filtros</button></p>`;
       function vHome() {
         return `<div class="c"><h2>📋 Bitácora: qué pasó entre los sistemas</h2>${(() => {
           const r = flt(
@@ -2957,9 +1790,7 @@
             (l) => l.m,
             'Buscar en la bitácora…',
           );
-          return D.log.length
-            ? r.bar + (r.list.map((l) => `<div class="lg ${l.tag}"><i>${l.t}</i><span>${esc(l.m)}</span></div>`).join('') || none('log'))
-            : '<p class="mu">Todavía no pasó nada. Empieza por el paso 1.</p>';
+          return D.log.length ? r.bar + (r.list.map((l) => `<div class="lg ${l.tag}"><i>${l.t}</i><span>${esc(l.m)}</span></div>`).join('') || none('log')) : '<p class="mu">Todavía no pasó nada. Empieza por el paso 1.</p>';
         })()}</div>
 <div class="c"><h2>🧭 Cómo hacer la demo</h2><ol>
 <li>En <b>CRM</b>, Mariela Choque (La Paz) está en «Precio enviado». Pulsa «Marcar como Vendido».</li>
@@ -2987,10 +1818,7 @@
       }
       // Producto bajo el mínimo (o sin stock) y sin ningún pedido en curso: nadie lo está atendiendo
       const needs = (p) => p.st <= p.min && inc(p.id).length == 0;
-      const nob = (p) =>
-        needs(p)
-          ? ` <span class="b r lk" tabindex="0" role="link" title="Nadie lo está pidiendo todavía. Clic para ir a su alerta en SCM" onclick="event.stopPropagation();goto('scm','s-alert','r-a-${p.id}')" onkeydown="if(event.key=='Enter'){event.stopPropagation();goto('scm','s-alert','r-a-${p.id}')}">⚠️ Falta pedir → SCM ↗</span>`
-          : '';
+      const nob = (p) => needs(p) ? ` <span class="b r lk" tabindex="0" role="link" title="Nadie lo está pidiendo todavía. Clic para ir a su alerta en SCM" onclick="event.stopPropagation();goto('scm','s-alert','r-a-${p.id}')" onkeydown="if(event.key=='Enter'){event.stopPropagation();goto('scm','s-alert','r-a-${p.id}')}">⚠️ Falta pedir → SCM ↗</span>` : '';
       function ocb(p) {
         const o = inc(p.id),
           bd = (st, cls, ic, tx) => {
@@ -3020,20 +1848,10 @@
         D.reqs = (D.reqs || []).filter((r) => r.p != pid);
         D.reqs.push({ p: pid, q, who, f: today() });
         log('CRM → SCM: solicitud de reposición de ' + q + ' × ' + p.n + ' para ' + who, 'crm');
-        note(
-          'scm',
-          'CRM solicita reponer ' + q + ' × ' + p.n + ' (' + who + '). Haz el pedido al proveedor.',
-          'crm',
-          ['scm', 's-alert', 'r-a-' + pid],
-          'rq:' + pid,
-        );
+        note('scm', 'CRM solicita reponer ' + q + ' × ' + p.n + ' (' + who + '). Haz el pedido al proveedor.', 'crm', ['scm', 's-alert', 'r-a-' + pid], 'rq:' + pid);
         const rn = (D.notes || []).find((n) => n.key == 'rq:' + pid);
         if (rn) rn.pid = pid;
-        mark(
-          'r-a-' + pid,
-          ['scm'],
-          'CRM pidió reponer ' + q + ' × ' + esc(p.n) + ' para ' + esc(who) + '. Falta hacer el pedido al proveedor.',
-        );
+        mark('r-a-' + pid, ['scm'], 'CRM pidió reponer ' + q + ' × ' + esc(p.n) + ' para ' + esc(who) + '. Falta hacer el pedido al proveedor.');
         done();
         toast('Solicitud enviada a SCM: ellos harán el pedido al proveedor');
       }
@@ -3054,16 +1872,12 @@
         const d = dem(l.p),
           head = `⚠️ <b>Sin stock suficiente</b> para este pedido: pide ${l.q}, hay ${g.p.st} (faltan ${g.miss}).`;
         let h = head;
-        if (g.inq >= g.miss)
-          h += `<br>🚚 Ya está pedido al proveedor: ${olist(g.ord)}. Al recibirlo podrás vender.<button class="gh" onclick="goto('scm','s-ped','.g-p${g.p.id}')">Ver pedido en SCM</button>`;
+        if (g.inq >= g.miss) h += `<br>🚚 Ya está pedido al proveedor: ${olist(g.ord)}. Al recibirlo podrás vender.<button class="gh" onclick="goto('scm','s-ped','.g-p${g.p.id}')">Ver pedido en SCM</button>`;
         else {
           const f = g.miss - g.inq;
-          h +=
-            (g.ord.length ? '<br>Pedidos en curso ' + olist(g.ord) + ' suman ' + g.inq + ', aún faltan ' + f + '.' : '') +
-            rqb(g.p.id, f, l.id, '📨 Solicitar a SCM solo para este cliente (' + f + ' pares)');
+          h += (g.ord.length ? '<br>Pedidos en curso ' + olist(g.ord) + ' suman ' + g.inq + ', aún faltan ' + f + '.' : '') + rqb(g.p.id, f, l.id, '📨 Solicitar a SCM solo para este cliente (' + f + ' pares)');
         }
-        if (d.leads.length > 1 && d.miss > 0 && !(D.reqs || []).some((x) => x.p == g.p.id))
-          h += rqb(g.p.id, d.miss, 'all', '📨 Solicitar a SCM todo lo que falta (' + d.miss + ' pares · ' + d.leads.length + ' clientes)');
+        if (d.leads.length > 1 && d.miss > 0 && !(D.reqs || []).some((x) => x.p == g.p.id)) h += rqb(g.p.id, d.miss, 'all', '📨 Solicitar a SCM todo lo que falta (' + d.miss + ' pares · ' + d.leads.length + ' clientes)');
         return `<div class="wn">${h}</div>`;
       }
       function banner() {
@@ -3086,13 +1900,8 @@
       const TD = () => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
       const fuTag = (l) => {
         if (!l.fu || l.s >= 3) return '';
-        const d = l.fu.slice(8) + '/' + l.fu.slice(5, 7),
-          t = TD();
-        return l.fu < t
-          ? ` <span class="b r">📅 Vencido ${d}</span>`
-          : l.fu == t
-            ? ' <span class="b w">📅 Hoy</span>'
-            : ` <span class="b">📅 ${d}</span>`;
+        const d = l.fu.slice(8) + '/' + l.fu.slice(5, 7), t = TD();
+        return l.fu < t ? ` <span class="b r">📅 Vencido ${d}</span>` : l.fu == t ? ' <span class="b w">📅 Hoy</span>' : ` <span class="b">📅 ${d}</span>`;
       };
       function hist(l, m) {
         l.h = l.h || [];
@@ -3101,47 +1910,19 @@
       }
       function hv(id) {
         const l = D.leads.find((x) => x.id == id),
-          li =
-            (l.h || []).map((x) => `<li><i class="mu">${esc(x.t)}</i> ${esc(x.m)}</li>`).join('') || '<li class="mu">Sin movimientos</li>';
-        fm(
-          '📜 Historial de ' +
-            esc(l.n) +
-            `<ul style="font:13px/1.6 system-ui;padding-left:18px;max-height:230px;overflow:auto;margin:8px 0">${li}</ul>`,
-          [{ k: 'm', l: 'Agregar una nota (opcional)' }],
-          (o) => {
-            if (o.m) {
-              hist(l, '📝 ' + o.m);
-              done();
-            }
-          },
-          'Guardar nota',
-        );
+          li = (l.h || []).map((x) => `<li><i class="mu">${esc(x.t)}</i> ${esc(x.m)}</li>`).join('') || '<li class="mu">Sin movimientos</li>';
+        fm('📜 Historial de ' + esc(l.n) + `<ul style="font:13px/1.6 system-ui;padding-left:18px;max-height:230px;overflow:auto;margin:8px 0">${li}</ul>`, [{ k: 'm', l: 'Agregar una nota (opcional)' }], (o) => {
+          if (o.m) { hist(l, '📝 ' + o.m); done(); }
+        }, 'Guardar nota');
       }
       function lost(id) {
         const l = D.leads.find((x) => x.id == id);
-        fm(
-          '❌ ¿Por qué se perdió la venta a ' + esc(l.n) + '?',
-          [
-            {
-              k: 'm',
-              l: 'Motivo',
-              o: [
-                ['Precio', 'Precio muy alto'],
-                ['Sin stock', 'No había stock'],
-                ['Competencia', 'Compró en otra tienda'],
-                ['Sin respuesta', 'No respondió'],
-                ['Otro', 'Otro motivo'],
-              ],
-            },
-          ],
-          (o) => {
-            Object.assign(l, { s: 4, lost: o.m, sd: Date.now(), wt: false, seen: false });
-            hist(l, '❌ Marcado como perdido (' + o.m + ')');
-            log('CRM: ' + l.n + ' se marcó como perdido (' + o.m + ')', 'crm');
-            done();
-          },
-          'Marcar perdido',
-        );
+        fm('❌ ¿Por qué se perdió la venta a ' + esc(l.n) + '?', [{ k: 'm', l: 'Motivo', o: [['Precio', 'Precio muy alto'], ['Sin stock', 'No había stock'], ['Competencia', 'Compró en otra tienda'], ['Sin respuesta', 'No respondió'], ['Otro', 'Otro motivo']] }], (o) => {
+          Object.assign(l, { s: 4, lost: o.m, sd: Date.now(), wt: false, seen: false });
+          hist(l, '❌ Marcado como perdido (' + o.m + ')');
+          log('CRM: ' + l.n + ' se marcó como perdido (' + o.m + ')', 'crm');
+          done();
+        }, 'Marcar perdido');
       }
       function reo(id) {
         const l = D.leads.find((x) => x.id == id);
@@ -3152,31 +1933,12 @@
         done();
       }
       function card(l) {
-        const p = P(l.p),
-          g = gap(l),
-          first = l.n.split(' ')[0],
-          open = l.s < 3,
-          sh = g ? '' : shared(l),
-          rd = !g && l.wt && open,
+        const p = P(l.p), g = gap(l), first = l.n.split(' ')[0], open = l.s < 3,
+          sh = g ? '' : shared(l), rd = !g && l.wt && open,
           dot = !open ? '' : g ? (p.st == 0 ? 'r' : 'w') : sh ? 'w' : rd ? 'g' : '',
           days = l.sd ? Math.max(0, Math.floor((Date.now() - l.sd) / 864e5)) : null,
-          msg = g
-            ? `Hola ${first}, te escribimos de Zapatos Sol: tu pedido de ${p.n} está en camino, te avisamos apenas llegue.`
-            : rd
-              ? `Hola ${first}, ya llegó tu ${p.n} a Zapatos Sol. ¿Coordinamos la entrega?`
-              : `Hola ${first}, te escribimos de Zapatos Sol sobre tu interés en ${p.n} (${l.q} par${l.q > 1 ? 'es' : ''}).`;
-        return `<div class="cd${nvc('l-' + l.id)}" id="l-${l.id}" style="--pc:${pc(p)}">${fresh('l-' + l.id) ? '<span class="nvb">🆕</span>' : ''}${dot ? `<span class="dot d-${dot}"></span>` : ''}<b>${esc(l.n)}</b>${fresh('l-' + l.id) ? '<div class="why">🆕 ' + nvWhy('l-' + l.id, 'crm') + '</div>' : '<br>'}📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${pt(p)} = <b>${fmt(amt(l))}</b>${bfl(l)}${open && days != null ? `<br><small>⏱ ${days == 0 ? 'Hoy' : days + ' d'} en esta etapa</small>` : ''}${fuTag(l)}${l.s == 4 ? `<br>❌ Motivo: <b>${esc(l.lost || '—')}</b>` : ''}${
-          l.fac
-            ? (() => {
-                const sl = D.sales.find((s) => s.num == l.fac);
-                return (
-                  '<br>' +
-                  ab('🧾 ' + l.fac + ' · ver detalle', "fd('" + l.fac + "')") +
-                  (sl && sl.v ? ' <span class="b w">Anulada</span>' : ' <span class="b o">Facturado</span>')
-                );
-              })()
-            : ''
-        }${g ? warn(l, g) : rd ? '<div class="wn ok">' + (l.seen ? '🟢 <b>En atención</b>: ya hay stock, falta cerrar la venta.' : '✅ Ya llegó stock: se puede atender este pedido.') + '</div>' : ''}${sh}${open ? (l.s == 2 && g ? '<button disabled>🚫 Sin stock para vender</button>' : `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>`) : ''}${l.s == 4 ? `<button onclick="reo(${l.id})">↩ Reabrir</button>` : ''}${open && l.t ? `<div class="ic"><a class="btn" href="tel:+591${esc(l.t)}">📞 Llamar</a><a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(l.t)}?text=${encodeURIComponent(msg)}">💬 WhatsApp</a></div>` : ''}<div class="ic">${l.s > 0 && open ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${open ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="hv(${l.id})">📜 ${(l.h || []).length}</button>${open ? `<button class="gh sm" onclick="lost(${l.id})" title="Marcar como perdido">❌</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
+          msg = g ? `Hola ${first}, te escribimos de Zapatos Sol: tu pedido de ${p.n} está en camino, te avisamos apenas llegue.` : rd ? `Hola ${first}, ya llegó tu ${p.n} a Zapatos Sol. ¿Coordinamos la entrega?` : `Hola ${first}, te escribimos de Zapatos Sol sobre tu interés en ${p.n} (${l.q} par${l.q > 1 ? 'es' : ''}).`;
+        return `<div class="cd${nvc('l-' + l.id)}" id="l-${l.id}" style="--pc:${pc(p)}">${fresh('l-' + l.id) ? '<span class="nvb">🆕</span>' : ''}${dot ? `<span class="dot d-${dot}"></span>` : ''}<b>${esc(l.n)}</b>${fresh('l-' + l.id) ? '<div class="why">🆕 ' + nvWhy('l-' + l.id, 'crm') + '</div>' : '<br>'}📍 ${esc(l.c)} · 📞 ${l.t ? '+591 ' + esc(l.t) : '—'}<br>${l.q} × ${pt(p)} = <b>${fmt(amt(l))}</b>${bfl(l)}${l.camp && open && camps().find((x) => x.id == l.camp) ? `<br><small>📣 Viene de la campaña «${esc(camps().find((x) => x.id == l.camp).n)}»</small>` : ''}${open && days != null ? `<br><small>⏱ ${days == 0 ? 'Hoy' : days + ' d'} en esta etapa</small>` : ''}${fuTag(l)}${l.s == 4 ? `<br>❌ Motivo: <b>${esc(l.lost || '—')}</b>` : ''}${l.fac ? (() => { const sl = D.sales.find((s) => s.num == l.fac); return '<br>' + ab('🧾 ' + l.fac + ' · ver detalle', "fd('" + l.fac + "')") + (sl && sl.v ? ' <span class="b w">Anulada</span>' : ' <span class="b o">Facturado</span>'); })() : ''}${g ? warn(l, g) : rd ? '<div class="wn ok">' + (l.seen ? '🟢 <b>En atención</b>: ya hay stock, falta cerrar la venta.' : '✅ Ya llegó stock: se puede atender este pedido.') + '</div>' : ''}${sh}${open ? (l.s == 2 && g ? '<button disabled>🚫 Sin stock para vender</button>' : `<button onclick="adv(${l.id})">${l.s == 2 ? 'Marcar como Vendido' : 'Avanzar a «' + ST[l.s + 1] + '»'}</button>`) : ''}${l.s == 4 ? `<button onclick="reo(${l.id})">↩ Reabrir</button>` : ''}${open && l.t ? `<div class="ic"><a class="btn" href="tel:+591${esc(l.t)}">📞 Llamar</a><a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(l.t)}?text=${encodeURIComponent(msg)}">💬 WhatsApp</a></div>` : ''}<div class="ic">${l.s > 0 && open ? `<button class="gh sm" onclick="bk(${l.id})">◀ Atrás</button>` : ''}${open ? `<button class="gh sm" onclick="lf(${l.id})">✏️ Editar</button>` : ''}<button class="gh sm" onclick="hv(${l.id})">📜 ${(l.h || []).length}</button>${open ? `<button class="gh sm" onclick="lost(${l.id})" title="Marcar como perdido">❌</button>` : ''}<button class="gh sm" onclick="dl(${l.id})">🗑️</button></div></div>`;
       }
       function vCrm() {
         const sorts = [
@@ -3194,14 +1956,7 @@
             ['ord', '🚚 Con pedido en curso', (l) => l.s < 3 && inc(l.p).length > 0],
             ['fu', '📅 Para contactar hoy', (l) => l.s < 3 && !!l.fu && l.fu <= TD()],
           ];
-        const r = flt(
-          'crm',
-          D.leads,
-          defs,
-          sorts,
-          (l) => [l.n, l.c, l.t, P(l.p).n, ST[l.s], l.fac || ''].join(' '),
-          'Buscar cliente, ciudad o producto…',
-        );
+        const r = flt('crm', D.leads, defs, sorts, (l) => [l.n, l.c, l.t, P(l.p).n, ST[l.s], l.fac || ''].join(' '), 'Buscar cliente, ciudad o producto…');
         return `<div class="c crm"><div class="hd"><h2>👥 CRM — Gestión de la Relación con el Cliente</h2><button onclick="lf()">+ Nuevo interesado</button></div><p>Aquí ves a las personas interesadas y en qué etapa de la compra están. Al marcar «Vendido», el ERP registra la venta automáticamente.</p></div>${nbn('crm')}${banner()}
 <div class="c tlc">${r.bar}</div>
 <div class="kb" id="s-crm">${ST.map((s, i) => {
@@ -3245,18 +2000,7 @@
               log('CRM: se editó a ' + o.n, 'crm');
             } else {
               const nid = D.n++;
-              D.leads.push({
-                id: nid,
-                n: o.n,
-                t: o.t,
-                c: o.c,
-                p: +o.p,
-                q: +o.q,
-                s: 0,
-                fu: o.fu || '',
-                sd: Date.now(),
-                h: [{ t: stamp(), m: 'Registrado como interesado' }],
-              });
+              D.leads.push({ id: nid, n: o.n, t: o.t, c: o.c, p: +o.p, q: +o.q, s: 0, fu: o.fu || '', sd: Date.now(), h: [{ t: stamp(), m: 'Registrado como interesado' }] });
               mark('l-' + nid, ['crm']);
               log('CRM: nuevo interesado ' + o.n + ' (' + o.c + ')', 'crm');
             }
@@ -3265,8 +2009,7 @@
         );
       }
       function dl(id) {
-        const l = D.leads.find((x) => x.id == id),
-          i = D.leads.indexOf(l);
+        const l = D.leads.find((x) => x.id == id), i = D.leads.indexOf(l);
         cf('¿Eliminar a ' + l.n + '?', () => {
           D.leads = D.leads.filter((x) => x.id != id);
           log('CRM: se eliminó a ' + l.n, 'crm');
@@ -3275,19 +2018,9 @@
           e.innerHTML = 'Cliente eliminado · <b style="text-decoration:underline">Deshacer</b>';
           e.style.display = 'block';
           const d0 = D;
-          e.onclick = () => {
-            if (D !== d0 || D.leads.some((x) => x.id == l.id)) return;
-            D.leads.splice(i, 0, l);
-            log('CRM: se recuperó a ' + l.n, 'crm');
-            done();
-            e.style.display = 'none';
-            e.onclick = () => (e.style.display = 'none');
-          };
+          e.onclick = () => { if (D !== d0 || D.leads.some((x) => x.id == l.id)) return; D.leads.splice(i, 0, l); log('CRM: se recuperó a ' + l.n, 'crm'); done(); e.style.display = 'none'; e.onclick = () => (e.style.display = 'none'); };
           clearTimeout(toast.h);
-          toast.h = setTimeout(() => {
-            e.style.display = 'none';
-            e.onclick = () => (e.style.display = 'none');
-          }, 7000);
+          toast.h = setTimeout(() => { e.style.display = 'none'; e.onclick = () => (e.style.display = 'none'); }, 7000);
         });
       }
       function bk(id) {
@@ -3315,13 +2048,7 @@
         if (p.st < q) {
           toast('⚠️ No hay stock suficiente de ' + p.n + ' (hay ' + p.st + '). Ve a SCM y haz un pedido al proveedor.');
           log('ERP: no se pudo vender ' + q + ' × ' + p.n + ' a ' + cl + ' (en bodega: ' + p.st + ')', 'erp');
-          note(
-            'scm',
-            'No se pudo vender ' + q + ' × ' + p.n + ' a ' + cl + ': hay ' + p.st + ' en bodega. Hay que pedir al proveedor.',
-            'crm',
-            ['scm', 's-alert', 'r-a-' + pid],
-            'fail:' + cl + pid,
-          );
+          note('scm', 'No se pudo vender ' + q + ' × ' + p.n + ' a ' + cl + ': hay ' + p.st + ' en bodega. Hay que pedir al proveedor.', 'crm', ['scm', 's-alert', 'r-a-' + pid], 'fail:' + cl + pid);
           const fn = (D.notes || []).find((n) => n.key == 'fail:' + cl + pid);
           if (fn) fn.pid = pid;
           done();
@@ -3332,80 +2059,21 @@
           bf = benef(cl, pid),
           tot = bf ? Math.round(base * (100 - bf.pct)) / 100 : base,
           num = 'F-' + String((D.seq = (D.seq || D.sales.length) + 1)).padStart(4, '0');
-        D.sales.push({
-          num,
-          f: today(),
-          ts: Date.now(),
-          c: cl,
-          pid,
-          pn: p.n,
-          q,
-          tot,
-          iva: (tot * 13) / 113,
-          dto: base - tot,
-          why: bf ? bf.why : '',
-          camp: bf && bf.camp ? bf.camp.id : undefined,
-        });
+        D.sales.push({ num, f: today(), ts: Date.now(), c: cl, pid, pn: p.n, q, tot, iva: (tot * 13) / 113, dto: base - tot, why: bf ? bf.why : '', camp: bf && bf.camp ? bf.camp.id : undefined });
         if (bf && bf.camp) {
           bf.camp.used = bf.camp.used || {};
           bf.camp.used[ck(cl)] = num;
+          bf.camp.sent = bf.camp.sent || {};
+          bf.camp.sent[ck(cl)] = bf.camp.sent[ck(cl)] || Date.now();
+          bf.camp.resp = bf.camp.resp || {};
+          bf.camp.resp[ck(cl)] = bf.camp.resp[ck(cl)] || { ts: Date.now() };
         }
         if (bf) toast('🎟️ Se aplicó ' + bf.pct + '% de descuento: ' + bf.why);
-        note(
-          'erp',
-          'Nueva factura ' +
-            num +
-            ': ' +
-            cl +
-            ' compró ' +
-            q +
-            ' × ' +
-            p.n +
-            ' (' +
-            fmt(tot) +
-            (bf ? ', con ' + bf.pct + '% de descuento' : '') +
-            '). El stock se descontó automáticamente.',
-          'crm',
-          ['erp', 's-fact', 'r-f-' + num],
-          'sale:' + num,
-        );
-        mark(
-          'r-f-' + num,
-          ['erp'],
-          from + ': ' + esc(cl) + ' compró ' + q + ' × ' + esc(p.n) + ' (' + fmt(tot) + '). Por eso se emitió esta factura.',
-        );
-        mark(
-          'r-i-' + pid,
-          ['erp'],
-          'Se descontaron ' + q + ' pares de ' + esc(p.n) + ' por la venta a ' + esc(cl) + '. Quedan ' + p.st + '.',
-        );
-        if (p.st <= p.min)
-          mark(
-            'r-a-' + pid,
-            ['scm'],
-            'Tras vender a ' +
-              esc(cl) +
-              ' quedan ' +
-              p.st +
-              ' pares de ' +
-              esc(p.n) +
-              ' (mínimo ' +
-              p.min +
-              '). Conviene pedir al proveedor.',
-          );
-        log(
-          from +
-            ': ' +
-            cl +
-            ' compró ' +
-            q +
-            ' × ' +
-            p.n +
-            '. Se descontó del inventario y se emitió la factura ' +
-            num +
-            (bf ? ' (con ' + bf.pct + '% de descuento: ' + bf.why + ')' : ''),
-          'erp',
-        );
+        note('erp', 'Nueva factura ' + num + ': ' + cl + ' compró ' + q + ' × ' + p.n + ' (' + fmt(tot) + (bf ? ', con ' + bf.pct + '% de descuento' : '') + '). El stock se descontó automáticamente.', 'crm', ['erp', 's-fact', 'r-f-' + num], 'sale:' + num);
+        mark('r-f-' + num, ['erp'], from + ': ' + esc(cl) + ' compró ' + q + ' × ' + esc(p.n) + ' (' + fmt(tot) + '). Por eso se emitió esta factura.');
+        mark('r-i-' + pid, ['erp'], 'Se descontaron ' + q + ' pares de ' + esc(p.n) + ' por la venta a ' + esc(cl) + '. Quedan ' + p.st + '.');
+        if (p.st <= p.min) mark('r-a-' + pid, ['scm'], 'Tras vender a ' + esc(cl) + ' quedan ' + p.st + ' pares de ' + esc(p.n) + ' (mínimo ' + p.min + '). Conviene pedir al proveedor.');
+        log(from + ': ' + cl + ' compró ' + q + ' × ' + p.n + '. Se descontó del inventario y se emitió la factura ' + num + (bf ? ' (con ' + bf.pct + '% de descuento: ' + bf.why + ')' : ''), 'erp');
         if (p.st <= p.min) log('ERP → SCM: «Queda poco» de ' + p.n + ' (' + p.st + ' pares). Conviene pedir más al proveedor', 'scm');
         return true;
       }
@@ -3484,13 +2152,7 @@
                           p.min,
                           esc(S(p.sup).n),
                           dem(p.id).leads.length ? '👥 ' + dem(p.id).leads.length + ' · ' + dem(p.id).total + ' pares' : '—',
-                          (p.st == 0
-                            ? '<span class="b r">🚫 Sin stock</span>'
-                            : p.st <= p.min
-                              ? '<span class="b w">Queda poco</span>'
-                              : '<span class="b o">Bien</span>') +
-                            ocb(p) +
-                            nob(p),
+                          (p.st == 0 ? '<span class="b r">🚫 Sin stock</span>' : p.st <= p.min ? '<span class="b w">Queda poco</span>' : '<span class="b o">Bien</span>') + ocb(p) + nob(p),
                           ab('✏️ Editar', 'pf(' + p.id + ')') + ab('🗑️', 'dp(' + p.id + ')'),
                         ],
                         'id="r-i-' + p.id + '"',
@@ -3508,21 +2170,7 @@
                     ['Factura', 'Fecha', 'Cliente', 'Detalle', 'Total', 'IVA 13% incluido', ''],
                     sal.list.map((s) =>
                       ra(
-                        [
-                          ab(s.num, "fd('" + s.num + "')"),
-                          s.f,
-                          esc(s.c),
-                          s.q +
-                            ' × ' +
-                            (P(s.pid) ? pt(P(s.pid)) : esc(s.pn)) +
-                            (s.dto > 0 ? ' <span class="b o" title="' + esc(s.why || 'Descuento') + '">🎟 −' + fmt(s.dto) + '</span>' : ''),
-                          fmt(s.tot),
-                          fmt(s.iva),
-                          '<div class="ic">' +
-                            ab('Ver detalle', "fd('" + s.num + "')") +
-                            (s.v ? '<span class="b w">Anulada</span>' : ab('Anular', "anu('" + s.num + "')")) +
-                            '</div>',
-                        ],
+                        [ab(s.num, "fd('" + s.num + "')"), s.f, esc(s.c), s.q + ' × ' + (P(s.pid) ? pt(P(s.pid)) : esc(s.pn)) + (s.dto > 0 ? ' <span class="b o" title="' + esc(s.why || 'Descuento') + '">🎟 −' + fmt(s.dto) + '</span>' : ''), fmt(s.tot), fmt(s.iva), '<div class="ic">' + ab('Ver detalle', "fd('" + s.num + "')") + (s.v ? '<span class="b w">Anulada</span>' : ab('Anular', "anu('" + s.num + "')")) + '</div>'],
                         'id="r-f-' + s.num + '" class="' + (s.v ? '' : 'g-sale') + '"',
                       ),
                     ),
@@ -3539,15 +2187,7 @@
                     pay.list.map((o) => {
                       const p = P(o.p);
                       return ra(
-                        [
-                          '#' + o.id,
-                          esc(S(p.sup).n),
-                          o.q + ' × ' + pt(p),
-                          fmt(o.cost),
-                          o.paid
-                            ? '<span class="b o">💰 Pagado</span>'
-                            : `<button class="sm" onclick="pay(${o.id})">Marcar pagado</button>`,
-                        ],
+                        ['#' + o.id, esc(S(p.sup).n), o.q + ' × ' + pt(p), fmt(o.cost), o.paid ? '<span class="b o">💰 Pagado</span>' : `<button class="sm" onclick="pay(${o.id})">Marcar pagado</button>`],
                         'id="r-o-' + o.id + '" class="' + (o.paid ? '' : 'g-pay') + '"',
                       );
                     }),
@@ -3565,12 +2205,7 @@
             { k: 'pr', l: 'Precio de venta (Bs)', t: 'number', v: p.pr },
             { k: 'st', l: 'En bodega (pares)', t: 'number', v: p.st },
             { k: 'min', l: 'Mínimo para avisar «Queda poco»', t: 'number', v: p.min },
-            {
-              k: 'sup',
-              l: 'Proveedor',
-              o: [...D.sups.map((s) => [s.id, s.n + ' (' + s.c + ')']), ['new', '➕ Nuevo proveedor…']],
-              v: p.sup || (D.sups.length ? undefined : 'new'),
-            },
+            { k: 'sup', l: 'Proveedor', o: [...D.sups.map((s) => [s.id, s.n + ' (' + s.c + ')']), ['new', '➕ Nuevo proveedor…']], v: p.sup || (D.sups.length ? undefined : 'new') },
             { k: 'sn', l: 'Nombre del nuevo proveedor', w: 'sup=new' },
             { k: 'sc', l: 'Ciudad del proveedor', o: CITIES.map((c) => [c, c]), w: 'sup=new' },
           ],
@@ -3592,13 +2227,7 @@
               sid = D.n++;
               D.sups.push({ id: sid, n: o.sn, c: o.sc });
               mark('r-s-' + sid, ['scm'], 'ERP creó este proveedor al registrar el producto ' + esc(o.n) + '. Ya puedes hacerle pedidos.');
-              note(
-                'scm',
-                'Nuevo proveedor ' + o.sn + ' (' + o.sc + ') creado desde el producto ' + o.n + '.',
-                'erp',
-                ['scm', 's-sup', 'r-s-' + sid],
-                'sup:' + sid,
-              );
+              note('scm', 'Nuevo proveedor ' + o.sn + ' (' + o.sc + ') creado desde el producto ' + o.n + '.', 'erp', ['scm', 's-sup', 'r-s-' + sid], 'sup:' + sid);
               log('ERP → SCM: se creó el proveedor ' + o.sn + ' (' + o.sc + ') desde el producto ' + o.n, 'scm');
             }
             const v = { n: o.n, pr: +o.pr, st: +o.st, min: +o.min, sup: sid };
@@ -3656,24 +2285,18 @@
       function fd(num) {
         const s = D.sales.find((x) => x.num == num);
         if (!s) return toast('No se encontró la factura ' + num);
-        const p = P(s.pid),
-          sup = p && S(p.sup),
-          ld = D.leads.find((l) => l.fac == num),
+        const p = P(s.pid), sup = p && S(p.sup), ld = D.leads.find((l) => l.fac == num),
           cp = s.camp && (D.camps || []).find((c) => c.id == s.camp),
-          dto = s.dto > 0 ? s.dto : 0,
-          pu = (s.tot + dto) / s.q,
-          net = s.tot - s.iva,
+          dto = s.dto > 0 ? s.dto : 0, pu = (s.tot + dto) / s.q, net = s.tot - s.iva,
           mv = ld ? (ld.h || []).filter((h) => h.m.includes(num)) : [],
-          row = (a, b) =>
-            `<tr><td style="color:var(--mu);padding:3px 10px 3px 0;white-space:nowrap">${a}</td><td style="padding:3px 0">${b}</td></tr>`,
+          row = (a, b) => `<tr><td style="color:var(--mu);padding:3px 10px 3px 0;white-space:nowrap">${a}</td><td style="padding:3px 0">${b}</td></tr>`,
           d = document.createElement('dialog');
         d.style.width = 'min(560px, 94vw)';
         d.innerHTML = `<h3>🧾 Factura ${esc(num)} ${s.v ? '<span class="b w">Anulada</span>' : '<span class="b o">Vigente</span>'}</h3>
-<table style="font-size:14px;border-collapse:collapse;width:100%;margin:6px 0">
+${T == 'erp' ? '<div class="ic" style="margin:2px 0 8px"><button type="button" class="sm" id="tA">🧾 Factura (del cliente)</button><button type="button" class="gh sm" id="tB">🔒 Información interna</button></div>' : ''}
+<div id="fdA"><table style="font-size:14px;border-collapse:collapse;width:100%;margin:6px 0">
 ${row('Fecha', esc(s.f))}
 ${row('Cliente', '<b>' + esc(s.c) + '</b>' + (ld ? ' · 📍 ' + esc(ld.c) + (ld.t ? ' · 📞 +591 ' + esc(ld.t) : '') : ''))}
-${row('Origen', ld ? '👥 CRM: venta cerrada en el tablero de clientes' : '🏢 ERP: venta directa')}
-${cp ? row('Campaña', '📣 ' + esc(cp.n)) : ''}
 </table>
 <div class="tw"><table><tr><th>Producto</th><th>Cant.</th><th>Precio unit.</th><th>Subtotal</th></tr>
 <tr><td>${p ? pt(p) : esc(s.pn)}</td><td>${s.q}</td><td>${fmt(pu)}</td><td>${fmt(pu * s.q)}</td></tr>
@@ -3681,29 +2304,38 @@ ${dto ? `<tr><td colspan="3">🎟 Descuento${s.why ? ' (' + esc(s.why) + ')' : '
 <tr><td colspan="3"><small class="mu">Base sin IVA</small></td><td><small class="mu">${fmt(net)}</small></td></tr>
 <tr><td colspan="3"><small class="mu">IVA 13% incluido</small></td><td><small class="mu">${fmt(s.iva)}</small></td></tr>
 <tr><td colspan="3"><b>Total ${s.v ? '(anulado)' : 'cobrado'}</b></td><td><b>${fmt(s.tot)}</b></td></tr></table></div>
-<p style="font-size:13px;margin:10px 0 4px">${s.v ? '↩ La factura fue anulada y el producto volvió a la bodega.' : '📦 Al emitirla, el stock se descontó automáticamente.'}${p ? ' Stock actual de ' + esc(p.n) + ': <b>' + p.st + '</b> pares' + (sup ? ' · Proveedor: ' + esc(sup.n) + ', ' + esc(sup.c) : '') + '.' : ''}</p>
-${mv.length ? '<ul style="font:13px/1.6 system-ui;padding-left:18px;margin:6px 0">' + mv.map((h) => `<li><i class="mu">${esc(h.t)}</i> ${esc(h.m)}</li>`).join('') + '</ul>' : ''}
+${s.v ? '<p style="margin:10px 0 0"><b>⚠️ Factura anulada:</b> no tiene valor y el producto volvió a la bodega.</p>' : ''}
+</div>
+${T == 'erp' ? `<div id="fdB" hidden>
+<p class="mu" style="font-size:13px;margin:0 0 8px">Datos solo para la empresa. No salen en la factura ni al imprimir.</p>
+<table style="font-size:14px;border-collapse:collapse;width:100%">
+${row('Origen', ld ? '👥 CRM: venta cerrada en el tablero de clientes' : '🏢 ERP: venta directa')}
+${cp ? row('Campaña', '📣 ' + esc(cp.n)) : ''}
+${row('Inventario', s.v ? 'El producto volvió a la bodega al anular.' : 'El stock se descontó automáticamente al emitirla.')}
+${p ? row('Stock actual', '<b>' + p.st + '</b> pares de ' + esc(p.n) + (p.st <= p.min ? ' <span class="b w">' + (p.st == 0 ? 'Sin stock' : 'Queda poco') + '</span>' : '')) : ''}
+${sup ? row('Proveedor', esc(sup.n) + ', ' + esc(sup.c)) : ''}
+</table>
+${mv.length ? '<div class="rh" style="margin-top:10px">📜 Historial del cliente</div><ul style="font:13px/1.6 system-ui;padding-left:18px;margin:4px 0 0">' + mv.map((h) => `<li><i class="mu">${esc(h.t)}</i> ${esc(h.m)}</li>`).join('') + '</ul>' : ''}
+</div>` : ''}
 <div class="ac" style="flex-wrap:wrap"><button type="button" class="gh" id="fdx">Cerrar</button><button type="button" class="gh" id="fdp">🖨️ Imprimir</button>${ld ? '<button type="button" class="gh" id="fdc">👥 Ver cliente en CRM</button>' : ''}${T != 'erp' ? '<button type="button" class="gh" id="fde">🏢 Ver en ERP</button>' : ''}${T == 'erp' && !s.v ? '<button type="button" id="fda">Anular factura</button>' : ''}</div>`;
         document.body.appendChild(d);
-        const end = () => {
-            try {
-              d.close();
-            } catch (e) {}
-            d.remove();
-          },
-          on = (id, fn) => {
-            const b = d.querySelector('#' + id);
-            if (b)
-              b.onclick = () => {
-                end();
-                fn();
-              };
-          };
+        const end = () => { try { d.close(); } catch (e) {} d.remove(); },
+          on = (id, fn) => { const b = d.querySelector('#' + id); if (b) b.onclick = () => { end(); fn(); }; };
         d.querySelector('#fdx').onclick = end;
         d.addEventListener('cancel', () => setTimeout(end));
-        d.addEventListener('click', (e) => {
-          if (e.target === d) end();
-        });
+        d.addEventListener('click', (e) => { if (e.target === d) end(); });
+        const tA = d.querySelector('#tA'), tB = d.querySelector('#tB');
+        if (tA && tB) {
+          const sw = (b) => {
+            d.querySelector('#fdA').hidden = b;
+            d.querySelector('#fdB').hidden = !b;
+            tA.className = b ? 'gh sm' : 'sm';
+            tB.className = b ? 'sm' : 'gh sm';
+            d.querySelector('#fdp').style.display = b ? 'none' : '';
+          };
+          tA.onclick = () => sw(false);
+          tB.onclick = () => sw(true);
+        }
         d.querySelector('#fdp').onclick = () => {
           const cell = 'padding:6px 8px;border-bottom:1px solid #ccc;text-align:left',
             h = `<!doctype html><html><head><meta charset="utf-8"><title>Factura ${esc(num)}</title></head>
@@ -3723,23 +2355,14 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           document.body.appendChild(fr);
           fr.srcdoc = h;
           fr.onload = () => {
-            try {
-              fr.contentWindow.focus();
-              fr.contentWindow.print();
-            } catch (e) {
-              toast('No se pudo abrir la impresión');
-            }
+            try { fr.contentWindow.focus(); fr.contentWindow.print(); } catch (e) { toast('No se pudo abrir la impresión'); }
             setTimeout(() => fr.remove(), 2000);
           };
         };
         on('fdc', () => goto('crm', 's-crm', 'l-' + ld.id));
         on('fde', () => goto('erp', 's-fact', 'r-f-' + num));
         on('fda', () => anu(num));
-        try {
-          d.showModal();
-        } catch (e) {
-          d.setAttribute('open', '');
-        }
+        try { d.showModal(); } catch (e) { d.setAttribute('open', ''); }
       }
       function anu(num) {
         const s = D.sales.find((x) => x.num == num);
@@ -3758,13 +2381,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           if (ld) {
             hist(ld, '🧾 Factura ' + num + ' anulada en ERP');
             mark('l-' + ld.id, ['crm'], 'ERP anuló la factura ' + num + ' de este cliente y el producto volvió a la bodega.');
-            note(
-              'crm',
-              'La factura ' + num + ' de ' + ld.n + ' fue anulada en ERP. El producto volvió a la bodega.',
-              'erp',
-              ['crm', 's-crm', 'l-' + ld.id],
-              'anu:' + num,
-            );
+            note('crm', 'La factura ' + num + ' de ' + ld.n + ' fue anulada en ERP. El producto volvió a la bodega.', 'erp', ['crm', 's-crm', 'l-' + ld.id], 'anu:' + num);
           }
           done();
         });
@@ -3831,18 +2448,8 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
                           o.q + ' × ' + pt(p),
                           esc(S(p.sup).n),
                           fmt(o.cost),
-                          '<span class="b ' +
-                            ['w', 'i', 'o'][o.s] +
-                            '">' +
-                            OI[o.s] +
-                            ' ' +
-                            OS[o.s] +
-                            '</span>' +
-                            (o.s == 2 ? (o.paid ? ' <span class="b o">💰 Pagado</span>' : ' <span class="b w">💵 Por pagar</span>') : ''),
-                          o.s < 2
-                            ? `<button class="sm" onclick="ad(${o.id})">${o.s == 0 ? '🚚 Marcar en camino' : '✅ Marcar recibido'}</button>` +
-                              ab('Cancelar', 'cx(' + o.id + ')')
-                            : '',
+                          '<span class="b ' + ['w', 'i', 'o'][o.s] + '">' + OI[o.s] + ' ' + OS[o.s] + '</span>' + (o.s == 2 ? (o.paid ? ' <span class="b o">💰 Pagado</span>' : ' <span class="b w">💵 Por pagar</span>') : ''),
+                          o.s < 2 ? `<button class="sm" onclick="ad(${o.id})">${o.s == 0 ? '🚚 Marcar en camino' : '✅ Marcar recibido'}</button>` + ab('Cancelar', 'cx(' + o.id + ')') : '',
                         ],
                         'id="r-p-' + o.id + '" class="g-p' + o.p + (o.s < 2 ? ' g-pend' : '') + '"',
                       );
@@ -3861,23 +2468,16 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
                       const o = open(s),
                         h = o.filter((x) => x.s == 0).length,
                         c = o.filter((x) => x.s == 1).length;
-                      return ra(
-                        [
-                          esc(s.n),
-                          esc(s.c),
-                          D.prods
-                            .filter((p) => p.sup == s.id)
-                            .map((p) => pt(p))
-                            .join(' ') || '—',
-                          o.length
-                            ? (c ? '🚚 ' + c + ' en camino' : '') +
-                              (c && h ? ' · ' : '') +
-                              (h ? '📝 ' + h + ' hecho' + (h > 1 ? 's' : '') : '')
-                            : '—',
-                          ab('✏️ Editar', 'sf(' + s.id + ')') + ab('🗑️', 'ds(' + s.id + ')'),
-                        ],
-                        'id="r-s-' + s.id + '"',
-                      );
+                      return ra([
+                        esc(s.n),
+                        esc(s.c),
+                        D.prods
+                          .filter((p) => p.sup == s.id)
+                          .map((p) => pt(p))
+                          .join(' ') || '—',
+                        o.length ? (c ? '🚚 ' + c + ' en camino' : '') + (c && h ? ' · ' : '') + (h ? '📝 ' + h + ' hecho' + (h > 1 ? 's' : '') : '') : '—',
+                        ab('✏️ Editar', 'sf(' + s.id + ')') + ab('🗑️', 'ds(' + s.id + ')'),
+                      ], 'id="r-s-' + s.id + '"');
                     }),
                   )
                 : none('sup'))
@@ -3905,51 +2505,24 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           'Buscar producto o cliente…',
         );
         const rows = fr.list;
-        const stt = (p) =>
-          p.st == 0
-            ? '<span class="b r">🚫 Sin stock</span>'
-            : p.st <= p.min
-              ? '<span class="b w">⚠️ Queda poco</span>'
-              : '<span class="b w">👥 Clientes sin cubrir</span>';
+        const stt = (p) => (p.st == 0 ? '<span class="b r">🚫 Sin stock</span>' : p.st <= p.min ? '<span class="b w">⚠️ Queda poco</span>' : '<span class="b w">👥 Clientes sin cubrir</span>');
         const act = rows
           .filter((x) => !x.c)
           .map(({ p, d }) => {
             const sup = S(p.sup);
             let tx = `${pt(p)} ${stt(p)}<small>Hay ${p.st} pares${p.st <= p.min ? ' (mínimo ' + p.min + ')' : ''}. Proveedor: ${esc(sup.n)}, ${esc(sup.c)}.</small>`,
               bt = '';
-            if (d.short)
-              tx += `<small>👥 Clientes esperando: ${d.leads.map((l) => esc(l.n) + ' (' + l.q + ')').join(', ')} → necesitan <b>${d.total}</b> en total, faltan <b>${d.total - p.st}</b>.</small>`;
+            if (d.short) tx += `<small>👥 Clientes esperando: ${d.leads.map((l) => esc(l.n) + ' (' + l.q + ')').join(', ')} → necesitan <b>${d.total}</b> en total, faltan <b>${d.total - p.st}</b>.</small>`;
             const pend = d.ord.filter((o) => o.s == 0),
               toMin = d.ord.length && d.miss <= 0 ? Math.max(0, p.min + 1 - (p.st + d.inq)) : 0;
-            tx +=
-              '<small>👉 <b>Siguiente paso:</b> ' +
-              (!d.ord.length
-                ? 'haz el pedido al proveedor.'
-                : d.miss > 0
-                  ? 'el pedido actual no alcanza, pide lo que falta.'
-                  : toMin
-                    ? 'el pedido cubre a los clientes, pero el stock quedaría en el mínimo: pide ' + toMin + ' más para quedar tranquilo.'
-                    : pend.length
-                      ? 'cuando el proveedor lo despache, márcalo «en camino».'
-                      : 'cuando llegue la mercadería, márcala «recibida».') +
-              '</small>';
-            bt += d.ord
-              .map(
-                (o) =>
-                  `<button onclick="ad(${o.id})">${o.s == 0 ? '🚚 Marcar #' + o.id + ' en camino' : '✅ Marcar #' + o.id + ' recibido'}</button>`,
-              )
-              .join('');
-            if (d.ord.length)
-              tx += `<small>📋 Ya hay pedido: ${olist(d.ord)} (suma ${d.inq}). ${d.miss > 0 ? 'Aún no alcanza: faltan ' + d.miss + '.' : pend.length ? 'Todavía no sale del proveedor: márcalo «en camino» cuando salga.' : 'Aún no deja stock sobre el mínimo.'}</small>`;
+            tx += '<small>👉 <b>Siguiente paso:</b> ' + (!d.ord.length ? 'haz el pedido al proveedor.' : d.miss > 0 ? 'el pedido actual no alcanza, pide lo que falta.' : toMin ? 'el pedido cubre a los clientes, pero el stock quedaría en el mínimo: pide ' + toMin + ' más para quedar tranquilo.' : pend.length ? 'cuando el proveedor lo despache, márcalo «en camino».' : 'cuando llegue la mercadería, márcala «recibida».') + '</small>';
+            bt += d.ord.map((o) => `<button onclick="ad(${o.id})">${o.s == 0 ? '🚚 Marcar #' + o.id + ' en camino' : '✅ Marcar #' + o.id + ' recibido'}</button>`).join('');
+            if (d.ord.length) tx += `<small>📋 Ya hay pedido: ${olist(d.ord)} (suma ${d.inq}). ${d.miss > 0 ? 'Aún no alcanza: faltan ' + d.miss + '.' : pend.length ? 'Todavía no sale del proveedor: márcalo «en camino» cuando salga.' : 'Aún no deja stock sobre el mínimo.'}</small>`;
             if (d.miss > 0) {
               bt += `<button onclick="of(${p.id},${d.miss},'all')">📦 Pedir lo que falta (${d.miss})</button>`;
               if (d.leads.length > 1)
                 bt += d.leads
-                  .map(
-                    (l) =>
-                      gap(l) &&
-                      `<button class="gh" onclick="of(${p.id},${gap(l).miss},${l.id})">Solo ${esc(l.n.split(' ')[0])} (${gap(l).miss})</button>`,
-                  )
+                  .map((l) => gap(l) && `<button class="gh" onclick="of(${p.id},${gap(l).miss},${l.id})">Solo ${esc(l.n.split(' ')[0])} (${gap(l).miss})</button>`)
                   .filter(Boolean)
                   .join('');
               bt += `<button class="gh" onclick="of(${p.id})">Otra cantidad…</button>`;
@@ -3961,10 +2534,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           });
         const ok = rows
           .filter((x) => x.c)
-          .map(
-            ({ p, d }) =>
-              `<div id="r-a-${p.id}" class="al ok${nvc('r-a-' + p.id)}" style="border-left:5px solid ${pc(p)}" tabindex="0" role="link" title="Clic para ver sus pedidos a proveedores" onclick="goto('scm','s-ped','.g-p${p.id}.g-pend')" onkeydown="if(event.key=='Enter'){goto('scm','s-ped','.g-p${p.id}.g-pend')}"><span>${pt(p)} ${stt(p)} <span class="b o">✅ Ya se está atendiendo</span><small>Hay ${p.st} pares. Viene en camino: ${d.ord.filter((o) => o.s == 1).reduce((a, o) => a + o.q, 0)} pares. Pedidos: ${olist(d.ord)}.${d.short ? ' Alcanza para: ' + d.leads.map((l) => esc(l.n)).join(', ') + '.' : ''}</small></span><div class="bt">${d.ord.map((o) => `<button onclick="event.stopPropagation();ad(${o.id})">${o.s == 0 ? '🚚 Marcar #' + o.id + ' en camino' : '✅ Marcar #' + o.id + ' recibido'}</button>`).join('')}<button class="gh" onclick="event.stopPropagation();of(${p.id})">Pedir más</button><button class="gh" onclick="event.stopPropagation();goto('scm','s-ped','.g-p${p.id}.g-pend')">Ver pedidos</button></div></div>`,
-          );
+          .map(({ p, d }) => `<div id="r-a-${p.id}" class="al ok${nvc('r-a-' + p.id)}" style="border-left:5px solid ${pc(p)}" tabindex="0" role="link" title="Clic para ver sus pedidos a proveedores" onclick="goto('scm','s-ped','.g-p${p.id}.g-pend')" onkeydown="if(event.key=='Enter'){goto('scm','s-ped','.g-p${p.id}.g-pend')}"><span>${pt(p)} ${stt(p)} <span class="b o">✅ Ya se está atendiendo</span><small>Hay ${p.st} pares. Viene en camino: ${d.ord.filter((o) => o.s == 1).reduce((a, o) => a + o.q, 0)} pares. Pedidos: ${olist(d.ord)}.${d.short ? ' Alcanza para: ' + d.leads.map((l) => esc(l.n)).join(', ') + '.' : ''}</small></span><div class="bt">${d.ord.map((o) => `<button onclick="event.stopPropagation();ad(${o.id})">${o.s == 0 ? '🚚 Marcar #' + o.id + ' en camino' : '✅ Marcar #' + o.id + ' recibido'}</button>`).join('')}<button class="gh" onclick="event.stopPropagation();of(${p.id})">Pedir más</button><button class="gh" onclick="event.stopPropagation();goto('scm','s-ped','.g-p${p.id}.g-pend')">Ver pedidos</button></div></div>`);
         return fr.bar + (rows.length ? act.concat(ok).join('') : none('alert'));
       }
       function of(pid, qty, lid) {
@@ -3995,50 +2565,14 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
               D.orders.push({ id, p: pr.id, q, s: 0, cost: q * +o.u, f: today() });
               D.reqs = (D.reqs || []).filter((r) => r.p != pr.id);
               mark('r-p-' + id, ['scm']);
-              mark(
-                'r-i-' + pr.id,
-                ['erp'],
-                'SCM hizo el pedido #' + id + ' de ' + q + ' × ' + esc(pr.n) + '. Cuando llegue subirá este inventario.',
-              );
-              log(
-                'SCM: pedido #' +
-                  id +
-                  ' de ' +
-                  q +
-                  ' × ' +
-                  pr.n +
-                  ' a ' +
-                  S(pr.sup).n +
-                  ' (' +
-                  S(pr.sup).c +
-                  ')' +
-                  (ld ? ' para atender a ' + ld.n + ' (CRM)' : all ? ' para todos los clientes en espera (CRM)' : ''),
-                'scm',
-              );
-              note(
-                'scm',
-                'Nuevo pedido #' +
-                  id +
-                  ' creado para ' +
-                  (ld ? ld.n : 'todos los clientes en espera') +
-                  ': ' +
-                  q +
-                  ' × ' +
-                  pr.n +
-                  '. Envíalo al proveedor y márcalo «en camino».',
-                'crm',
-                ['scm', 's-ped', 'r-p-' + id],
-                'ord:' + id,
-              );
+              mark('r-i-' + pr.id, ['erp'], 'SCM hizo el pedido #' + id + ' de ' + q + ' × ' + esc(pr.n) + '. Cuando llegue subirá este inventario.');
+              log('SCM: pedido #' + id + ' de ' + q + ' × ' + pr.n + ' a ' + S(pr.sup).n + ' (' + S(pr.sup).c + ')' + (ld ? ' para atender a ' + ld.n + ' (CRM)' : all ? ' para todos los clientes en espera (CRM)' : ''), 'scm');
+              note('scm', 'Nuevo pedido #' + id + ' creado para ' + (ld ? ld.n : 'todos los clientes en espera') + ': ' + q + ' × ' + pr.n + '. Envíalo al proveedor y márcalo «en camino».', 'crm', ['scm', 's-ped', 'r-p-' + id], 'ord:' + id);
               unnote('fail:' + (ld ? ld.n : '') + pr.id);
               if (ld || all) toast('📦 Pedido #' + id + ' enviado a ' + S(pr.sup).n + '. Sigue su estado en SCM.');
               done();
             };
-            if (dd.ord.length && dd.miss == 0 && cov(pr))
-              cf(
-                'Ya hay pedido en curso de ' + pr.n + ' (' + olist(dd.ord) + ') que cubre lo necesario. ¿Hacer otro pedido de todos modos?',
-                mk,
-              );
+            if (dd.ord.length && dd.miss == 0 && cov(pr)) cf('Ya hay pedido en curso de ' + pr.n + ' (' + olist(dd.ord) + ') que cubre lo necesario. ¿Hacer otro pedido de todos modos?', mk);
             else mk();
           },
         );
@@ -4051,83 +2585,23 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           const wl = D.leads.filter((l) => l.p == p.id && l.s < 3 && (gap(l) || dem(p.id).short));
           o.s = 1;
           mark('r-p-' + id, ['scm']);
-          mark(
-            'r-i-' + p.id,
-            ['erp'],
-            'SCM: el pedido #' + id + ' de ' + esc(p.n) + ' salió del proveedor. Al recibirlo subirá este inventario.',
-          );
+          mark('r-i-' + p.id, ['erp'], 'SCM: el pedido #' + id + ' de ' + esc(p.n) + ' salió del proveedor. Al recibirlo subirá este inventario.');
           log('🚚 SCM: el pedido #' + id + ' salió de ' + S(p.sup).n + ' hacia la tienda', 'scm');
           if (wl.length) {
-            note(
-              'crm',
-              'El pedido #' +
-                id +
-                ' de ' +
-                p.n +
-                ' (' +
-                o.q +
-                ' pares) ya va en camino. Cuando llegue podrás vender a: ' +
-                wl.map((l) => l.n + ' (' + l.q + ')').join(', ') +
-                '.',
-              'scm',
-              ['crm', 's-crm', 'l-' + wl[0].id],
-              'way:' + id,
-            );
-            wl.forEach((l) =>
-              mark(
-                'l-' + l.id,
-                ['crm'],
-                'SCM: el pedido #' + id + ' de ' + esc(p.n) + ' ya va en camino. Cuando llegue podrás venderle ' + l.q + ' pares.',
-              ),
-            );
+            note('crm', 'El pedido #' + id + ' de ' + p.n + ' (' + o.q + ' pares) ya va en camino. Cuando llegue podrás vender a: ' + wl.map((l) => l.n + ' (' + l.q + ')').join(', ') + '.', 'scm', ['crm', 's-crm', 'l-' + wl[0].id], 'way:' + id);
+            wl.forEach((l) => mark('l-' + l.id, ['crm'], 'SCM: el pedido #' + id + ' de ' + esc(p.n) + ' ya va en camino. Cuando llegue podrás venderle ' + l.q + ' pares.'));
           }
-          note(
-            'erp',
-            'El pedido #' +
-              id +
-              ' (' +
-              o.q +
-              ' × ' +
-              p.n +
-              ') de ' +
-              S(p.sup).n +
-              ' ya va en camino. Al recibirlo subirá el inventario y se generará una cuenta por pagar de ' +
-              fmt(o.cost) +
-              '.',
-            'scm',
-            ['erp', 's-inv', 'r-i-' + p.id],
-            'wayerp:' + id,
-          );
+          note('erp', 'El pedido #' + id + ' (' + o.q + ' × ' + p.n + ') de ' + S(p.sup).n + ' ya va en camino. Al recibirlo subirá el inventario y se generará una cuenta por pagar de ' + fmt(o.cost) + '.', 'scm', ['erp', 's-inv', 'r-i-' + p.id], 'wayerp:' + id);
         } else {
           o.s = 2;
           p.st += o.q;
           mark('r-p-' + id, ['scm']);
-          mark(
-            'r-o-' + id,
-            ['erp'],
-            'SCM recibió el pedido #' + id + ': se generó esta cuenta por pagar de ' + fmt(o.cost) + ' a ' + esc(S(p.sup).n) + '.',
-          );
+          mark('r-o-' + id, ['erp'], 'SCM recibió el pedido #' + id + ': se generó esta cuenta por pagar de ' + fmt(o.cost) + ' a ' + esc(S(p.sup).n) + '.');
           mark('r-i-' + p.id, ['erp'], 'Llegó el pedido #' + id + ': el inventario de ' + esc(p.n) + ' subió a ' + p.st + ' pares.');
           unnote('way:' + id);
           unnote('wayerp:' + id);
-          note(
-            'erp',
-            'Llegó el pedido #' + id + ' (' + o.q + ' × ' + p.n + '). Nueva cuenta por pagar de ' + fmt(o.cost) + ' a ' + S(p.sup).n + '.',
-            'scm',
-            ['erp', 's-pagar', 'r-o-' + id],
-            'rec:' + id,
-          );
-          log(
-            'SCM → ERP: llegó el pedido #' +
-              id +
-              '. El inventario de ' +
-              p.n +
-              ' sube a ' +
-              p.st +
-              ' y se registra una cuenta por pagar de ' +
-              fmt(o.cost),
-            'erp',
-          );
+          note('erp', 'Llegó el pedido #' + id + ' (' + o.q + ' × ' + p.n + '). Nueva cuenta por pagar de ' + fmt(o.cost) + ' a ' + S(p.sup).n + '.', 'scm', ['erp', 's-pagar', 'r-o-' + id], 'rec:' + id);
+          log('SCM → ERP: llegó el pedido #' + id + '. El inventario de ' + p.n + ' sube a ' + p.st + ' y se registra una cuenta por pagar de ' + fmt(o.cost), 'erp');
           const w = D.leads.filter((l) => l.p == p.id && l.s < 3 && p.st >= l.q && p.st - o.q < l.q);
           w.forEach((l) => mark('l-' + l.id, ['crm'], 'SCM: llegó stock de ' + esc(p.n) + '. Ya puedes venderle ' + l.q + ' pares.'));
           w.forEach((l) => log('SCM → CRM: ya hay stock para atender a ' + l.n + ' (' + l.q + ' × ' + p.n + ')', 'crm'));
@@ -4144,14 +2618,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           unnote('wayerp:' + id);
           unnote('ord:' + id);
           const wl = D.leads.filter((l) => l.p == o.p && l.s < 3 && gap(l));
-          if (wl.length)
-            note(
-              'crm',
-              'Se canceló el pedido #' + id + ' de ' + P(o.p).n + ': ' + wl.map((l) => l.n).join(', ') + ' sigue sin stock suficiente.',
-              'scm',
-              ['crm', 's-crm', 'l-' + wl[0].id],
-              'cx:' + id,
-            );
+          if (wl.length) note('crm', 'Se canceló el pedido #' + id + ' de ' + P(o.p).n + ': ' + wl.map((l) => l.n).join(', ') + ' sigue sin stock suficiente.', 'scm', ['crm', 's-crm', 'l-' + wl[0].id], 'cx:' + id);
           log('SCM: se canceló el pedido #' + id, 'scm');
           done();
         });
@@ -4197,123 +2664,21 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
         dago = (ts) => Math.floor((Date.now() - ts) / 864e5),
         sdt = (s) => {
           if (s.ts) return s.ts;
-          const p = String(s.f)
-            .split(/[\/.\-]/)
-            .map(Number);
+          const p = String(s.f).split(/[\/.\-]/).map(Number);
           return p.length == 3 && p[2] > 31 ? new Date(p[2], p[1] - 1, p[0]).getTime() : Date.now();
         };
       // Fechas clave de Bolivia: s = inicio de la campaña, f = fin, re = productos que encajan
       const EV = [
-        {
-          k: 'primavera',
-          n: 'Día de la Primavera y del Estudiante',
-          e: '🌸',
-          s: [9, 10],
-          f: [9, 21],
-          re: /urbana|deportiva|sandalia/,
-          sg: 'todos',
-          d: 10,
-          g: 'Se viene el 21 de septiembre 🌸 Estrena zapatos para celebrar con tus amigos.',
-        },
-        {
-          k: 'santos',
-          n: 'Todos Santos',
-          e: '🕯️',
-          s: [10, 20],
-          f: [11, 2],
-          re: /vestir|botin|cuero/,
-          sg: 'todos',
-          d: 10,
-          g: 'Para Todos Santos, lleva calzado cómodo y elegante 🕯️',
-        },
-        {
-          k: 'black',
-          n: 'Black Friday',
-          e: '🛍️',
-          s: [11, 20],
-          f: [11, 30],
-          re: /./,
-          sg: 'fieles',
-          d: 15,
-          g: 'Llegó el Black Friday 🛍️ Descuentos por tiempo limitado.',
-        },
-        {
-          k: 'navidad',
-          n: 'Navidad y fin de año',
-          e: '🎄',
-          s: [12, 1],
-          f: [12, 31],
-          re: /./,
-          sg: 'todos',
-          d: 10,
-          g: 'Esta Navidad 🎄 regala (o regálate) zapatos nuevos para recibir el año.',
-        },
-        {
-          k: 'lluvias',
-          n: 'Temporada de lluvias',
-          e: '🌧️',
-          s: [12, 1],
-          f: [3, 15],
-          re: /lluvia|sandalia/,
-          sg: 'todos',
-          d: 10,
-          g: 'Ya llegaron las lluvias 🌧️ Camina seco con nuestras botas y sandalias.',
-        },
-        {
-          k: 'escolar',
-          n: 'Vuelta a clases',
-          e: '🎒',
-          s: [1, 15],
-          f: [2, 28],
-          re: /escolar/,
-          sg: 'todos',
-          d: 10,
-          g: 'Se viene la vuelta a clases 🎒 Zapatos escolares resistentes para todo el año.',
-        },
-        {
-          k: 'padre',
-          n: 'Día del Padre (19 de marzo)',
-          e: '👔',
-          s: [3, 1],
-          f: [3, 19],
-          re: /vestir|cuero|botin|deportiva/,
-          sg: 'todos',
-          d: 10,
-          g: 'Este 19 de marzo sorprende a papá con unos zapatos nuevos 👔',
-        },
-        {
-          k: 'nino',
-          n: 'Día del Niño (12 de abril)',
-          e: '🧒',
-          s: [3, 29],
-          f: [4, 12],
-          re: /escolar|deportiva|urbana/,
-          sg: 'todos',
-          d: 10,
-          g: 'El 12 de abril es de los niños 🧒 Regálales comodidad para jugar.',
-        },
-        {
-          k: 'madre',
-          n: 'Día de la Madre (27 de mayo)',
-          e: '💐',
-          s: [5, 10],
-          f: [5, 27],
-          re: /vestir|sandalia|urbana/,
-          sg: 'todos',
-          d: 10,
-          g: 'Este 27 de mayo regala a mamá unos zapatos que la hagan sentir especial 💐',
-        },
-        {
-          k: 'frio',
-          n: 'Temporada de frío',
-          e: '🧣',
-          s: [5, 15],
-          f: [8, 31],
-          re: /bot|pantufla/,
-          sg: 'todos',
-          d: 10,
-          g: 'Llegó el frío 🧣 Abrígate con botines, botas y pantuflas de lana.',
-        },
+        { k: 'primavera', n: 'Día de la Primavera y del Estudiante', e: '🌸', s: [9, 10], f: [9, 21], re: /urbana|deportiva|sandalia/, sg: 'todos', d: 10, g: 'Se viene el 21 de septiembre 🌸 Estrena zapatos para celebrar con tus amigos.' },
+        { k: 'santos', n: 'Todos Santos', e: '🕯️', s: [10, 20], f: [11, 2], re: /vestir|botin|cuero/, sg: 'todos', d: 10, g: 'Para Todos Santos, lleva calzado cómodo y elegante 🕯️' },
+        { k: 'black', n: 'Black Friday', e: '🛍️', s: [11, 20], f: [11, 30], re: /./, sg: 'fieles', d: 15, g: 'Llegó el Black Friday 🛍️ Descuentos por tiempo limitado.' },
+        { k: 'navidad', n: 'Navidad y fin de año', e: '🎄', s: [12, 1], f: [12, 31], re: /./, sg: 'todos', d: 10, g: 'Esta Navidad 🎄 regala (o regálate) zapatos nuevos para recibir el año.' },
+        { k: 'lluvias', n: 'Temporada de lluvias', e: '🌧️', s: [12, 1], f: [3, 15], re: /lluvia|sandalia/, sg: 'todos', d: 10, g: 'Ya llegaron las lluvias 🌧️ Camina seco con nuestras botas y sandalias.' },
+        { k: 'escolar', n: 'Vuelta a clases', e: '🎒', s: [1, 15], f: [2, 28], re: /escolar/, sg: 'todos', d: 10, g: 'Se viene la vuelta a clases 🎒 Zapatos escolares resistentes para todo el año.' },
+        { k: 'padre', n: 'Día del Padre (19 de marzo)', e: '👔', s: [3, 1], f: [3, 19], re: /vestir|cuero|botin|deportiva/, sg: 'todos', d: 10, g: 'Este 19 de marzo sorprende a papá con unos zapatos nuevos 👔' },
+        { k: 'nino', n: 'Día del Niño (12 de abril)', e: '🧒', s: [3, 29], f: [4, 12], re: /escolar|deportiva|urbana/, sg: 'todos', d: 10, g: 'El 12 de abril es de los niños 🧒 Regálales comodidad para jugar.' },
+        { k: 'madre', n: 'Día de la Madre (27 de mayo)', e: '💐', s: [5, 10], f: [5, 27], re: /vestir|sandalia|urbana/, sg: 'todos', d: 10, g: 'Este 27 de mayo regala a mamá unos zapatos que la hagan sentir especial 💐' },
+        { k: 'frio', n: 'Temporada de frío', e: '🧣', s: [5, 15], f: [8, 31], re: /bot|pantufla/, sg: 'todos', d: 10, g: 'Llegó el frío 🧣 Abrígate con botines, botas y pantuflas de lana.' },
       ];
       function evNext(e, now = new Date()) {
         for (let y = now.getFullYear() - 1; y <= now.getFullYear() + 1; y++) {
@@ -4330,42 +2695,12 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           }).length;
       // Audiencias: [nombre, para qué sirve, filtro, gancho del mensaje]
       const SEG = {
-        abiertos: [
-          '🔥 Interesados sin comprar',
-          'Tienen una compra en proceso (Nuevo, Contactado o Precio enviado).',
-          (x) => x.ld.some((l) => l.s < 3),
-          'Vimos que te interesaron nuestros zapatos 👟',
-        ],
-        precio: [
-          '💬 Con precio enviado',
-          'Ya recibieron el precio y no cerraron: empuja el cierre.',
-          (x) => x.ld.some((l) => l.s == 2),
-          'Tu cotización sigue disponible',
-        ],
-        perdidos: [
-          '♻️ Ventas perdidas',
-          'Se fueron sin comprar: recupéralos con una oferta.',
-          (x) => x.ld.some((l) => l.s == 4) && !x.ld.some((l) => l.s < 3),
-          'Tenemos novedades que te pueden interesar',
-        ],
-        nuevos: [
-          '🌱 Compraron una vez',
-          'Logra la segunda compra: ahí nace la fidelidad.',
-          (x) => x.buys == 1,
-          'Gracias por tu primera compra 💙 Queremos verte de vuelta',
-        ],
-        fieles: [
-          '💎 Clientes fieles',
-          '2 o más compras, o nivel Plata/Oro. Cuídalos primero.',
-          (x) => x.buys >= 2 || tier(x.tot) >= 1,
-          'Por ser cliente fiel tienes un beneficio especial ⭐',
-        ],
-        dormidos: [
-          '😴 Dormidos (+60 días)',
-          'Compraron hace más de 60 días: reactívalos.',
-          (x) => x.buys > 0 && dago(x.last) > 60,
-          'Hace tiempo no te vemos y te extrañamos 💙',
-        ],
+        abiertos: ['🔥 Interesados sin comprar', 'Tienen una compra en proceso (Nuevo, Contactado o Precio enviado).', (x) => x.ld.some((l) => l.s < 3), 'Vimos que te interesaron nuestros zapatos 👟'],
+        precio: ['💬 Con precio enviado', 'Ya recibieron el precio y no cerraron: empuja el cierre.', (x) => x.ld.some((l) => l.s == 2), 'Tu cotización sigue disponible'],
+        perdidos: ['♻️ Ventas perdidas', 'Se fueron sin comprar: recupéralos con una oferta.', (x) => x.ld.some((l) => l.s == 4) && !x.ld.some((l) => l.s < 3), 'Tenemos novedades que te pueden interesar'],
+        nuevos: ['🌱 Compraron una vez', 'Logra la segunda compra: ahí nace la fidelidad.', (x) => x.buys == 1, 'Gracias por tu primera compra 💙 Queremos verte de vuelta'],
+        fieles: ['💎 Clientes fieles', '2 o más compras, o nivel Plata/Oro. Cuídalos primero.', (x) => x.buys >= 2 || tier(x.tot) >= 1, 'Por ser cliente fiel tienes un beneficio especial ⭐'],
+        dormidos: ['😴 Dormidos (+60 días)', 'Compraron hace más de 60 días: reactívalos.', (x) => x.buys > 0 && dago(x.last) > 60, 'Hace tiempo no te vemos y te extrañamos 💙'],
         todos: ['👥 Todos los clientes', 'Todas las personas que ya compraron.', (x) => x.buys > 0, 'Tenemos novedades para ti'],
       };
       function ppl() {
@@ -4390,23 +2725,12 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
       const aud = (sg) => ppl().filter(SEG[sg][2]);
       function cstat(c) {
         const v = D.sales.filter((s) => s.camp == c.id && !s.v);
-        return {
-          v: v.length,
-          ing: v.reduce((a, s) => a + s.tot, 0),
-          dto: v.reduce((a, s) => a + (s.dto || 0), 0),
-          sent: Object.keys(c.sent || {}).length,
-          n: c.r.length,
-        };
+        return { v: v.length, ing: v.reduce((a, s) => a + s.tot, 0), dto: v.reduce((a, s) => a + (s.dto || 0), 0), sent: Object.keys(c.sent || {}).length, resp: c.r.filter((r) => (c.resp && c.resp[r.k]) || (c.used && c.used[r.k])).length, n: c.r.length };
       }
       const cmsgG = (c) => cmsg(c, { n: '[Nombre]' });
       function cmsg(c, r) {
         const p = c.pid ? P(c.pid) : null,
-          of =
-            c.disc > 0
-              ? '🎟️ Tienes ' + c.disc + '% de descuento' + (p ? ' en ' + p.n : ' en tu compra') + '.'
-              : p
-                ? 'Mira nuestra ' + p.n + '.'
-                : '';
+          of = c.disc > 0 ? '🎟️ Tienes ' + c.disc + '% de descuento' + (p ? ' en ' + p.n : ' en tu compra') + '.' : p ? 'Mira nuestra ' + p.n + '.' : '';
         return c.msg
           .replace(/\{nombre\}/g, r.n.split(' ')[0])
           .replace(/\{oferta\}/g, of)
@@ -4416,9 +2740,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
       function benef(cl, pid) {
         const k = ck(cl),
           cp = camps()
-            .filter(
-              (c) => cst(c) == 'Activa' && c.disc > 0 && (!c.pid || c.pid == pid) && c.r.some((r) => r.k == k) && !(c.used && c.used[k]),
-            )
+            .filter((c) => cst(c) == 'Activa' && c.disc > 0 && (!c.pid || c.pid == pid) && c.r.some((r) => r.k == k) && !(c.used && c.used[k]))
             .sort((a, b) => b.disc - a.disc)[0],
           t = tier(D.sales.reduce((a, s) => (!s.v && ck(s.c) == k ? a + s.tot : a), 0)),
           nb = TB[t];
@@ -4428,15 +2750,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
       function bfl(l) {
         if (l.s >= 3) return '';
         const b = benef(l.n, l.p);
-        return b
-          ? '<br><small>🎁 ' +
-              b.pct +
-              '% dto (' +
-              esc(b.why) +
-              ') → <b>' +
-              fmt(Math.round(P(l.p).pr * l.q * (100 - b.pct)) / 100) +
-              '</b></small>'
-          : '';
+        return b ? '<br><small>🎁 ' + b.pct + '% dto (' + esc(b.why) + ') → <b>' + fmt(Math.round(P(l.p).pr * l.q * (100 - b.pct)) / 100) + '</b></small>' : '';
       }
       function nc(o = {}) {
         if (!D.prods.length) return toast('Primero agrega un producto en ERP');
@@ -4455,11 +2769,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
             { k: 'pid', l: 'Producto en promoción', o: [[0, 'Todos los productos'], ...D.prods.map((p) => [p.id, p.n])], v: pid },
             { k: 'disc', l: 'Descuento (%) · 0 = sin descuento', t: 'number', v: disc },
             { k: 'days', l: 'Vigencia (días)', t: 'number', v: 15 },
-            {
-              k: 'msg',
-              l: 'Mensaje de WhatsApp',
-              v: 'Hola {nombre}, te escribimos de Zapatos Sol 👟 ' + gancho + ' {oferta} Válido hasta el {hasta}. ¿Te reservamos tu par?',
-            },
+            { k: 'msg', l: 'Mensaje de WhatsApp', v: 'Hola {nombre}, te escribimos de Zapatos Sol 👟 ' + gancho + ' {oferta} Válido hasta el {hasta}. ¿Te reservamos tu par?' },
           ],
           (f) => {
             const dsc = f.disc === '' ? 0 : +f.disc;
@@ -4475,51 +2785,51 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
             const id = D.n++,
               p = +f.pid ? P(+f.pid) : null,
               sin = A.filter((x) => !x.t).length;
-            camps().unshift({
-              id,
-              n: f.n,
-              ev: ev ? ev.k : '',
-              seg: f.seg,
-              pid: +f.pid,
-              disc: dsc,
-              days: +f.days,
-              ts: Date.now(),
-              f: today(),
-              msg: f.msg,
-              r: A.map((x) => ({ k: x.k, n: x.n, t: x.t })),
-              sent: {},
-              used: {},
-            });
+            camps().unshift({ id, n: f.n, ev: ev ? ev.k : '', seg: f.seg, pid: +f.pid, disc: dsc, days: +f.days, ts: Date.now(), f: today(), msg: f.msg, r: A.map((x) => ({ k: x.k, n: x.n, t: x.t })), sent: {}, used: {} });
             MK.open[id] = true;
             mark('c-' + id, ['mkt']);
             log('CRM: nueva campaña «' + f.n + '» para ' + A.length + ' persona(s)' + (dsc ? ' con ' + dsc + '% de descuento' : ''), 'crm');
             if (p && (p.st <= p.min || p.st < Math.ceil(A.length * 0.3)))
-              note(
-                'scm',
-                'La campaña «' +
-                  f.n +
-                  '» promociona ' +
-                  p.n +
-                  ' a ' +
-                  A.length +
-                  ' persona(s) y en bodega hay ' +
-                  p.st +
-                  ' pares. Conviene pedir antes de lanzarla.',
-                'crm',
-                ['scm', 's-alert', ''],
-                'camp:' + id,
-              );
+              note('scm', 'La campaña «' + f.n + '» promociona ' + p.n + ' a ' + A.length + ' persona(s) y en bodega hay ' + p.st + ' pares. Conviene pedir antes de lanzarla.', 'crm', ['scm', 's-alert', ''], 'camp:' + id);
             done();
-            toast(
-              '📣 Campaña creada para ' +
-                A.length +
-                ' persona(s)' +
-                (sin ? ' (' + sin + ' sin teléfono)' : '') +
-                '. Envía los mensajes desde la lista.',
-            );
+            toast('📣 Campaña creada para ' + A.length + ' persona(s)' + (sin ? ' (' + sin + ' sin teléfono)' : '') + '. Envía los mensajes desde la lista.');
           },
           'Crear campaña',
         );
+      }
+      // «Respondió»: el cliente contestó la campaña. Marketing le pasa la posta al CRM (tarjeta con la campaña y su descuento)
+      function rsp(id, i) {
+        const c = camps().find((x) => x.id == id), r = c.r[i], k = r.k;
+        c.resp = c.resp || {};
+        if (c.resp[k]) {
+          delete c.resp[k];
+          done();
+          return;
+        }
+        c.sent = c.sent || {};
+        c.sent[k] = c.sent[k] || Date.now();
+        const open = D.leads.find((l) => ck(l.n) == k && l.s < 3), prev = [...D.leads].reverse().find((l) => ck(l.n) == k);
+        let l = open;
+        const hoy = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+        if (l) {
+          l.camp = c.id;
+          hist(l, '📣 Respondió a la campaña «' + c.n + '»');
+          if (l.s == 0) { l.s = 1; l.sd = Date.now(); hist(l, 'Pasó a «Contactado»'); }
+          if (!l.fu || l.fu > hoy) l.fu = hoy;
+        } else {
+          if (!D.prods.length) return toast('Primero agrega un producto en ERP');
+          const pid = c.pid && P(c.pid) ? c.pid : prev && P(prev.p) ? prev.p : D.prods[0].id,
+            city = (prev && prev.c) || CITIES[0];
+          l = { id: D.n++, n: r.n, t: r.t || '', c: city, p: pid, q: 1, s: 1, camp: c.id, fu: hoy, sd: Date.now(), h: [{ t: stamp(), m: '📣 Respondió a la campaña «' + c.n + '»' }, { t: stamp(), m: 'Pasó a «Contactado»' }] };
+          D.leads.push(l);
+        }
+        c.resp[k] = { ts: Date.now(), lead: l.id };
+        const dsc = c.disc > 0 ? ' Tiene ' + c.disc + '% de descuento reservado hasta el ' + new Date(until(c)).toLocaleDateString('es-BO') + '.' : '';
+        mark('l-' + l.id, ['crm'], 'Marketing: ' + esc(r.n) + ' respondió a la campaña «' + esc(c.n) + '». Atiéndelo para cerrar la venta.' + dsc);
+        note('crm', r.n + ' respondió a la campaña «' + c.n + '».' + dsc + ' Atiéndelo para cerrar la venta.', 'mkt', ['crm', 's-crm', 'l-' + l.id], 'camp:resp' + c.id + k);
+        log('Marketing → CRM: ' + r.n + ' respondió a la campaña «' + c.n + '»', 'crm');
+        done();
+        toast('💬 ' + r.n + ' pasó al CRM para atenderlo', () => goto('crm', 's-crm', 'l-' + l.id));
       }
       function snt(id, i, on) {
         const c = camps().find((x) => x.id == id),
@@ -4551,110 +2861,28 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
       }
       // Tour guiado: cada paso cambia a la pestaña correcta y resalta la parte que explica
       const TOUR = [
-        {
-          t: 'home',
-          h: '👋 Bienvenido a Zapatos Sol',
-          x: 'Es una tienda de calzado con <b>tres sistemas conectados</b>: <b>CRM</b> (clientes y ventas), <b>ERP</b> (inventario, facturas y cuentas) y <b>SCM</b> (proveedores y pedidos). Lo que haces en uno aparece solo en los otros. Este recorrido dura 2 minutos.',
-        },
-        {
-          t: 'home',
-          s: '.rs',
-          h: '🎛️ Datos de ejemplo',
-          x: 'Aquí eliges con cuántos datos probar: desde «muy básicos» hasta «avanzados», y escenarios como <b>Crisis de stock</b> o <b>Campañas en marcha</b>. «Reiniciar demo» devuelve todo a como estaba.',
-          tip: 'Cambiar de opción reemplaza los datos al instante.',
-        },
-        {
-          t: 'home',
-          s: '#kp',
-          h: '📊 Resumen del negocio',
-          x: 'Estas tarjetas muestran lo importante de un vistazo: campañas, clientes por cerrar, ventas, facturas, stock en alerta y pedidos por llegar.',
-          tip: 'Haz clic en una tarjeta y te lleva a donde está pasando eso. Pasa el mouse para ver el detalle.',
-        },
-        {
-          t: 'home',
-          s: 'nav',
-          h: '🧭 Las pestañas',
-          x: 'Cada pestaña es un área de la tienda. El número con 🔔 avisa cuántas cosas te esperan en esa área.',
-        },
-        {
-          t: 'home',
-          s: 'main .c',
-          h: '📋 Bitácora',
-          x: 'Aquí queda escrito <b>qué pasó entre los sistemas</b>: por ejemplo «CRM → SCM: solicitud de reposición». Sirve para seguir la historia de cada acción.',
-          tip: 'Puedes filtrar por CRM, ERP o SCM y buscar por texto.',
-        },
-        {
-          t: 'crm',
-          s: '#s-crm',
-          h: '👥 CRM: tus clientes',
-          x: 'Cada tarjeta es una persona interesada en comprar. Avanza por etapas: <b>Nuevo → Contactado → Precio enviado → Vendido</b>. Desde la tarjeta puedes llamar o escribir por WhatsApp.',
-          tip: 'Prueba: en «Precio enviado», pulsa «Marcar como Vendido». Se descuenta el stock y se emite la factura.',
-        },
-        {
-          t: 'erp',
-          s: '#s-fact',
-          h: '🏢 ERP: facturas',
-          x: 'Cada venta del CRM genera una factura aquí, con IVA. Si anulas una, el producto vuelve a la bodega.',
-        },
-        {
-          t: 'erp',
-          s: '#s-inv',
-          h: '📦 ERP: inventario',
-          x: 'Tus productos con precio, stock, mínimo y proveedor. Las etiquetas muestran si hay stock, si queda poco, y si ya hay un pedido en camino. El ERP solo informa: los pedidos al proveedor se hacen en SCM.',
-          tip: 'Haz clic en «en camino», «pedido hecho» o «Falta pedir» para ir a SCM.',
-        },
-        {
-          t: 'erp',
-          s: '#s-pagar',
-          h: '💵 ERP: cuentas por pagar',
-          x: 'Cuando llega un pedido de un proveedor, aquí aparece lo que debes pagar. Márcalo como pagado cuando lo hagas.',
-        },
-        {
-          t: 'scm',
-          s: '#s-alert',
-          h: '🚚 SCM: alertas de stock',
-          x: 'Aquí ves lo que falta: productos sin stock o con poco, y los <b>clientes que esperan</b>. Cada alerta dice cuál es el <b>siguiente paso</b> y tiene el botón para hacerlo.',
-          tip: 'Verde = ya se está atendiendo. Amarillo o rojo = falta actuar.',
-        },
-        {
-          t: 'scm',
-          s: '#s-ped',
-          h: '📝 SCM: pedidos a proveedores',
-          x: 'El camino de un pedido es: <b>Pedido hecho → En camino → Recibido</b>. Al recibirlo sube el inventario en ERP, se crea la cuenta por pagar y CRM avisa que ya puedes vender.',
-        },
-        {
-          t: 'mkt',
-          s: '#s-temp',
-          h: '📅 Marketing: fechas clave',
-          x: 'Calendario de fechas importantes de Bolivia (Todos Santos, Navidad, Día de la Madre…). Te dice qué productos empujar y si <b>el stock alcanza</b> antes de lanzar la campaña.',
-          tip: 'Si ya hay campaña, haz clic en la tarjeta para ir a ella.',
-        },
-        {
-          t: 'mkt',
-          s: '#s-camp',
-          h: '📣 Marketing: campañas',
-          x: 'Cada campaña tiene su propio color, el <b>mensaje exacto</b> que se enviará y la lista de destinatarios. Pasa el mouse por un cliente para ver su mensaje.',
-          tip: 'Con «Enviar a todos» se abre WhatsApp de uno en uno, sin escribir nada.',
-        },
-        {
-          t: 'home',
-          h: '🎉 ¡Listo!',
-          x: 'Ya conoces cada parte. Para practicar, ve a <b>CRM</b>, vende a Mariela Choque y mira cómo se mueven ERP y SCM. Puedes repetir este tour cuando quieras con «🧭 Tour guiado».',
-        },
+        { t: 'home', h: '👋 Bienvenido a Zapatos Sol', x: 'Es una tienda de calzado con <b>tres sistemas conectados</b>: <b>CRM</b> (clientes y ventas), <b>ERP</b> (inventario, facturas y cuentas) y <b>SCM</b> (proveedores y pedidos). Lo que haces en uno aparece solo en los otros. Este recorrido dura 2 minutos.' },
+        { t: 'home', s: '.rs', h: '🎛️ Datos de ejemplo', x: 'Aquí eliges con cuántos datos probar: desde «muy básicos» hasta «avanzados», y escenarios como <b>Crisis de stock</b> o <b>Campañas en marcha</b>. «Reiniciar demo» devuelve todo a como estaba.', tip: 'Cambiar de opción reemplaza los datos al instante.' },
+        { t: 'home', s: '#kp', h: '📊 Resumen del negocio', x: 'Estas tarjetas muestran lo importante de un vistazo: campañas, clientes por cerrar, ventas, facturas, stock en alerta y pedidos por llegar.', tip: 'Haz clic en una tarjeta y te lleva a donde está pasando eso. Pasa el mouse para ver el detalle.' },
+        { t: 'home', s: 'nav', h: '🧭 Las pestañas', x: 'Cada pestaña es un área de la tienda. El número con 🔔 avisa cuántas cosas te esperan en esa área.' },
+        { t: 'home', s: 'main .c', h: '📋 Bitácora', x: 'Aquí queda escrito <b>qué pasó entre los sistemas</b>: por ejemplo «CRM → SCM: solicitud de reposición». Sirve para seguir la historia de cada acción.', tip: 'Puedes filtrar por CRM, ERP o SCM y buscar por texto.' },
+        { t: 'crm', s: '#s-crm', h: '👥 CRM: tus clientes', x: 'Cada tarjeta es una persona interesada en comprar. Avanza por etapas: <b>Nuevo → Contactado → Precio enviado → Vendido</b>. Desde la tarjeta puedes llamar o escribir por WhatsApp.', tip: 'Prueba: en «Precio enviado», pulsa «Marcar como Vendido». Se descuenta el stock y se emite la factura.' },
+        { t: 'erp', s: '#s-fact', h: '🏢 ERP: facturas', x: 'Cada venta del CRM genera una factura aquí, con IVA. Si anulas una, el producto vuelve a la bodega.' },
+        { t: 'erp', s: '#s-inv', h: '📦 ERP: inventario', x: 'Tus productos con precio, stock, mínimo y proveedor. Las etiquetas muestran si hay stock, si queda poco, y si ya hay un pedido en camino. El ERP solo informa: los pedidos al proveedor se hacen en SCM.', tip: 'Haz clic en «en camino», «pedido hecho» o «Falta pedir» para ir a SCM.' },
+        { t: 'erp', s: '#s-pagar', h: '💵 ERP: cuentas por pagar', x: 'Cuando llega un pedido de un proveedor, aquí aparece lo que debes pagar. Márcalo como pagado cuando lo hagas.' },
+        { t: 'scm', s: '#s-alert', h: '🚚 SCM: alertas de stock', x: 'Aquí ves lo que falta: productos sin stock o con poco, y los <b>clientes que esperan</b>. Cada alerta dice cuál es el <b>siguiente paso</b> y tiene el botón para hacerlo.', tip: 'Verde = ya se está atendiendo. Amarillo o rojo = falta actuar.' },
+        { t: 'scm', s: '#s-ped', h: '📝 SCM: pedidos a proveedores', x: 'El camino de un pedido es: <b>Pedido hecho → En camino → Recibido</b>. Al recibirlo sube el inventario en ERP, se crea la cuenta por pagar y CRM avisa que ya puedes vender.' },
+        { t: 'mkt', s: '#s-temp', h: '📅 Marketing: fechas clave', x: 'Calendario de fechas importantes de Bolivia (Todos Santos, Navidad, Día de la Madre…). Te dice qué productos empujar y si <b>el stock alcanza</b> antes de lanzar la campaña.', tip: 'Si ya hay campaña, haz clic en la tarjeta para ir a ella.' },
+        { t: 'mkt', s: '#s-camp', h: '📣 Marketing: campañas', x: 'Cada campaña tiene su propio color, el <b>mensaje exacto</b> que se enviará y la lista de destinatarios. Pasa el mouse por un cliente para ver su mensaje.', tip: 'Con «Enviar a todos» se abre WhatsApp de uno en uno, sin escribir nada.' },
+        { t: 'home', h: '🎉 ¡Listo!', x: 'Ya conoces cada parte. Para practicar, ve a <b>CRM</b>, vende a Mariela Choque y mira cómo se mueven ERP y SCM. Puedes repetir este tour cuando quieras con «🧭 Tour guiado».' },
       ];
       let TR = null;
       function tour() {
         trEnd(1);
         TR = { i: 0 };
-        try {
-          localStorage.setItem('zs_tour', '1');
-        } catch (e) {}
-        const hl = document.createElement('div'),
-          cd = document.createElement('div');
-        hl.id = 'tr-hl';
-        cd.id = 'tr-cd';
-        cd.setAttribute('role', 'dialog');
-        cd.setAttribute('aria-label', 'Tour guiado');
+        try { localStorage.setItem('zs_tour', '1'); } catch (e) {}
+        const hl = document.createElement('div'), cd = document.createElement('div');
+        hl.id = 'tr-hl'; cd.id = 'tr-cd'; cd.setAttribute('role', 'dialog'); cd.setAttribute('aria-label', 'Tour guiado');
         document.body.append(hl, cd);
         addEventListener('resize', trPos);
         addEventListener('scroll', trPos, true);
@@ -4674,8 +2902,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
         TR.i = i;
         const st = TOUR[i];
         if (T !== st.t) go(st.t);
-        const cd = $('#tr-cd'),
-          last = i == TOUR.length - 1;
+        const cd = $('#tr-cd'), last = i == TOUR.length - 1;
         cd.innerHTML = `<h3>${st.h}</h3><p>${st.x}</p>${st.tip ? `<div class="tr-tip">💡 ${st.tip}</div>` : ''}<div class="tr-bar"><span class="sp">Paso ${i + 1} de ${TOUR.length}</span>${i ? '<button class="gh sm" onclick="trShow(TR.i-1)">◀ Atrás</button>' : '<button class="gh sm" onclick="trEnd()">Salir</button>'}<button onclick="${last ? 'trEnd()' : 'trShow(TR.i+1)'}">${last ? 'Terminar' : 'Siguiente ▶'}</button></div>`;
         setTimeout(() => {
           if (!TR || TR.i != i) return;
@@ -4686,40 +2913,27 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
       }
       function trPos() {
         if (!TR) return;
-        const st = TOUR[TR.i],
-          el = st.s && document.querySelector(st.s),
-          hl = $('#tr-hl'),
-          cd = $('#tr-cd');
+        const st = TOUR[TR.i], el = st.s && document.querySelector(st.s), hl = $('#tr-hl'), cd = $('#tr-cd');
         if (!hl || !cd) return;
-        const W = innerWidth,
-          H = innerHeight,
-          cw = cd.offsetWidth,
-          ch = cd.offsetHeight;
+        const W = innerWidth, H = innerHeight, cw = cd.offsetWidth, ch = cd.offsetHeight;
         if (!el) {
           hl.style.cssText = 'left:' + W / 2 + 'px;top:' + H / 2 + 'px;width:0;height:0';
           cd.style.left = Math.max(12, (W - cw) / 2) + 'px';
           cd.style.top = Math.max(12, (H - ch) / 2) + 'px';
           return;
         }
-        const r = el.getBoundingClientRect(),
-          p = 6,
-          top = Math.max(4, r.top - p),
-          left = Math.max(4, r.left - p),
-          w = Math.min(W - left - 4, r.width + p * 2),
-          h = Math.min(H - top - 4, r.height + p * 2);
+        const r = el.getBoundingClientRect(), p = 6,
+          top = Math.max(4, r.top - p), left = Math.max(4, r.left - p),
+          w = Math.min(W - left - 4, r.width + p * 2), h = Math.min(H - top - 4, r.height + p * 2);
         hl.style.cssText = `left:${left}px;top:${top}px;width:${w}px;height:${h}px`;
-        const below = H - (top + h) - 12,
-          above = top - 12;
+        const below = H - (top + h) - 12, above = top - 12;
         let cy = below >= ch ? top + h + 12 : above >= ch ? top - ch - 12 : H - ch - 12;
         cd.style.top = Math.max(12, cy) + 'px';
         cd.style.left = Math.max(12, Math.min(left, W - cw - 12)) + 'px';
       }
       function trEnd(q) {
         TR = null;
-        ['tr-hl', 'tr-cd'].forEach((id) => {
-          const e = document.getElementById(id);
-          if (e) e.remove();
-        });
+        ['tr-hl', 'tr-cd'].forEach((id) => { const e = document.getElementById(id); if (e) e.remove(); });
         removeEventListener('resize', trPos);
         removeEventListener('scroll', trPos, true);
         removeEventListener('keydown', trKey);
@@ -4786,7 +3000,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
         );
       }
       function tgl(id) {
-        MK.open[id] = !MK.open[id];
+        MK.open[id] = MK.open[id] === false;
         render();
       }
       function fin(id) {
@@ -4826,11 +3040,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
               ps = D.prods.filter((p) => e.re.test(nz(p.n))),
               cp = hasCamp(e, x),
               wait = D.leads.filter((l) => l.s < 3 && ps.some((p) => p.id == l.p)).length,
-              bad = x.act
-                ? `<span class="b o">🟢 Activa · quedan ${x.left} d</span>`
-                : x.d <= 30
-                  ? `<span class="b w">⏰ En ${x.d} días</span>`
-                  : `<span class="b">En ${x.d} días</span>`;
+              bad = x.act ? `<span class="b o">🟢 Activa · quedan ${x.left} d</span>` : x.d <= 30 ? `<span class="b w">⏰ En ${x.d} días</span>` : `<span class="b">En ${x.d} días</span>`;
             return `<div class="cd sea${x.act ? ' act' : ''}${cp ? ' go' : ''}" id="e-${e.k}"${cp ? ` tabindex="0" role="link" title="Clic para ir a la campaña «${esc(cp.n)}»" onclick="goto('mkt','c-${cp.id}')" onkeydown="if(event.target===this&&event.key=='Enter'){goto('mkt','c-${cp.id}')}"` : ''}><b>${e.e} ${e.n}</b> ${bad}<br><small>${fd(x.a)} → ${fd(x.b)}</small><p>${e.g}</p><div class="pl">${ps.map((p) => pt(p) + ' <small>' + p.st + (p.st == 1 ? ' par' : ' pares') + (p.st <= p.min ? ' ⚠️' : '') + '</small>').join(' ') || '<small>Sin productos asociados: agrégalos en ERP</small>'}</div>${wait ? `<small>👥 ${wait} interesado(s) ya esperan estos productos</small><br>` : ''}${cp ? `<div class="wn ok">✅ Campaña lista: <b>${esc(cp.n)}</b>${cp.r && cp.r[0] ? '<small style="display:block;margin:4px 0">📨 Mensaje: ' + esc(cmsgG(cp)) + '</small>' : ''}<button class="gh" onclick="event.stopPropagation();goto('mkt','c-${cp.id}')">Ver campaña</button></div>` : ''}<button onclick="event.stopPropagation();nc({ev:'${e.k}'})">${cp ? '➕ Otra campaña' : '📣 Crear campaña'}</button></div>`;
           })
           .join('');
@@ -4838,53 +3048,36 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
           ['Audiencia', 'Personas', 'Para qué sirve', ''],
           Object.keys(SEG).map((s) => {
             const n = cnt(s);
-            return [
-              SEG[s][0],
-              '<b>' + n + '</b>',
-              SEG[s][1],
-              n ? `<button class="sm" onclick="nc({seg:'${s}'})">📣 Crear campaña</button>` : '<span class="mu">Sin personas</span>',
-            ];
+            return [SEG[s][0], '<b>' + n + '</b>', SEG[s][1], n ? `<button class="sm" onclick="nc({seg:'${s}'})">📣 Crear campaña</button>` : '<span class="mu">Sin personas</span>'];
           }),
         );
         // Cada campaña conserva su color para siempre: se asigna una vez y se guarda en la campaña
         (() => {
           let prev = -1;
-          [...camps()]
-            .sort((a, b) => a.id - b.id)
-            .forEach((c) => {
-              if (c.col == null) c.col = (prev + 1) % 6;
-              prev = c.col;
-            });
+          [...camps()].sort((a, b) => a.id - b.id).forEach((c) => {
+            if (c.col == null) c.col = (prev + 1) % 6;
+            prev = c.col;
+          });
         })();
         const cards = cs
           .map((c) => {
             const s = cstat(c),
               st = cst(c),
               p = c.pid ? P(c.pid) : null,
-              open = MK.open[c.id],
+              open = MK.open[c.id] !== false, // desplegado por defecto; solo se oculta si la persona lo cierra
               rec = open
                 ? tb(
                     ['Cliente', 'Teléfono', 'Estado', ''],
                     c.r.map((r, i) => {
                       const u = c.used && c.used[r.k],
+                        rs = c.resp && c.resp[r.k] && c.resp[r.k].lead && D.leads.some((x) => x.id == c.resp[r.k].lead) ? c.resp[r.k] : null,
                         sn = c.sent && c.sent[r.k],
-                        wa = r.t
-                          ? `<a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(r.t)}?text=${encodeURIComponent(cmsg(c, r))}" onclick="setTimeout(()=>snt(${c.id},${i},1),0)">💬 WhatsApp</a>`
-                          : '';
-                      return [
-                        `<span class="nm" tabindex="0" data-m="${esc(cmsg(c, r))}" onmouseenter="mtip(this)" onfocus="mtip(this)" onmouseleave="mtipx()" onblur="mtipx()" onclick="mtip(this)">${esc(r.n)} 💬</span>`,
-                        r.t ? '+591 ' + esc(r.t) : '—',
-                        u
-                          ? `<span class="b o" style="cursor:pointer" title="Ver la factura" onclick="fd('${u}')">🛒 Compró ${u} · ver</span>`
-                          : sn
-                            ? '<span class="b i">✅ Enviado</span>'
-                            : '<span class="b w">⏳ Pendiente</span>',
-                        `<div class="ic">${wa}<button class="gh sm" onclick="snt(${c.id},${i})">${sn ? '↺ Pendiente' : '✔ Enviado'}</button><button class="gh sm" onclick="cpy(${c.id},${i})" title="Copiar mensaje">📋</button></div>`,
-                      ];
+                        wa = r.t ? `<a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(r.t)}?text=${encodeURIComponent(cmsg(c, r))}" onclick="setTimeout(()=>snt(${c.id},${i},1),0)">💬 WhatsApp</a>` : '';
+                      return [`<span class="nm" tabindex="0" data-m="${esc(cmsg(c, r))}" onmouseenter="mtip(this)" onfocus="mtip(this)" onmouseleave="mtipx()" onblur="mtipx()" onclick="mtip(this)">${esc(r.n)} 💬</span>`, r.t ? '+591 ' + esc(r.t) : '—', u ? `<span class="b o" style="cursor:pointer" title="Ver la factura" onclick="fd('${u}')">🛒 Compró ${u} · ver</span>` : rs ? `<span class="b i" style="cursor:pointer" title="Ir a su tarjeta en el CRM" onclick="goto('crm','s-crm','l-${rs.lead}')">💬 Respondió · en CRM ↗</span>` : sn ? '<span class="b i">✅ Enviado</span>' : '<span class="b w">⏳ Pendiente</span>', `<div class="ic">${wa}<button class="gh sm" onclick="snt(${c.id},${i})">${sn ? '↺ Pendiente' : '✔ Enviado'}</button>${u ? '' : `<button class="gh sm" onclick="rsp(${c.id},${i})" title="Marca que el cliente contestó: pasa al CRM para atenderlo">${c.resp && c.resp[r.k] ? '↺ Quitar respuesta' : '💬 Respondió'}</button>`}<button class="gh sm" onclick="cpy(${c.id},${i})" title="Copiar mensaje">📋</button></div>`];
                     }),
                   )
                 : '';
-            return `<div class="cd cmp cc${c.col}${nvc('c-' + c.id)}" id="c-${c.id}"><div class="hd"><span><span class="cno">CAMPAÑA ${cs.indexOf(c) + 1}</span><b>${esc(c.n)}</b> <span class="b ${{ Activa: 'o', Vencida: 'w', Finalizada: '' }[st]}">${st}</span><br><small>${SEG[c.seg] ? SEG[c.seg][0] : ''} · ${p ? esc(p.n) : 'todos los productos'} · ${c.disc ? c.disc + '% dto' : 'sin descuento'} · hasta ${new Date(until(c)).toLocaleDateString('es-BO')}</small></span><span class="fm" style="margin:0">${st == 'Activa' && c.r.length ? `<button onclick="bulk(${c.id})">📨 Enviar a todos (${bqList(c).length})</button>` : ''}<button class="gh sm" onclick="tgl(${c.id})">${open ? 'Ocultar' : 'Ver'} destinatarios</button>${st == 'Activa' ? `<button class="gh sm" onclick="fin(${c.id})">Finalizar</button>` : ''}<button class="gh sm" onclick="dcamp(${c.id})">🗑️</button></span></div><div class="cpv"><small>📨 Esto es lo que se enviará · <b>[Nombre]</b> se cambia por el nombre de cada cliente · pasa el mouse por un cliente para ver su mensaje</small>${esc(c.msg ? cmsgG(c) : '')}</div><div class="mst">${tile('Destinatarios', s.n)}${tile('Enviados', s.sent + '/' + s.n)}${tile('Compraron', s.v + (s.n ? ' · ' + Math.round((s.v / s.n) * 100) + '%' : ''))}${tile('Vendido', fmt(s.ing))}${tile('Descuento dado', fmt(s.dto))}</div>${rec ? '<div class="rh">👥 Destinatarios de «' + esc(c.n) + '»</div>' : ''}${rec}<div class="cend">▲ FIN · Campaña ${cs.indexOf(c) + 1} de ${cs.length}: «${esc(c.n)}»</div></div>`;
+            return `<div class="cd cmp cc${c.col}${nvc('c-' + c.id)}" id="c-${c.id}"><div class="hd"><span><span class="cno">CAMPAÑA ${cs.indexOf(c) + 1}</span><b>${esc(c.n)}</b> <span class="b ${{ Activa: 'o', Vencida: 'w', Finalizada: '' }[st]}">${st}</span><br><small>${SEG[c.seg] ? SEG[c.seg][0] : ''} · ${p ? esc(p.n) : 'todos los productos'} · ${c.disc ? c.disc + '% dto' : 'sin descuento'} · hasta ${new Date(until(c)).toLocaleDateString('es-BO')}</small></span><span class="fm" style="margin:0">${st == 'Activa' && c.r.length ? `<button onclick="bulk(${c.id})">📨 Enviar a todos (${bqList(c).length})</button>` : ''}<button class="gh sm" onclick="tgl(${c.id})">${open ? 'Ocultar' : 'Ver'} destinatarios</button>${st == 'Activa' ? `<button class="gh sm" onclick="fin(${c.id})">Finalizar</button>` : ''}<button class="gh sm" onclick="dcamp(${c.id})">🗑️</button></span></div><div class="cpv"><small>📨 Esto es lo que se enviará · <b>[Nombre]</b> se cambia por el nombre de cada cliente · pasa el mouse por un cliente para ver su mensaje</small>${esc(c.msg ? cmsgG(c) : '')}</div><div class="mst">${tile('Destinatarios', s.n)}${tile('Enviados', s.sent + '/' + s.n)}${tile('Respondieron', s.resp + '/' + s.n)}${tile('Compraron', s.v + (s.n ? ' · ' + Math.round((s.v / s.n) * 100) + '%' : ''))}${tile('Vendido', fmt(s.ing))}${tile('Descuento dado', fmt(s.dto))}</div>${rec ? '<div class="rh">👥 Destinatarios de «' + esc(c.n) + '»</div>' : ''}${rec}<div class="cend">▲ FIN · Campaña ${cs.indexOf(c) + 1} de ${cs.length}: «${esc(c.n)}»</div></div>`;
           })
           .join('');
         const fr = flt(
@@ -4915,14 +3108,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
                       d = dago(x.last),
                       fv = Object.entries(x.fav).sort((a, b) => b[1] - a[1])[0],
                       fpd = fv && P(+fv[0]),
-                      m =
-                        'Hola ' +
-                        x.n.split(' ')[0] +
-                        ', gracias por ser parte de Zapatos Sol 💙 Eres cliente ' +
-                        tn(t) +
-                        (TB[t]
-                          ? ' y tienes ' + TB[t] + '% de descuento en tu próxima compra.'
-                          : '. Sigue comprando para subir de nivel y ganar descuentos.');
+                      m = 'Hola ' + x.n.split(' ')[0] + ', gracias por ser parte de Zapatos Sol 💙 Eres cliente ' + tn(t) + (TB[t] ? ' y tienes ' + TB[t] + '% de descuento en tu próxima compra.' : '. Sigue comprando para subir de nivel y ganar descuentos.');
                     return [
                       esc(x.n) + (x.c ? '<br><small>📍 ' + esc(x.c) + '</small>' : ''),
                       x.buys,
@@ -4932,9 +3118,7 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
                       fpd ? pt(fpd) : '—',
                       (d == 0 ? 'Hoy' : 'hace ' + d + ' d') + (d > 60 ? ' <span class="b w">😴</span>' : ''),
                       t < 2 ? 'Faltan ' + fmt(TU[t + 1] - x.tot) + ' para ' + tn(t + 1) : 'Nivel máximo',
-                      x.t
-                        ? `<div class="ic"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(x.t)}?text=${encodeURIComponent(m)}">💬</a></div>`
-                        : '',
+                      x.t ? `<div class="ic"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/591${esc(x.t)}?text=${encodeURIComponent(m)}">💬</a></div>` : '',
                     ];
                   }),
                 )
@@ -4958,66 +3142,34 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
         });
       }
       render();
-
+    
       /* ===== Mejoras UI/UX ===== */
       (function () {
-        const TABS = ['home', 'crm', 'mkt', 'erp', 'scm'],
-          TK = 'zs_tab';
+        const TABS = ['home', 'crm', 'mkt', 'erp', 'scm'], TK = 'zs_tab';
         // botón volver arriba
         const up = document.createElement('button');
-        up.id = 'up';
-        up.textContent = '↑';
-        up.title = 'Volver arriba';
-        up.setAttribute('aria-label', 'Volver arriba');
+        up.id = 'up'; up.textContent = '↑'; up.title = 'Volver arriba'; up.setAttribute('aria-label', 'Volver arriba');
         up.onclick = () => scrollTo({ top: 0 });
         document.body.appendChild(up);
-        addEventListener(
-          'scroll',
-          () => {
-            up.classList.toggle('on', scrollY > 400);
-            const st = $('.stk');
-            if (st) st.classList.toggle('sc', scrollY > 10);
-          },
-          { passive: true },
-        );
+        addEventListener('scroll', () => {
+          up.classList.toggle('on', scrollY > 400);
+          const st = $('.stk'); if (st) st.classList.toggle('sc', scrollY > 10);
+        }, { passive: true });
         document.querySelectorAll('nav button').forEach((b) => b.setAttribute('role', 'tab'));
-        const nv = $('nav');
-        if (nv) nv.setAttribute('role', 'tablist');
+        const nv = $('nav'); if (nv) nv.setAttribute('role', 'tablist');
         // render mejorado: conserva scroll y foco, ARIA y contador en el título
         const _r = render;
         render = function () {
-          const y = scrollY,
-            a = document.activeElement,
-            v = $('#v');
+          const y = scrollY, a = document.activeElement, v = $('#v');
           const idx = a && v && v.contains(a) && /INPUT|SELECT/.test(a.tagName) ? [...v.querySelectorAll('input,select')].indexOf(a) : -1;
           const pos = idx >= 0 && a.selectionStart != null ? [a.selectionStart, a.selectionEnd] : null;
-          const same = render.last === T;
-          render.last = T;
+          const same = render.last === T; render.last = T;
           _r();
-          {
-            const bar = v.querySelector('.al.nvh'),
-              sp = v.querySelector('.nvsp');
-            if (bar && sp) {
-              v.prepend(bar);
-              v.prepend(sp);
-              nvUp();
-            }
-          }
+          { const bar = v.querySelector('.al.nvh'), sp = v.querySelector('.nvsp'); if (bar && sp) { v.prepend(bar); v.prepend(sp); nvUp(); } }
           if (same) scrollTo({ top: y, behavior: 'instant' });
-          if (idx >= 0) {
-            const n = v.querySelectorAll('input,select')[idx];
-            if (n) {
-              n.focus();
-              if (pos)
-                try {
-                  n.setSelectionRange(pos[0], pos[1]);
-                } catch (_) {}
-            }
-          }
+          if (idx >= 0) { const n = v.querySelectorAll('input,select')[idx]; if (n) { n.focus(); if (pos) try { n.setSelectionRange(pos[0], pos[1]); } catch (_) {} } }
           document.querySelectorAll('#v .cd .wn:not(.ok)').forEach((w) => {
-            const t = (w.querySelector('b') || {}).textContent || 'Aviso',
-              body = document.createElement('div'),
-              hd = document.createElement('button');
+            const t = (w.querySelector('b') || {}).textContent || 'Aviso', body = document.createElement('div'), hd = document.createElement('button');
             body.className = 'wnb';
             while (w.firstChild) body.appendChild(w.firstChild);
             hd.className = 'wnt';
@@ -5025,48 +3177,25 @@ ${dto ? `<tr><td style="${cell}" colspan="3">Descuento${s.why ? ' (' + esc(s.why
             hd.onclick = () => w.classList.toggle('open');
             w.append(hd, body);
           });
-          const ls = $('#lv');
-          if (ls) ls.value = LV;
+          const ls = $('#lv'); if (ls) ls.value = LV;
           document.querySelectorAll('nav button').forEach((b) => b.setAttribute('aria-selected', b.dataset.t == T));
           const pend = [...document.querySelectorAll('nav .nb')].reduce((n, b) => n + (parseInt(b.textContent.replace(/\D/g, '')) || 0), 0);
           document.title = (pend ? '(' + pend + ') ' : '') + 'Zapatos Sol — CRM · ERP · SCM';
-          try {
-            localStorage.setItem(TK, T);
-          } catch (_) {}
+          try { localStorage.setItem(TK, T); } catch (_) {}
         };
         // diálogos: foco inicial y cerrar al tocar fuera
-        new MutationObserver((ms) =>
-          ms.forEach((m) =>
-            m.addedNodes.forEach((d) => {
-              if (d.tagName != 'DIALOG') return;
-              setTimeout(() => {
-                const f = d.querySelector('input,select') || d.querySelector('button[type=submit]');
-                if (f) f.focus();
-              });
-              d.addEventListener('mousedown', (e) => {
-                if (e.target === d) d.dispatchEvent(new Event('cancel'));
-              });
-            }),
-          ),
-        ).observe(document.body, { childList: true });
+        new MutationObserver((ms) => ms.forEach((m) => m.addedNodes.forEach((d) => {
+          if (d.tagName != 'DIALOG') return;
+          setTimeout(() => { const f = d.querySelector('input,select') || d.querySelector('button[type=submit]'); if (f) f.focus(); });
+          d.addEventListener('mousedown', (e) => { if (e.target === d) d.dispatchEvent(new Event('cancel')); });
+        }))).observe(document.body, { childList: true });
         // aviso: accesible y se cierra al tocarlo
-        const t = $('#t');
-        if (t) {
-          t.setAttribute('role', 'status');
-          t.setAttribute('aria-live', 'polite');
-          t.onclick = () => (t.style.display = 'none');
-        }
+        const t = $('#t'); if (t) { t.setAttribute('role', 'status'); t.setAttribute('aria-live', 'polite'); t.onclick = () => (t.style.display = 'none'); }
         // recordar la última pestaña
-        let sv = null;
-        try {
-          sv = localStorage.getItem(TK);
-        } catch (_) {}
-        if (sv && TABS.includes(sv) && sv != T) go(sv);
-        else render();
+        let sv = null; try { sv = localStorage.getItem(TK); } catch (_) {}
+        if (sv && TABS.includes(sv) && sv != T) go(sv); else render();
         // primera visita: ofrecer el tour una sola vez
-        try {
-          if (!localStorage.getItem('zs_tour')) setTimeout(tour, 700);
-        } catch (_) {}
+        try { if (!localStorage.getItem('zs_tour')) setTimeout(tour, 700); } catch (_) {}
       })();
     </script>
   </body>
